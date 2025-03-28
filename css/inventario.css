@@ -243,5 +243,31 @@ header #button-menu{
     top: 10px;         /* mueve verticalmente */
   }
   .pro{
-padding-left: 450px;
+padding-left: 490px;
   }
+  .edit{
+    color: white;
+    border-radius: 40px;    
+    background: linear-gradient(to right, #20CE38  , #13FF00 );
+    height: 40px;
+    width: 150px;
+    margin-left: 650px; 
+    margin-top: 15px;
+  }
+.borro{
+    color: white;
+    border-radius: 40px;    
+    background: linear-gradient(to right, #20CE38  , #13FF00 );
+    height: 40px;
+    width: 150px;
+    margin-left: 650px; 
+    margin-top: 15px;
+  }
+.agre {color: white;
+border-radius: 40px;    
+background: linear-gradient(to right, #20CE38  , #13FF00 );
+height: 40px;
+width: 150px;
+margin-left: 650px; 
+margin-top: 15px;
+}
