@@ -228,3 +228,20 @@ header #button-menu{
     0% { background-position: 0% 50%; }
     100% { background-position: 100% 50%; }
 }
+.linea-vertical {
+    border-left: 1px solid #000;
+    height: 200px;
+    position: absolute; /* o relative/fixed */
+    left: 650px;       /* ya lo tienes */
+    top: 210px;        /* nueva propiedad para mover verticalmente */
+  }
+  .linea-horizontal {
+    border-bottom: 1px solid #000;
+    width: 30%;
+    position: relative;
+    left: 450px;       /* mueve horizontalmente */
+    top: 10px;         /* mueve verticalmente */
+  }
+  .pro{
+padding-left: 450px;
+  }
