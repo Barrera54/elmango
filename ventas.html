@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="ventas.css">
+<script src=""></script>
+    <body>
 
-    
-     <title>El Mango - Ventas</title>
-    </head>
-<body>
-    <div class="phone">
-        <div class="header">
+    <div class="container">
+        <div class="rectangle" onclick="toggleInfo()">
+            <h2>
+                Información Importante
+                <span class="arrow">▼</span>
+            </h2>
+        </div>
         
-        <div class="content">
-            <div class="section">
-                <h2>Ventas</h2>
-            </div>
-            <div class="section">
-                <h3>Contabilidad</h3>
-            </div>
+        <div class="info-panel" id="infoPanel">
+            <div class="info-content">
+          
             <div class="section">
                 <h3>Ventas empleado</h3>
                 <table>
@@ -58,9 +57,10 @@
                         <td>$150</td>
                     </tr>
                 </table>
+     
             </div>
-            <div class="section footer">Producto excepciones</div>
         </div>
     </div>
+         
 </body>
 </html>
