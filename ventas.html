@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<title>Menu multinivel responsive</title>
@@ -10,47 +10,23 @@
 	<script src="js/jquery-3.2.1.js"></script>
 	<script src="js/main.js"></script>
 </head>
+
+<script src="ventaempl.js"></script>
 <body>
-	<header>
-		<div class="tit">
-		<span id="button-menu" class="fa fa-bars"></span><div class="a"><h1>El mango</h1></div></div>
-
-		<nav class="navegacion">
-			<ul class="menu">
-				<!-- TITULAR -->
-				
-				<li><a href="#">Buscador</a></li>
-
-				<li >
-					<a href="#">Catalogo</a>
-				</li>
-				<li >
-					<a href="inventario.html">Inventario</a>
-				</li>
-				<li><a href="ventas.html">Ventas</a></li>
-				<li><a href="#">Traductor</a></li>
-				<li><a href="#">Cambio de color</a></li>
-				<li><a href="#">Actualizar</a></li>
-				<li><a href="#">devueltos</a></li>
-				<li><a href="#">Encuesta de producto</a></li>
-				<li><a href="#">Encuesta de sistema</a></li>
-				<li><a href="#">Papelera de producto </a></li>
-				<li><a href="#">Llegada de producto</a></li>
-				<li><a href="#">Traductor</a></li>
-		</nav>
-	</header>
-    <div class="j"></div>
     
-    <div class="phone">
-       
+
+    <div class="container">
+        <div class="ven"><h1>Ventas</h1></div>
+        <div class="rectangle" onclick="toggleInfo()">
+            <h2>
+               Venta empleado
+            </h2>
+        </div>
+
         
-        <div class="content">
-            <div class="section">
-                <h2>Ventas</h2>
-            </div>
-            <div class="section">
-                <h3>Contabilidad</h3>
-            </div>
+        <div class="info-panel" id="infoPanel">
+            <div class="info-content">
+          
             <div class="section">
                 <h3>Ventas empleado</h3>
                 <table>
@@ -90,10 +66,10 @@
                         <td>$150</td>
                     </tr>
                 </table>
+     
             </div>
-            <div class="section footer">Producto excepciones</div>
         </div>
     </div>
-</div>
+
 </body>
 </html>
