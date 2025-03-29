@@ -2,26 +2,30 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; /* Cambio clave */
     height: 100vh;
     margin: 0;
     background-color: #f5f5f5;
+    padding-top: 20px; /* Ajusta este valor según necesites */
 }
 
-.container {
-    width: 80%;
-    max-width: 500px;
+/* El resto de tus estilos se mantienen igual */
+.ven {
+    text-align: center;
 }
+
+
+/* ... otros estilos ... */
 
 .rectangle {
     background-color: #4CAF50;
     color: white;
-    padding: 20px;
+    padding: 10px;
     border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
+    margin-bottom: 5px;
 }
 
 .rectangle:hover {
@@ -42,7 +46,7 @@ body {
 
 .info-panel.active {
     padding: 20px;
-    max-height: 300px;
+    max-height: 500px;
     border: 1px solid #ddd;
 }
 
@@ -54,18 +58,9 @@ body {
 .info-panel.active .info-content {
     opacity: 1;
 }
-
-h2 {
-    margin-top: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.prin{
+    width: 500px;
+    height: 500px;
+ 
 }
 
-.arrow {
-    transition: transform 0.3s ease;
-}
-
-.rectangle.active .arrow {
-    transform: rotate(180deg);
-}

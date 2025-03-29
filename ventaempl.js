@@ -8,8 +8,8 @@ function toggleInfo() {
     
     // Cambiar el texto del rectángulo si lo deseas
     if (infoPanel.classList.contains('active')) {
-        rectangle.querySelector('h2').innerHTML = 'Información Importante <span class="arrow">▲</span>';
+        rectangle.querySelector('h2').innerHTML = 'Venta empleado <span class="arrow"></span>';
     } else {
-        rectangle.querySelector('h2').innerHTML = 'Información Importante <span class="arrow">▼</span>';
+        rectangle.querySelector('h2').innerHTML = 'Venta empleado <span class="arrow"></span>';
     }
 }
