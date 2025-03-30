@@ -9,67 +9,101 @@
 
 	<script src="js/jquery-3.2.1.js"></script>
 	<script src="js/main.js"></script>
+    <script src="ventaempl.js"></script>
 </head>
 
-<script src="ventaempl.js"></script>
-<body>
+<div class="container">
+    <!-- Primer cuadro desplegable -->
+    <div class="rectangle" onclick="toggleInfo(1)">
+        <h2>
+            Información 1
+            <span class="arrow">▼</span>
+        </h2>
+    </div>
     
-
-    <div class="container">
-        <div class="ven"><h1>Ventas</h1></div>
-        <div class="rectangle" onclick="toggleInfo()">
-            <h2>
-               Venta empleado
-            </h2>
-        </div>
-
-        
-        <div class="info-panel" id="infoPanel">
-            <div class="info-content">
-          
-            <div class="section">
-                <h3>Ventas empleado</h3>
-                <table>
-                    <tr>
-                        <th>Empleado</th>
-                        <th>Cantidad</th>
-                        <th>Total</th>
-                    </tr>
-                    <tr>
-                        <td>Juan</td>
-                        <td>5</td>
-                        <td>$50</td>
-                    </tr>
-                    <tr>
-                        <td>María</td>
-                        <td>8</td>
-                        <td>$80</td>
-                    </tr>
-                    <tr>
-                        <td>Pedro</td>
-                        <td>12</td>
-                        <td>$120</td>
-                    </tr>
-                    <tr>
-                        <td>Luisa</td>
-                        <td>6</td>
-                        <td>$60</td>
-                    </tr>
-                    <tr>
-                        <td>Carlos</td>
-                        <td>9</td>
-                        <td>$90</td>
-                    </tr>
-                    <tr>
-                        <td>Ana</td>
-                        <td>15</td>
-                        <td>$150</td>
-                    </tr>
-                </table>
-     
-            </div>
+    <div class="info-panel" id="infoPanel1">
+        <div class="info-content">
+            <h3>Detalles del Primer Panel</h3>
+            <p>Contenido específico para el primer panel desplegable.</p>
+            <ul>
+                <li>Elemento 1</li>
+                <li>Elemento 2</li>
+                <li>Elemento 3</li>
+            </ul>
         </div>
     </div>
-
-</body>
-</html>
+    
+    <!-- Segundo cuadro desplegable -->
+    <div class="rectangle" onclick="toggleInfo(2)">
+        <h2>
+            Información 2
+            <span class="arrow">▼</span>
+        </h2>
+    </div>
+    
+    <div class="info-panel" id="infoPanel2">
+        <div class="info-content">
+            <div class="section">
+            <h3>Ventas empleado</h3>
+            <table>
+                <tr>
+                    <th>Empleado</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                </tr>
+                <tr>
+                    <td>Juan</td>
+                    <td>5</td>
+                    <td>$50</td>
+                </tr>
+                <tr>
+                    <td>María</td>
+                    <td>8</td>
+                    <td>$80</td>
+                </tr>
+                <tr>
+                    <td>Pedro</td>
+                    <td>12</td>
+                    <td>$120</td>
+                </tr>
+                <tr>
+                    <td>Luisa</td>
+                    <td>6</td>
+                    <td>$60</td>
+                </tr>
+                <tr>
+                    <td>Carlos</td>
+                    <td>9</td>
+                    <td>$90</td>
+                </tr>
+                <tr>
+                    <td>Ana</td>
+                    <td>15</td>
+                    <td>$150</td>
+                </tr>
+            </table>
+ 
+        </div>
+        </div>
+    </div>
+    
+    <!-- Tercer cuadro desplegable -->
+    <div class="rectangle" onclick="toggleInfo(3)">
+        <h2>
+            Información 3
+            <span class="arrow">▼</span>
+        </h2>
+    </div>
+    
+    <div class="info-panel" id="infoPanel3">
+        <div class="info-content">
+            <h3>Detalles del Tercer Panel</h3>
+            <p>Contenido específico para el tercer panel desplegable.</p>
+            <ul>
+                <li>Punto 1</li>
+                <li>Punto 2</li>
+                <li>Punto 3</li>
+            </ul>
+        </div>
+    </div>
+</div>

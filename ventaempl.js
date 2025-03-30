@@ -1,15 +1,15 @@
-function toggleInfo() {
-    const rectangle = document.querySelector('.rectangle');
-    const infoPanel = document.getElementById('infoPanel');
+function toggleInfo(panelNumber) {
+    const rectangle = document.querySelectorAll('.rectangle')[panelNumber - 1];
+    const infoPanel = document.getElementById(`infoPanel${panelNumber}`);
+    const arrow = rectangle.querySelector('.arrow');
     
     // Alternar clases activas
     rectangle.classList.toggle('active');
     infoPanel.classList.toggle('active');
     
-    // Cambiar el texto del rectángulo si lo deseas
+    // Cambiar la flecha
     if (infoPanel.classList.contains('active')) {
-        rectangle.querySelector('h2').innerHTML = 'Venta empleado <span class="arrow"></span>';
+        arrow.textContent = '▲';
     } else {
-        rectangle.querySelector('h2').innerHTML = 'Venta empleado <span class="arrow"></span>';
-    }
-}
+        arrow.textContent = '▼';
+    }}
