@@ -9,35 +9,59 @@
 
 	<script src="js/jquery-3.2.1.js"></script>
 	<script src="js/main.js"></script>
-    <script src="ventaempl.js"></script>
+    <script src="js/ventaempl.js"></script>
 </head>
+<header>
+    <div class="tit">
+    <span id="button-menu" class="fa fa-bars"></span><div class="a"><h1>El mango</h1></div></div>
+
+    <nav class="navegacion">
+        <ul class="menu">
+            <!-- TITULAR -->
+            
+            <li><a href="#">Buscador</a></li>
+
+            <li >
+                <a href="#">Catalogo</a>
+            </li>
+            <li >
+                <a href="inventario.html">Inventario</a>
+            </li>
+            <li><a href="ventas.html">Ventas</a></li>
+            <li><a href="#">Traductor</a></li>
+            <li><a href="#">Cambio de color</a></li>
+            <li><a href="#">Actualizar</a></li>
+            <li><a href="#">devueltos</a></li>
+            <li><a href="#">Encuesta de producto</a></li>
+            <li><a href="#">Encuesta de sistema</a></li>
+            <li><a href="#">Papelera de producto </a></li>
+            <li><a href="#">Llegada de producto</a></li>
+            <li><a href="#">Traductor</a></li>
+    </nav>
+</header>
 
 <div class="container">
+    <div class="ven"><h1>Venta</h1></div>
     <!-- Primer cuadro desplegable -->
     <div class="rectangle" onclick="toggleInfo(1)">
         <h2>
-            Información 1
-            <span class="arrow">▼</span>
+        Contabilidad
+            <span class="arrow"></span>
         </h2>
     </div>
     
     <div class="info-panel" id="infoPanel1">
         <div class="info-content">
-            <h3>Detalles del Primer Panel</h3>
-            <p>Contenido específico para el primer panel desplegable.</p>
-            <ul>
-                <li>Elemento 1</li>
-                <li>Elemento 2</li>
-                <li>Elemento 3</li>
-            </ul>
+           
+            
         </div>
     </div>
     
     <!-- Segundo cuadro desplegable -->
     <div class="rectangle" onclick="toggleInfo(2)">
         <h2>
-            Información 2
-            <span class="arrow">▼</span>
+            Ventas empleado
+            <span class="arrow"></span>
         </h2>
     </div>
     
@@ -90,20 +114,14 @@
     <!-- Tercer cuadro desplegable -->
     <div class="rectangle" onclick="toggleInfo(3)">
         <h2>
-            Información 3
-            <span class="arrow">▼</span>
+      Productos excepciones
+            <span class="arrow"></span>
         </h2>
     </div>
     
     <div class="info-panel" id="infoPanel3">
         <div class="info-content">
-            <h3>Detalles del Tercer Panel</h3>
-            <p>Contenido específico para el tercer panel desplegable.</p>
-            <ul>
-                <li>Punto 1</li>
-                <li>Punto 2</li>
-                <li>Punto 3</li>
-            </ul>
+          
         </div>
     </div>
 </div>

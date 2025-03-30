@@ -9,7 +9,7 @@ function toggleInfo(panelNumber) {
     
     // Cambiar la flecha
     if (infoPanel.classList.contains('active')) {
-        arrow.textContent = '▲';
+        arrow.textContent = '';
     } else {
-        arrow.textContent = '▼';
+        arrow.textContent = '';
     }}

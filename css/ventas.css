@@ -2,16 +2,28 @@ body {
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    align-items: flex-start; /* Cambio clave */
+    height: 100vh;
     margin: 0;
     background-color: #f5f5f5;
-    padding: 20px;
+    padding-top: 150px; /* Ajusta este valor según necesites */
+    font-family: 'Open sans';
+	background: #E8E8E8;
+}
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+/* El resto de tus estilos se mantienen igual */
+.ven {
+    text-align: center;
 }
 
 .container {
     width: 80%;
     max-width: 600px;
+
 }
 
 .rectangle {
@@ -40,6 +52,7 @@ body {
     transition: max-height 0.5s ease, padding 0.5s ease;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .info-panel.active {
@@ -51,6 +64,7 @@ body {
 .info-content {
     opacity: 0;
     transition: opacity 0.3s ease 0.2s;
+    text-align: center;
 }
 
 .info-panel.active .info-content {
@@ -78,11 +92,11 @@ h2 {
 }
 
 .rectangle:nth-child(3) {
-    background-color: #2196F3; /* Azul */
+    background-color: #4CAF50; /* Azul */
 }
 
 .rectangle:nth-child(5) {
-    background-color: #FF9800; /* Naranja */
+    background-color: #4CAF50; /* Naranja */
 }
 
 .rectangle:nth-child(1):hover {
@@ -90,11 +104,29 @@ h2 {
 }
 
 .rectangle:nth-child(3):hover {
-    background-color: #1e88e5;
+    background-color: #4CAF50;
 }
 
 .rectangle:nth-child(5):hover {
-    background-color: #fb8c00;
+    background-color: #4CAF50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+}
+th, td {
+    padding: 4px;
+    text-align: center;
+    border-bottom: 1px solid black;
+}
+
+th, td {
+    border-right: 1px solid black;
+}
+th:last-child, td:last-child {
+    border-right: none;
 }
 header{
 	position: fixed;
