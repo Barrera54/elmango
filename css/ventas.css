@@ -57,7 +57,7 @@ body {
 
 .info-panel.active {
     padding: 20px;
-    max-height: 300px;
+    max-height: 600px;
     border: 1px solid #ddd;
 }
 
@@ -284,4 +284,7 @@ header #button-menu{
 
 .a a h1:hover {
     color: black /* Morado al hacer hover */
+}
+.d{
+    color: red;
 }
