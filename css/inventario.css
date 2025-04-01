@@ -271,3 +271,46 @@ width: 150px;
 margin-left: 650px; 
 margin-top: 15px;
 }
+
+/* Agrega esto al final de tu CSS existente */
+
+/* Contenedor de botones debajo de la línea horizontal */
+/* Agrega esto al final de tu CSS existente */
+
+/* Contenedor de botones debajo de la línea horizontal */
+.botones-fila {
+
+    flex-direction: row;
+    gap: 20px; /* Espacio entre botones */
+    position: absolute;
+    left: 450px; /* Misma posición que la línea horizontal */
+    top: 40%; /* Ajustado para estar debajo de la línea */
+    justify-content: center;
+    width: 30%; /* Mismo ancho que la línea horizontal */
+
+}
+
+/* Estilo base para los botones */
+.edit, .borro, .agre {
+    color: white;
+    border-radius: 40px;    
+    background: linear-gradient(to right, #20CE38, #13FF00);
+    height: 40px;
+    width: 150px;
+    margin: 0; /* Eliminamos los márgenes individuales */
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+    margin-left: 50%;
+}
+
+/* Efecto hover para los botones */
+.edit:hover, .borro:hover, .agre:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
