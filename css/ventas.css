@@ -266,3 +266,22 @@ header #button-menu{
 .b{
 	background-color: #99FF99;
 }
+.a a {
+    color: #FF0000; /* Rojo (puedes cambiarlo al color que prefieras) */
+    text-decoration: none; /* Para quitar el subrayado */
+}
+
+/* Opción 2: Cambiando solo el hover (cuando pasas el mouse) */
+.a a:hover {
+    color: #00FF00; /* Verde al hacer hover */
+}
+
+/* Opción 3: Cambiando el color del h1 dentro del enlace */
+.a a h1 {
+    color: black; /* Azul para el texto del h1 */
+    transition: color 0.3s ease; /* Transición suave */
+}
+
+.a a h1:hover {
+    color: black /* Morado al hacer hover */
+}
