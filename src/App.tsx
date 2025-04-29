@@ -15,7 +15,7 @@ function App() {
         
     </header>
   <Navbar show={showNav} />
-ro
+
   </Router>
  </>
 }
