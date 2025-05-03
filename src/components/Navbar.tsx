@@ -39,6 +39,7 @@ const Navbar = ({ show }: { show: boolean }) => {
         </li>
       </ul>
     </div>
+    
   );
 }
 

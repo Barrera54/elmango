@@ -1,3 +1,4 @@
+
 const Ventas = () =>{
     return <div>Catalogo</div>
 }
