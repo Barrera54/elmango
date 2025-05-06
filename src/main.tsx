@@ -1,10 +1,14 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.tsx'
+import Appsito from './components/Appsito.tsx'
+import Inicio from './components/lo.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+
+   
+  <Inicio/>
+    <Appsito />
   </StrictMode>,
 )
