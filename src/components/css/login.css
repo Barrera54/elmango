@@ -29,7 +29,7 @@ margin-top: -10%;
 .h{
     color: black;
     font-size: 20px;
-margin-left: 15%;
+margin-right:300px;
 }
 input{
     height: 25px;
@@ -72,7 +72,7 @@ margin-top: 10px;}
 .ma{
     color: black;
     font-size: 20px;
-    margin-left: 85px;
+  margin-right: 150px;
 }
 input{
 width: 250px;
@@ -80,6 +80,7 @@ width: 250px;
     border-radius: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     font-size: 20px;
+    margin-left: 100px;
 }
 button {
     height: 50px;

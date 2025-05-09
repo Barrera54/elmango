@@ -73,7 +73,7 @@
     color: #000;
  
     font-size: 20px;
-    margin-left: 45%;
+
     
 }
 .linea-vertical {
@@ -97,8 +97,9 @@
 }
 
 .pro {
-    padding-left: 500px;
     color: #000;
+    margin-right: 250px;
+font-size: 20px;
 }
 
 .edit {
@@ -137,7 +138,7 @@ margin-top: 100%;
     gap: 20px;
     left: 4500%;
  
-    top: 300%;
+    top: 310%;
   
     justify-content: center;
     width: 30%;
@@ -202,5 +203,5 @@ margin-top: 100%;
     margin-left: 40%;
 }.pi{
  
-    height: 50px;
+    height: 60px;
 }

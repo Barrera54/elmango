@@ -4,11 +4,14 @@ import './index.css'
 import Appsito from './components/Appsito.tsx'
 import Inicio from './components/lo.tsx'
 import Buscador from'./components/Buscador.tsx'
+import Venta from './components/ventas.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
 
     <Inicio/> 
    <Appsito />
 <Buscador/>
+
+<Venta/>
   </StrictMode>,
 )

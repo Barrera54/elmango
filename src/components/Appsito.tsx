@@ -95,8 +95,8 @@ function Appsito() {
       </div>
 
       <div className="la">
-        <h1>Total</h1>
-        <div className={`lo ${showNav ? 'hidden-line' : ''}`}></div>
+       
+        <div className={`lo ${showNav ? 'hidden-line' : ''}`}> <div className="ji"> <h1>Total</h1></div></div>
       </div>
     </>
   )

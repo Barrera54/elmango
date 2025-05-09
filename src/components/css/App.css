@@ -71,6 +71,7 @@ margin-left: 70%;
   border: 5px solid black;
 margin-top: 20px;
 color: black;
+
 }
 .el{
 width: 1000px;
@@ -82,8 +83,9 @@ display: flex;
   border-left: 5px solid #000;
   height: 77px;
   position: absolute;
-  left: 95px;
+  left: 200px;
   top: 208%;
+  
 }
 
 /* Oculta la línea cuando se abre el menú */
