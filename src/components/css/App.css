@@ -88,7 +88,6 @@ display: flex;
   
 }
 
-/* Oculta la línea cuando se abre el menú */
 .hidden-line {
   display: none;
 }
