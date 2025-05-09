@@ -17,7 +17,8 @@ const Navbar = ({ show }: { show: boolean }) => {
           <Link to="/traductor">Traductor</Link>
         </li>
         <li>
-          <Link to="/">Cambiar de color</Link>
+          <Link to="/">Cambiar de color
+         </Link>
         </li>
         <li>
           <Link to="/">Actualizar</Link>

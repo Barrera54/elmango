@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import Appsito from './components/Appsito.tsx'
 import Inicio from './components/lo.tsx'
-
+import Buscador from'./components/Buscador.tsx'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
 
-   
-  <Inicio/>
-    <Appsito />
+    <Inicio/> 
+   <Appsito />
+<Buscador/>
   </StrictMode>,
 )
