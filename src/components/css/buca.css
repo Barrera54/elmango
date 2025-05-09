@@ -1,0 +1,206 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+.multicolor-search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+}
+
+.search-input {
+    width: 100%;
+    padding: 12px 20px;
+    padding-right: 50px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(90deg,
+            #ff9a9e 0%,
+            #fad0c4 20%,
+            #fbc2eb 40%,
+            #a6c1ee 60%,
+            #84fab0 80%,
+            #8fd3f4 100%);
+    background-size: 200% auto;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    background-position: right center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+   
+}
+
+.search-input::placeholder {
+    color: #555;
+  
+}
+
+.search-button {
+    position: absolute;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+     margin-top: -70px;
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    fill: #555;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    margin-left: 50%;
+}
+    
+
+.search-button:hover .search-icon {
+    fill: #333;
+    transform: scale(1.1);
+}
+.li{
+    color: #000;
+ 
+    font-size: 20px;
+    margin-left: 45%;
+    
+}
+.linea-vertical {
+    border-left: 6px solid #000;
+    height: 200px;
+    position: absolute;
+
+    left: 730px;
+
+    top: 250%;
+
+}
+
+.linea-horizontal {
+    border-bottom: 5px solid #000;
+    width: 30%;
+    position: relative;
+    left: 490px;
+    top: 5px;
+    
+}
+
+.pro {
+    padding-left: 500px;
+    color: #000;
+}
+
+.edit {
+    color: white;
+    border-radius: 40px;
+    background: linear-gradient(to right, #20CE38, #13FF00);
+    height: 40px;
+    width: 150px;
+    margin-left: 650px;
+    margin-top: 100%;
+}
+
+.borro {
+    color: white;
+    border-radius: 40px;
+    background: linear-gradient(to right, #20CE38, #13FF00);
+    height: 40px;
+    width: 150px;
+    margin-left: 650px;
+margin-top: 100%;}
+
+.agre {
+    color: white;
+    border-radius: 40px;
+    background: linear-gradient(to right, #20CE38, #13FF00);
+    height: 40px;
+    width: 150px;
+    margin-left: 650px;
+margin-top: 100%;
+}
+
+
+.botones-fila {
+
+    flex-direction: row;
+    gap: 20px;
+    left: 4500%;
+ 
+    top: 300%;
+  
+    justify-content: center;
+    width: 30%;
+
+
+}
+
+
+.edit,
+.borro,
+.agre {
+    color: white;
+    border-radius: 40px;
+    background: linear-gradient(to right, #20CE38, #13FF00);
+    height: 40px;
+    width: 150px;
+    margin: 0;
+   
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 10px;
+    margin-left: 50%;
+}
+
+.edit:hover,
+.borro:hover,
+.agre:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.a a {
+    color: #FF0000;
+ 
+    text-decoration: none;
+  
+}
+
+
+.a a:hover {
+    color: #00FF00;
+}
+
+.a a h1 {
+    color: black;
+
+    transition: color 0.3s ease;
+    
+}
+
+.a a h1:hover {
+    color: black
+     
+}.hu{
+    color: #000;
+    font-size: 30px;
+    margin-left: 40%;
+}.pi{
+ 
+    height: 50px;
+}

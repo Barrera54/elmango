@@ -69,7 +69,7 @@ margin-left: 70%;
   height: 70px;
   width: 99%;
   border: 5px solid black;
-
+margin-top: 20px;
 color: black;
 }
 .el{
@@ -83,7 +83,7 @@ display: flex;
   height: 77px;
   position: absolute;
   left: 95px;
-  top: 201%;
+  top: 208%;
 }
 
 /* Oculta la línea cuando se abre el menú */
@@ -94,7 +94,7 @@ button{
   height: 30px;
   width: 150Px;
   margin-left: 70px;
-  margin-top: -15px;
+  margin-top: -22%;
   background-color: #f0f0f0;
   border: 3px solid black;
   border-radius: 10px;

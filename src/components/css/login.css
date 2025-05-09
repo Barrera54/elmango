@@ -3,7 +3,7 @@
 }
 .l{
     width: 600px;
-    height: 710px;
+    height: 750px;
     
     margin-top: 30px;
 margin-left: 25%;
@@ -84,7 +84,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 button {
     height: 50px;
     width: 200Px;
- 
+ margin-top: 10px;
     background-color:rgb(57, 170, 26);
     border: 3px ;
     border-radius: 10px;
