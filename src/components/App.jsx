@@ -9,9 +9,9 @@ function App() {
   const [showNav, setShowNav] = useState(false);
   const productos = [
     { id: 1, nombre: 'Laptop', Cantidad: 2,precio: 1200, hora: '10:30 AM' },
-    { id: 2, nombre: 'Teléfono', Cantidad: 2, precio: 800, hora: '11:45 AM' },
-    { id: 3, nombre: 'Tablet', Cantidad: 2, precio: 350, hora: '02:15 PM' },
-    { id: 4, nombre: 'Auriculares', Cantidad: 2, precio: 150, hora: '03:20 PM' },
+    { id: 2, nombre: 'Teléfono', precio: 800, hora: '11:45 AM' },
+    { id: 3, nombre: 'Tablet', precio: 350, hora: '02:15 PM' },
+    { id: 4, nombre: 'Auriculares', precio: 150, hora: '03:20 PM' },
  
     
   ];
