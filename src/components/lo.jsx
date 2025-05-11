@@ -1,7 +1,7 @@
 import './css/login.css';
 import Inicio from './App';
-import { BrowserRouter, Route, Routes, Link, useLocation } from 'react-router-dom';
-import'./css/img/supermarket.jpg'
+import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import './css/img/supermarket.jpg';
 
 function LoginForm() {
   return (
@@ -37,18 +37,12 @@ function LoginForm() {
   );
 }
 
-// ... (el resto del código se mantiene igual)
-
 function AppRouter() {
-  const location = useLocation();
-
   return (
-    <>
-      {location.pathname === '/' && <LoginForm />}
-      <Routes>
-        <Route path="/inicio" element={<Inicio />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<LoginForm />} />
+      <Route path="/inicio" element={<Inicio />} />
+    </Routes>
   );
 }
 

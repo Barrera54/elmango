@@ -1,18 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-
 import reportWebVitals from './reportWebVitals';
-import Login from'./components/lo'
+import Lo from './components/lo'; // Importa Lo, que contiene tu enrutamiento
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    
-    <Login />
-
+    <Lo />
   </React.StrictMode>
 );
 
-
 reportWebVitals();
+

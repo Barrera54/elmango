@@ -18,7 +18,7 @@ header{
    width: 240px;
    background: rgb(47, 255, 85); 
    position: absolute;
-   height: 150vh;
+   height: 93vh;
    padding: 0 30 px;
    left: -100%;
    transition: all 0.5s;
@@ -37,7 +37,7 @@ ul li{
 ul li a{
 color: aliceblue;
 text-decoration: none;
-font-size: 28px;
+font-size: 34px;
 border-radius: 6px;
 }
 
@@ -134,26 +134,26 @@ header svg{
       }
       .mi{
         color: black;
-        width: 1887px;
-        height: 50px;
-        border: 2px solid black;
-        margin-right: 100px;
-        margin-top: 33%;
+        width: 2245px;
+        height: 55px;
+        border: 7px solid black;
+        margin-right: 10px;
+        margin-top: 27%;
       }
       .ni{
         display: flex;
         height: 200px;
-    width: 1050px;  
+    width: 1144px;  
 
    
     }
     button{
         height: 100px;
-        width: 1000px;
-        margin-top:600px ;
+        width: 980px;
+        margin-top:720px ;
         margin-left: 90px;
-        background-color: white;
+        background-color: rgb(41, 254, 26);
         color: black;
         font-size: 40px;
-        border: 2px solid black;
+        border: 5px solid black;
     }
