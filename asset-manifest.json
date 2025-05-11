@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/elmango/static/css/main.c154afaa.css",
-    "main.js": "/elmango/static/js/main.a9daa689.js",
-    "static/js/453.905e226b.chunk.js": "/elmango/static/js/453.905e226b.chunk.js",
-    "static/media/supermarket.jpg": "/elmango/static/media/supermarket.8a28444e3f12800076db.jpg",
-    "index.html": "/elmango/index.html",
-    "main.c154afaa.css.map": "/elmango/static/css/main.c154afaa.css.map",
-    "main.a9daa689.js.map": "/elmango/static/js/main.a9daa689.js.map",
-    "453.905e226b.chunk.js.map": "/elmango/static/js/453.905e226b.chunk.js.map"
+    "main.css": "/static/css/main.4f617e82.css",
+    "main.js": "/static/js/main.dc11e8ed.js",
+    "static/js/453.905e226b.chunk.js": "/static/js/453.905e226b.chunk.js",
+    "static/media/supermarket.jpg": "/static/media/supermarket.8a28444e3f12800076db.jpg",
+    "index.html": "/index.html",
+    "main.4f617e82.css.map": "/static/css/main.4f617e82.css.map",
+    "main.dc11e8ed.js.map": "/static/js/main.dc11e8ed.js.map",
+    "453.905e226b.chunk.js.map": "/static/js/453.905e226b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c154afaa.css",
-    "static/js/main.a9daa689.js"
+    "static/css/main.4f617e82.css",
+    "static/js/main.dc11e8ed.js"
   ]
 }
