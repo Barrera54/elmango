@@ -14,18 +14,12 @@ body {
     background-color: #C0FF3E;
 }
 
-.ku {
-    width: 60%;
-    border: 3px solid black;
-    margin-left: 20%;
-    margin-top: -30px;
-}
 
 .lu {
-    font-size: 35px;
+    font-size: 25px;
     color: black;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-left: 35%;
+    margin-left: 25%;
     margin-top: -45px;
 }
 
