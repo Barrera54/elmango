@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>Sistema de facturación El Mango</title>
+	<link rel="stylesheet" href="css/estilos.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<script src="js/jquery-3.2.1.js"></script>
+	<script src="js/main.js"></script>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			padding: 200px;
+		}
+		table {
+			width: 100%;
+			border-collapse: collapse;
+			margin-top: 20px;
+		}
+		th, td {
+			border: 1px solid #ccc;
+			padding: 10px;
+			text-align: left;
+		}
+		th {
+			background-color: #f4f4f4;
+		}
+		input {
+			margin: 5px;
+			padding: 5px;
+		}
+		button {
+			padding: 7px 15px;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+
+	<header>
+		<div class="tit">
+			<span id="button-menu" class="fa fa-bars"></span>
+			<div class="a"><a href="./inic.html"><h1>El mango</h1></a></div>
+		</div>
+
+		<nav class="navegacion">
+			<ul class="menu">
+				<li><a href="#">Buscador</a></li>
+				<li><a href="#">Catálogo</a></li>
+				<li><a href="inventario.html">Inventario</a></li>
+				<li><a href="ventas.html">Ventas</a></li>
+				<li><a href="#">Traductor</a></li>
+				<li><a href="#">Cambio de color</a></li>
+				<li><a href="#">Actualizar</a></li>
+				<li><a href="#">Devueltos</a></li>
+				<li><a href="#">Encuesta de producto</a></li>
+				<li><a href="#">Encuesta de sistema</a></li>
+				<li><a href="#">Papelera de producto</a></li>
+				<li><a href="#">Llegada de producto</a></li>
+				<li><a href="#">Traductor</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- ✅ Tabla y formulario fuera del header -->
+	<main>
+
+
+  <!-- ✅ Botones adicionales -->
+  <div style="margin-bottom: 15px;">
+    <button onclick="nuevoDomicilio()">Domicilio</button>
+    <button onclick="nuevaFactura()">Factura</button>
+    <button onclick="toggleFormularioCliente()">Cliente</button>
+  </div>
+
+  <!-- ✅ Formulario de cliente oculto inicialmente -->
+  <div id="formulario-cliente" style="display: none; margin-bottom: 20px;">
+    <form id="formulario">
+      <input type="text" id="nombre" placeholder="Nombre" required>
+      <input type="email" id="correo" placeholder="Correo" required>
+      <input type="tel" id="telefono" placeholder="Teléfono" required>
+      <button type="submit">Agregar</button>
+    </form>
+  </div>
+
+  <!-- Tabla -->
+  <table id="tabla">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Hora</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</main>
+
+<script>
+  let contador = 1;
+
+  document.getElementById('formulario').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const nombre = document.getElementById('nombre').value;
+    const correo = document.getElementById('Cantidad').value;
+    const telefono = document.getElementById('telefono').value;
+
+    const tabla = document.getElementById('tabla').getElementsByTagName('tbody')[0];
+    const fila = tabla.insertRow();
+
+    fila.innerHTML = `
+      <td>${contador++}</td>
+      <td>${nombre}</td>
+      <td>${correo}</td>
+      <td>${telefono}</td>
+    `;
+
+    this.reset();
+  });
+
+  // Funciones para los otros botones
+  function nuevoDomicilio() {
+    alert("Función: Nuevo Domicilio");
+  }
+
+  function nuevaFactura() {
+    alert("Función: Nueva Factura");
+  }
+
+  // ✅ Mostrar/Ocultar el formulario de cliente
+  function toggleFormularioCliente() {
+    const formulario = document.getElementById("formulario-cliente");
+    formulario.style.display = formulario.style.display === "none" ? "block" : "none";
+  }
+</script>
+
+
+
+</body>
+</html>
