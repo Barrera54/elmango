@@ -16,7 +16,7 @@ header{
 	left: 0;
 
 	padding: 20px;
-	background: #99FF99;
+	background: #21f900;
 }
 
 header #button-menu{
@@ -68,7 +68,7 @@ header #button-menu{
 }
 
 .navegacion .menu a:hover{
-	background: #99FF99;
+	background: #21f900;
 	color: #fff;
 }
 
@@ -123,7 +123,7 @@ header #button-menu{
     padding: 0;
     margin: 0;
     width: 200px; /* Ajusta el ancho según sea necesario */
-    background-color: #99FF99; /* Color de fondo opcional */
+    background-color: #21f900; /* Color de fondo opcional */
     overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
     height: 100vh; /* para que ocupe toda la altura de la pantalla */
 }
@@ -148,13 +148,14 @@ header #button-menu{
 	background-color: #99FF99;
 }
 .cont{
-    height: 200px;
-    width: 300px;
+    height: 250px;
+    width: 400px;
 border: 5px solid black;
-margin-top: 100px;
+margin-top: 20%;
 margin-left: 500px;
 border-radius: 30px;
 text-align: center;
+background-color: rgb(47, 255, 47);
 
 }
 .cli{
@@ -162,25 +163,33 @@ text-align: center;
     border-radius: 2px;
     margin-left:20px ;
     margin-top: 10px;
+	font-size: 25px;
 }
 .de{
     display: flex;
     border-radius: 2px;
     margin-left:20px ;
     margin-top: 10px;
+	font-size: 25px;
 }
 input{
     background-color:#8FBC8F;
     border: #8FBC8F;
     border-radius: 5px;
+	width: 200px;
+	font-size: 20px;
+	margin-left: 10px;
 }
 button{
     background-color:#8FBC8F;
     border: #8FBC8F;
     border-radius: 5px;
-    height: 25px;
-    width: 100px;
-    margin-top: 10px;
+    height: 45px;
+    width: 190px;
+    margin-top: 20px;
+	font-size: 30px;
+	text-decoration: none;
+	color: black;
 }
 .a a {
     color: #FF0000; /* Rojo (puedes cambiarlo al color que prefieras) */
@@ -200,4 +209,8 @@ button{
 
 .a a h1:hover {
     color: black /* Morado al hacer hover */
+}
+a{
+	text-decoration: none;
+	color: black;
 }
