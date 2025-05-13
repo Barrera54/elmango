@@ -14,9 +14,11 @@ header{
 	width: 100%;
 	top: 0;
 	left: 0;
-
+	text-decoration: none;
 	padding: 20px;
 	background: #99FF99;
+	color: rgb(0, 0, 0);
+		text-decoration: none;
 }
 
 header #button-menu{
@@ -136,49 +138,72 @@ header #button-menu{
 .navegacion .menu li a {
     text-decoration: none;
     color: #333;
+	color: rgb(0, 0, 0);
+		text-decoration: none;
 }
 .tit{
 	display: flex;
+	color: rgb(0, 0, 0);
+		text-decoration: none;
 }
 .a{
-	padding-left: 1000px;
-	color: red;
+	padding-left: 80%;
+
 }
 .b{
 	background-color: #99FF99;
+	color: rgb(0, 0, 0);
+		text-decoration: none;
 }
-.tot{
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 80px;
+}
+
+th,
+td {
+	padding: 4px;
+	text-align: center;
+	border-bottom: 1px solid black;
+}
+
+th,
+td {
+	border-right: 1px solid black;
+}
+
+th:last-child,
+td:last-child {
+	border-right: none;
+}
+.li{
 	width: 100%;
 	height: 50px;
+	border: 3px  solid black;
+	margin-top: 44%;
+
+}
+.k{
+	width: 100%;
+	height: 10px;
+	color: rgb(0, 0, 0);
+		text-decoration: none;
+}
+button{
 	border: 5px solid black;
-margin-top: 44%;
+	height: 75px;
+	width: 150px;
+	font-size: 30px;
+	border-radius: 10px;
+	background-color: #3cff06;
+	margin-top: 39%;
+	margin-left: 5%;
+	color: rgb(0, 0, 0);
+		text-decoration: none;
+}.a {
+	padding-left: 1000px;
 }
-.linea-vertical{
-	border-left: 5px solid #000;
-    height: 45px;
-    position: absolute; /* o relative/fixed */
-    left: 80px;       /* ya lo tienes */
-    top: 92%;  
-  }
-  /* Agrega esto al final de tu archivo CSS */
-
-/* Opción 1: Seleccionando el enlace dentro del div con clase .a */
-.a a {
-    color: #FF0000; /* Rojo (puedes cambiarlo al color que prefieras) */
-    text-decoration: none; /* Para quitar el subrayado */
-}
-
-/* Opción 2: Cambiando solo el hover (cuando pasas el mouse) */
-.a a:hover {
-    color: #00FF00; /* Verde al hacer hover */
-}
-
-/* Opción 3: Cambiando el color del h1 dentro del enlace */
-.a a h1 {
-    color: black; /* Azul para el texto del h1 */
-    transition: color 0.3s ease; /* Transición suave */
-}
-
-.a a h1:hover {
-    color: black /* Morado al hacer hover */
+a.mi-boton {
+	text-decoration: none;
 }
