@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport"
     content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-<title>El mango</title>
-<link rel="stylesheet" href="css/clien.css">
+<title>Menu multinivel responsive</title>
+<link rel="stylesheet" href="css/domi.css">
 <link rel="stylesheet" href="css/font-awesome.css">
 
 <script src="js/jquery-3.2.1.js"></script>
@@ -41,10 +41,44 @@
 
 <div class="container">
     <div class="ven">
-        <h1>Clientes</h1>
+        <h1>Domicilios</h1>
     </div>
     <!-- Primer cuadro desplegable -->
-    <div class="rectangle" onclick="toggleInfo(1)">
+   
+    <!-- Segundo cuadro desplegable -->
+    <div class="rectangle" onclick="toggleInfo(2)">
+        <h2>
+            Ventas empleado
+            <span class="arrow"></span>
+        </h2>
+    </div>
+
+    <div class="info-panel" id="infoPanel2">
+        <div class="info-content">
+            <div class="section">
+                <h3>Ventas empleado</h3>
+                <table>
+                    <tr>
+                        <th>Costo de envio</th>
+                        <th>Distanica</th>
+                       
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                   
+                    </tr>
+                   
+                </table>
+<img src="./css/img/gps.jpg" alt="gps" width="100%" height="210px">
+
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Tercer cuadro desplegable -->
+     <div class="rectangle" onclick="toggleInfo(1)">
         <h2>
             Contabilidad
             <span class="arrow"></span>
@@ -54,61 +88,14 @@
 
     <div class="info-panel" id="infoPanel1">
         <div class="info-content">
-            <table>
-                <tr>
-                    <th>Cliente</th>
-                    <th>Celular</th>
-                    <th>N° C.C</th>
-                </tr>
-                <tr>
-                    <td>Juan</td>
-                    <td>52324242</td>
-                    <td>545386750</td>
-                </tr>
-               
-            </table>
 
+            <div class="d">
+                <h1>Cantidad:#</h1>
+                <h1>Total:#</h1>
+                <h1>Domiciliario:----</h1>
         </div>
 
     </div>
-
-    <!-- Segundo cuadro desplegable -->
-    <div class="rectangle" onclick="toggleInfo(2)">
-        <h2>
-        Deudores
-            <span class="arrow"></span>
-        </h2>
-    </div>
-
-    <div class="info-panel" id="infoPanel2">
-        <div class="info-content">
-            <div class="section">
-                <h3></h3>
-                <table>
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Deuda</th>
-                    
-                    </tr>
-                    <tr>
-                        <td>Luis</td>
-                        <td>55000</td>
-                     
-                    </tr>
-                   
-                </table>
-            <div class="hu">  
-<button>Regristrar</button>
-<button>Cancelar</button>
-</div>  
-            </div>
-        </div>
-    </div>
-
-    <!-- Tercer cuadro desplegable -->
-    
-    </div>
-
-    </div>
+</div>
 </div>
 </body>
