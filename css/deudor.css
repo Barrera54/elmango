@@ -68,7 +68,7 @@ header #button-menu{
 }
 
 .navegacion .menu a:hover{
-	background: #21f900;
+	background:#953553;
 	color: #fff;
 }
 
@@ -191,6 +191,7 @@ button{
 	text-decoration: none;
 	color: black;
 }
+
 .a a {
     color: #FF0000; /* Rojo (puedes cambiarlo al color que prefieras) */
     text-decoration: none; /* Para quitar el subrayado */

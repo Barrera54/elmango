@@ -202,7 +202,7 @@ header #button-menu {
 }
 
 .navegacion .menu a:hover {
-    background: #21f900;
+    background: #953553;
     color: #fff;
 }
 
@@ -320,21 +320,21 @@ header #button-menu {
 .d {
     color: red;
 }
-button{
-    width: 200px;
-    height: 50px;
-   border: 5px solid black;
-   border-radius: 10px;
-margin-left:80%;
-margin-top: 10%;
-background-color: #33ff00fb;
-color: white;
-font-size: 25px;
 
-}
+
 .hu
 {
-
     width: 200px;
-height: 40px;
+        height: 50px;
+        border: 5px solid black;
+        border-radius: 10px;
+        margin-left: 10%;
+        margin-top: 10%;
+        background-color: #33ff00fb;
+        color: black;
+        font-size: 25px;
+}
+a {
+    color: black;
+    text-decoration: none;
 }
