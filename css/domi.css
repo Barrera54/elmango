@@ -31,7 +31,7 @@ body {
 }
 
 .rectangle {
-    background-color: #4CAF50;
+    background-color: #A6D388;
     color: white;
     padding: 20px;
     border-radius: 8px;
@@ -42,7 +42,7 @@ body {
 }
 
 .rectangle:hover {
-    background-color: #45a049;
+    background-color: #A6D388;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
@@ -150,7 +150,7 @@ header {
     left: 0;
 
     padding: 20px;
-    background: #21f900;
+    background:#6ADCAF;
 }
 
 header #button-menu {
@@ -172,7 +172,7 @@ header #button-menu {
 .navegacion ul {
     width: 320px;
     height: 100%;
-    background: #99FF99;
+    background: #6ADCAF;
     list-style: none;
 
     position: absolute;
@@ -184,7 +184,7 @@ header #button-menu {
 
 .navegacion .menu li.title-menu {
     padding: 20px;
-    background: #99FF99;
+    background: #6ADCAF;
     color: #fff;
     text-align: center;
     font-size: 22px;
@@ -198,11 +198,11 @@ header #button-menu {
     font-size: 22px;
     font-weight: 200;
     text-decoration: none;
-    color: #575D69;
+    color: #6ADCAF;
 }
 
 .navegacion .menu a:hover {
-    background: #953553;
+    background: #619488;
     color: #fff;
 }
 
@@ -219,7 +219,7 @@ header #button-menu {
     content: '\f105';
 
     float: right;
-    color: #C5C5C5;
+    color:#6ADCAF;
 }
 
 /* Submenu ============*/
@@ -231,7 +231,7 @@ header #button-menu {
 
 .navegacion .submenu li.go-back {
     padding: 10px 20px;
-    background: #5F6F81;
+    background: #6ADCAF;
     color: #fff;
     font-size: 18px;
     cursor: pointer;
@@ -259,7 +259,7 @@ header #button-menu {
     margin: 0;
     width: 200px;
     /* Ajusta el ancho según sea necesario */
-    background-color: #21f900;
+    background-color: #6ADCAF;
     /* Color de fondo opcional */
     overflow-y: auto;
     /* Permite el desplazamiento vertical si es necesario */
@@ -269,7 +269,7 @@ header #button-menu {
 
 .navegacion .menu li {
     padding: 10px;
-    border-bottom: 1px solid #99FF99;
+    border-bottom: 1px solid #6ADCAF;
     /* Separador opcional entre elementos */
 }
 
