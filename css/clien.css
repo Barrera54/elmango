@@ -31,7 +31,7 @@ body {
 }
 
 .rectangle {
-    background-color: #4CAF50;
+    background-color: #76D078;
     color: white;
     padding: 20px;
     border-radius: 8px;
@@ -42,7 +42,7 @@ body {
 }
 
 .rectangle:hover {
-    background-color: #45a049;
+    background-color: #76D078;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
@@ -131,6 +131,7 @@ td {
     padding: 4px;
     text-align: center;
     border-bottom: 1px solid black;
+    font-family: Cursive;
 }
 
 th,
@@ -142,15 +143,29 @@ th:last-child,
 td:last-child {
     border-right: none;
 }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open sans';
+    background: #E8E8E8;
+}
 
 header {
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-
+    text-decoration: none;
     padding: 20px;
-    background: #21f900;
+    background: #6ADCAF;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    z-index: 110;
+    /* Añadido para asegurar que el header esté siempre arriba */
 }
 
 header #button-menu {
@@ -166,25 +181,26 @@ header #button-menu {
     width: 0%;
     height: 100vh;
     background: rgba(0, 0, 0, .0);
-
+    z-index: 100;
+    /* Añadido */
 }
 
 .navegacion ul {
     width: 320px;
     height: 100%;
-    background: #99FF99;
+    background: #6ADCAF;
     list-style: none;
-
     position: absolute;
     top: 0;
     left: -320px;
-
     transition: left .3s;
+    z-index: 100;
+    /* Añadido */
 }
 
 .navegacion .menu li.title-menu {
     padding: 20px;
-    background: #99FF99;
+    background: #6ADCAF;
     color: #fff;
     text-align: center;
     font-size: 22px;
@@ -194,7 +210,6 @@ header #button-menu {
     display: block;
     padding: 20px;
     border-bottom: 1px solid #C6D0DA;
-
     font-size: 22px;
     font-weight: 200;
     text-decoration: none;
@@ -202,7 +217,7 @@ header #button-menu {
 }
 
 .navegacion .menu a:hover {
-    background: #953553;
+    background: #619488;
     color: #fff;
 }
 
@@ -217,13 +232,11 @@ header #button-menu {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     content: '\f105';
-
     float: right;
     color: #C5C5C5;
 }
 
 /* Submenu ============*/
-
 .navegacion .submenu li.title-menu {
     background: #fff;
     color: #575D69;
@@ -258,67 +271,32 @@ header #button-menu {
     padding: 0;
     margin: 0;
     width: 200px;
-    /* Ajusta el ancho según sea necesario */
-    background-color: #21f900;
-    /* Color de fondo opcional */
+    background-color: #6ADCAF;
     overflow-y: auto;
-    /* Permite el desplazamiento vertical si es necesario */
     height: 100vh;
-    /* para que ocupe toda la altura de la pantalla */
 }
 
 .navegacion .menu li {
     padding: 10px;
-    border-bottom: 1px solid #99FF99;
-    /* Separador opcional entre elementos */
+    border-bottom: 1px solid #6ADCAF;
 }
 
 .navegacion .menu li a {
     text-decoration: none;
     color: #333;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
 }
 
 .tit {
     display: flex;
-
+    color: rgb(0, 0, 0);
+    text-decoration: none;
 }
 
 .a {
-    padding-left: 80%;
-}
-
-.b {
-    background-color: #99FF99;
-}
-
-.a a {
-    color: #FF0000;
-    /* Rojo (puedes cambiarlo al color que prefieras) */
-    text-decoration: none;
-    /* Para quitar el subrayado */
-}
-
-/* Opción 2: Cambiando solo el hover (cuando pasas el mouse) */
-.a a:hover {
-    color: #00FF00;
-    /* Verde al hacer hover */
-}
-
-/* Opción 3: Cambiando el color del h1 dentro del enlace */
-.a a h1 {
-    color: black;
-    /* Azul para el texto del h1 */
-    transition: color 0.3s ease;
-    /* Transición suave */
-}
-
-.a a h1:hover {
-    color: black
-        /* Morado al hacer hover */
-}
-
-.d {
-    color: red;
+    padding-left: 85%;
+    font-family: Cursive;
 }
 
 
@@ -330,11 +308,13 @@ header #button-menu {
         border-radius: 10px;
         margin-left: 10%;
         margin-top: 10%;
-        background-color: #33ff00fb;
+        background-color: #76D078;
         color: black;
         font-size: 25px;
+        font-family: Cursive;
 }
 a {
-    color: black;
     text-decoration: none;
+    color: black;
+    font-family: Cursive;
 }

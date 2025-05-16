@@ -16,7 +16,7 @@ header{
 	left: 0;
 
 	padding: 20px;
-	background: #21f900;
+	background: #6ADCAF;
 }
 
 header #button-menu{
@@ -38,7 +38,7 @@ header #button-menu{
 .navegacion ul{
 	width: 320px;
 	height: 100%;
-	background:#99FF99;
+	background:#6ADCAF;
 	list-style: none;
 
 	position: absolute;
@@ -68,7 +68,7 @@ header #button-menu{
 }
 
 .navegacion .menu a:hover{
-	background:#953553;
+	background:#619488;
 	color: #fff;
 }
 
@@ -123,14 +123,14 @@ header #button-menu{
     padding: 0;
     margin: 0;
     width: 200px; /* Ajusta el ancho según sea necesario */
-    background-color: #21f900; /* Color de fondo opcional */
+    background-color: #6ADCAF; /* Color de fondo opcional */
     overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
     height: 100vh; /* para que ocupe toda la altura de la pantalla */
 }
 
 .navegacion .menu li {
     padding: 10px;
-    border-bottom: 1px solid #99FF99; /* Separador opcional entre elementos */
+    border-bottom: 1px solid #6ADCAF; /* Separador opcional entre elementos */
 }
 
 .navegacion .menu li a {
@@ -155,7 +155,8 @@ margin-top: 20%;
 margin-left: 500px;
 border-radius: 30px;
 text-align: center;
-background-color: rgb(47, 255, 47);
+background-color: #6ADCAF;
+font-family: Cursive;
 
 }
 .cli{
@@ -164,6 +165,7 @@ background-color: rgb(47, 255, 47);
     margin-left:20px ;
     margin-top: 10px;
 	font-size: 25px;
+	font-family: Cursive;
 }
 .de{
     display: flex;
@@ -171,23 +173,24 @@ background-color: rgb(47, 255, 47);
     margin-left:20px ;
     margin-top: 10px;
 	font-size: 25px;
+	font-family: Cursive;
 }
 input{
-    background-color:#8FBC8F;
-    border: #8FBC8F;
+    background-color: #58C65A;
+    border: #9DC25B;
     border-radius: 5px;
 	width: 200px;
 	font-size: 20px;
 	margin-left: 10px;
 }
 button{
-    background-color:#8FBC8F;
+    background-color:#58C65A;
     border: #8FBC8F;
     border-radius: 5px;
     height: 45px;
-    width: 190px;
-    margin-top: 20px;
-	font-size: 30px;
+    width: 200px;
+    margin-top: 10px;
+	font-size: 25px;
 	text-decoration: none;
 	color: black;
 }
@@ -214,4 +217,5 @@ button{
 a{
 	text-decoration: none;
 	color: black;
+	font-family: Cursive;
 }

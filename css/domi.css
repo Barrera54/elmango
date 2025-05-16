@@ -27,6 +27,7 @@ body {
 .container {
     width: 100%;
     max-width: 600px;
+    font-family: Cursive;
 
 }
 
@@ -285,6 +286,7 @@ header #button-menu {
 
 .a {
     padding-left: 80%;
+    font-family: Cursive;
 }
 
 .b {

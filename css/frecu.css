@@ -1,101 +1,103 @@
-*{
+* {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 }
 
-body{
+body {
 	font-family: 'Open sans';
 	background: #E8E8E8;
 }
 
-header{
+header {
 	position: fixed;
 	width: 100%;
 	top: 0;
 	left: 0;
-
+	text-decoration: none;
 	padding: 20px;
-	background: #21f900;
+	background: #6ADCAF;
+	color: rgb(0, 0, 0);
+	text-decoration: none;
+	z-index: 110;
+	/* Añadido para asegurar que el header esté siempre arriba */
 }
 
-header #button-menu{
+header #button-menu {
 	font-size: 30px;
 	color: #fff;
 	cursor: pointer;
 }
 
-.navegacion{
+.navegacion {
 	position: absolute;
 	top: 100%;
 	left: 0;
 	width: 0%;
 	height: 100vh;
-	background: rgba(0,0,0,.0);
-
+	background: rgba(0, 0, 0, .0);
+	z-index: 100;
+	/* Añadido */
 }
 
-.navegacion ul{
+.navegacion ul {
 	width: 320px;
 	height: 100%;
-	background:#21f900;
+	background: #6ADCAF;
 	list-style: none;
-
 	position: absolute;
 	top: 0;
 	left: -320px;
-
 	transition: left .3s;
+	z-index: 100;
+	/* Añadido */
 }
 
-.navegacion .menu li.title-menu{
+.navegacion .menu li.title-menu {
 	padding: 20px;
-	background: #21f900;
+	background: #6ADCAF;
 	color: #fff;
 	text-align: center;
 	font-size: 22px;
 }
 
-.navegacion .menu a{
+.navegacion .menu a {
 	display: block;
 	padding: 20px;
 	border-bottom: 1px solid #C6D0DA;
-
 	font-size: 22px;
 	font-weight: 200;
 	text-decoration: none;
 	color: #575D69;
 }
 
-.navegacion .menu a:hover{
-	background: #953553;
+.navegacion .menu a:hover {
+	background: #619488;
 	color: #fff;
 }
 
-.navegacion .menu li span.icon-menu{
+.navegacion .menu li span.icon-menu {
 	margin-right: 12px;
 }
 
-.navegacion .menu .item-submenu > a::after{
+.navegacion .menu .item-submenu>a::after {
 	font: normal normal normal 14px/1 FontAwesome;
-  	font-size: inherit;
-  	text-rendering: auto;
-  	-webkit-font-smoothing: antialiased;
-  	-moz-osx-font-smoothing: grayscale;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	content: '\f105';
-
 	float: right;
 	color: #C5C5C5;
 }
 
 /* Submenu ============*/
-
-.navegacion .submenu li.title-menu{
+.navegacion .submenu li.title-menu {
 	background: #fff;
 	color: #575D69;
 }
 
-.navegacion .submenu li.go-back{
+.navegacion .submenu li.go-back {
 	padding: 10px 20px;
 	background: #5F6F81;
 	color: #fff;
@@ -103,46 +105,52 @@ header #button-menu{
 	cursor: pointer;
 }
 
-.navegacion .submenu li.go-back::before{
+.navegacion .submenu li.go-back::before {
 	font: normal normal normal 14px/1 FontAwesome;
-  	font-size: inherit;
-  	text-rendering: auto;
-  	-webkit-font-smoothing: antialiased;
-  	-moz-osx-font-smoothing: grayscale;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 	content: '\f0d9';
 	margin-right: 10px;
 }
 
-@media screen and (max-width: 320px){
-	.navegacion ul{
+@media screen and (max-width: 320px) {
+	.navegacion ul {
 		width: 100%;
 	}
 }
+
 .navegacion .menu {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    width: 200px; /* Ajusta el ancho según sea necesario */
-    background-color:#21f900; /* Color de fondo opcional */
-    overflow-y: auto; /* Permite el desplazamiento vertical si es necesario */
-    height: 100vh; /* para que ocupe toda la altura de la pantalla */
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	width: 200px;
+	background-color: #6ADCAF;
+	overflow-y: auto;
+	height: 100vh;
 }
 
 .navegacion .menu li {
-    padding: 10px;
-    border-bottom: 1px solid #99FF99; /* Separador opcional entre elementos */
+	padding: 10px;
+	border-bottom: 1px solid #6ADCAF;
 }
 
 .navegacion .menu li a {
-    text-decoration: none;
-    color: #333;
+	text-decoration: none;
+	color: #333;
+	color: rgb(0, 0, 0);
+	text-decoration: none;
 }
-.tit{
-	display: flex;
 
+.tit {
+	display: flex;
+	color: rgb(0, 0, 0);
+	text-decoration: none;
 }
-.a{
-	padding-left: 1000px;
+
+.a {
+	padding-left: 85%;
 }
 .b{
 	background-color: #99FF99;
@@ -155,6 +163,7 @@ margin-top: 150px;
 margin-left: 500px;
 border-radius: 30px;
 text-align: center;
+background-color: #85D587;
 
 }
 .cli{
@@ -179,6 +188,7 @@ input{
     background-color:#8FBC8F;
     border: #8FBC8F;
     border-radius: 5px;
+	font-size: 16px;
 }
 button{
     background-color:#8FBC8F;
@@ -187,6 +197,7 @@ button{
     height: 35px;
     width: 100px;
     margin-top: 10px;
+	
 }
 button:active {
     background-color: #FF8B00 ; 
@@ -210,7 +221,9 @@ button:active {
 .a a h1:hover {
     color: black /* Morado al hacer hover */
 }
-a{
-	color: black;
+a {
 	text-decoration: none;
+	color: whitesmoke;
+	font-size: 20px;
+	font-family: Cursive;
 }
