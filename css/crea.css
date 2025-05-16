@@ -1,85 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-image: url("./img/i.jpg");
-    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+}
+
+.login-container {
+    position: absolute;
+    width: 350px;
+    height: 430px;
+    top: 15%;
+    left: 40%;
+    border-radius: 20px;
+    background-color: #92B4A7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
-.py {
-    height: 500px;
-    width: 35%;
-    border: 3px solid black;
-    margin-left: 35%;
-    margin-top: 10%;
-    border-radius: 10px;
-    background-color: #C0FF3E;
+.login-container img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
 }
 
-.ku {
-    width: 60%;
-    border: 3px solid black;
-    margin-left: 20%;
-    margin-top: -30px;
+.login-container p {
+    font-size: 25px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 5px;
 }
 
-.lu {
-    font-size: 30px;
-    color: black;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin-left: 20%;
-    margin-top: -45px;
+.login-container .fields .data {
+    border-radius: 20px;
+    box-shadow: inset 5px 5px 5px #667A7A,
+        inset -5x -8px #7C888D;
 }
 
-.mi {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 30px;
-    margin-top: -30px;
+.login-container .fields .data i {
+    color: whitesmoke;
+    margin: 20px 5px 20px 20px;
 }
 
-.nu {
-    margin-bottom: 20px;
+.login-container .fields .data input {
+    outline: none;
+    border: none;
+    background: none;
+    font-size: 20px;
+    margin: 20px 20px;
 }
 
 select {
-    width: 100%;
-    height: 50px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    outline: none;
     border: none;
-    padding-left: 10px;
-    font-size: 16px;
-    appearance: none;
-    background-color: white;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position-x: 95%;
-    background-position-y: 50%;
-    margin-top: -35px;
-}
+    background: none;
+    font-size: 20px;
+    margin: 20px 40px;
+    width: 200px;
+    right: 1000px;
+    background-color: #92B4A7;
+    color: white;
 
-.si {
-    font-size: 45px;
-    color: black;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-input {
-    width: 98%;
-    height: 40px;
-    border-radius: 10px;
 }
 
 button {
-    width: 90%;
-    height: 60px;
-    background-color: rgb(51, 255, 0);
+    background-color: #A68A77;
+    height: 35px;
+    width: 150px;
+    font-size: 25px;
+    font-family: Cursive;
     border-radius: 10px;
-    margin-left: 12px;
-    margin-top: 10px;
-
+    color: whitesmoke;
 }
 
 a {
-    color: black;
     text-decoration: none;
-    font-size: 15px;
+    color: whitesmoke;
+    font-size: 25px;
+    font-family: Cursive;
+}
+
+select:focus {
+    background-color: #92B4A7;
+    outline: none;
 }

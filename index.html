@@ -5,36 +5,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <title>El mango</title>
 </head>
 
 <body>
-
-    <div class="py">
-        <div class="lu">
-            <h1>Login</h1>
-        </div>
-        <div class="ku"></div>
-        <div class="mi">
-            <h1>Rol</h1>
-        </div>
-        <div class="nu">
-            <div class="li">
-                <select>
-                    <option value="administrador"></option>
-                    <option value="editor">Administrador</option>
-                    <option value="lector">Empleado</option>
-                </select>
-            </div>
-        </div>
-        <div class="si">Contraseña</div>
-        <input type="text"><div class="de">
-        <a href="recu.html">Recuperar Contraseña</a>
-        <a href="Crea.html">Crear perfil</a></div>
-        <button><a href="./inic.html">
-                <h1>Ingreso</h1>
-            </a></button>
+<div class="login-container">
+    <img src="./css/img/icons.png" alt="">
+<p>Login</p>
+<div class="fields">
+    <div class="data">
+        <i class="fa-solid fa-user">
+            
+            <select>
+                <option value="administrador"></option>
+                <option value="editor">Administrador</option>
+                <option value="lector">Empleado</option>
+            </select>
+        </i>
     </div>
+    <div class="data">
+        <i class="fa-solid fa-lock">
+            <input type="password" placeholder="contraseña">
+        </i>
+        
+        </i>
+    </div>
+</div>
+<a href="Crea.html">Crear cuentas</a>
+<a href="recu.html">Recuperar contraseña</a>
+<button><a href="inic.html">Ingreasar</a></button>
+</div>
+   
 </body>
 
 </html>
