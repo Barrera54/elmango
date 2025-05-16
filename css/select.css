@@ -16,9 +16,11 @@ header {
     left: 0;
     text-decoration: none;
     padding: 20px;
-    background: #21f900;
+    background: #6ADCAF;
     color: rgb(0, 0, 0);
     text-decoration: none;
+    z-index: 110;
+    /* Añadido para asegurar que el header esté siempre arriba */
 }
 
 header #button-menu {
@@ -34,25 +36,26 @@ header #button-menu {
     width: 0%;
     height: 100vh;
     background: rgba(0, 0, 0, .0);
-
+    z-index: 100;
+    /* Añadido */
 }
 
 .navegacion ul {
     width: 320px;
     height: 100%;
-    background: #21f900;
+    background: #6ADCAF;
     list-style: none;
-
     position: absolute;
     top: 0;
     left: -320px;
-
     transition: left .3s;
+    z-index: 100;
+    /* Añadido */
 }
 
 .navegacion .menu li.title-menu {
     padding: 20px;
-    background: #21f900;
+    background: #6ADCAF;
     color: #fff;
     text-align: center;
     font-size: 22px;
@@ -62,7 +65,6 @@ header #button-menu {
     display: block;
     padding: 20px;
     border-bottom: 1px solid #C6D0DA;
-
     font-size: 22px;
     font-weight: 200;
     text-decoration: none;
@@ -70,7 +72,7 @@ header #button-menu {
 }
 
 .navegacion .menu a:hover {
-    background: #953553;
+    background: #619488;
     color: #fff;
 }
 
@@ -85,13 +87,11 @@ header #button-menu {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     content: '\f105';
-
     float: right;
     color: #C5C5C5;
 }
 
 /* Submenu ============*/
-
 .navegacion .submenu li.title-menu {
     background: #fff;
     color: #575D69;
@@ -126,19 +126,14 @@ header #button-menu {
     padding: 0;
     margin: 0;
     width: 200px;
-    /* Ajusta el ancho según sea necesario */
-    background-color: #21f900;
-    /* Color de fondo opcional */
+    background-color: #6ADCAF;
     overflow-y: auto;
-    /* Permite el desplazamiento vertical si es necesario */
     height: 100vh;
-    /* para que ocupe toda la altura de la pantalla */
 }
 
 .navegacion .menu li {
     padding: 10px;
-    border-bottom: 1px solid #21f900;
-    /* Separador opcional entre elementos */
+    border-bottom: 1px solid #6ADCAF;
 }
 
 .navegacion .menu li a {
@@ -146,13 +141,16 @@ header #button-menu {
     color: #333;
     color: rgb(0, 0, 0);
     text-decoration: none;
-}.a {
-    padding-left: 85%;
-
 }
-a {
+
+.tit {
+    display: flex;
+    color: rgb(0, 0, 0);
     text-decoration: none;
-    color: black;
+}
+
+.a {
+    padding-left: 85%;
 }
 .py {
     height: 400px;
@@ -161,7 +159,7 @@ a {
     margin-left: 35%;
     margin-top: 10%;
     border-radius: 10px;
-    background-color: #b3e253;
+    background-color: #76D078;
 }
 .lu {
     font-size: 30px;
@@ -186,4 +184,9 @@ a {
 }
 .h:hover{
     background-color: black;
+}
+a {
+    text-decoration: none;
+    color: black;
+    font-family: Cursive;
 }
