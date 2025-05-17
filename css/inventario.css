@@ -16,7 +16,7 @@ header {
     left: 0;
     text-decoration: none;
     padding: 20px;
-    background: #21f900;
+    background: #6ADCAF;
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
@@ -52,7 +52,7 @@ header #button-menu {
 
 .navegacion .menu li.title-menu {
     padding: 20px;
-    background: #21f900;
+    background: #6ADCAF;
     color: #fff;
     text-align: center;
     font-size: 22px;
@@ -70,7 +70,7 @@ header #button-menu {
 }
 
 .navegacion .menu a:hover {
-    background: #953553;
+    background: #619488;
     color: #fff;
 }
 
@@ -90,7 +90,7 @@ header #button-menu {
     color: #C5C5C5;
 }
 
-/* Submenu ============*/
+
 
 .navegacion .submenu li.title-menu {
     background: #fff;
@@ -126,19 +126,19 @@ header #button-menu {
     padding: 0;
     margin: 0;
     width: 200px;
-    /* Ajusta el ancho según sea necesario */
-    background-color: #21f900;
-    /* Color de fondo opcional */
+
+    background-color: #6ADCAF;
+
     overflow-y: auto;
-    /* Permite el desplazamiento vertical si es necesario */
+
     height: 100vh;
-    /* para que ocupe toda la altura de la pantalla */
+
 }
 
 .navegacion .menu li {
     padding: 10px;
-    border-bottom: 1px solid #21f900;
-    /* Separador opcional entre elementos */
+    border-bottom: 1px solid#6ADCAF;
+
 }
 
 .navegacion .menu li a {
@@ -224,7 +224,6 @@ header #button-menu {
     transform: scale(1.2);
 }
 
-/* Efecto de arcoíris al hacer hover */
 .search-container:hover .search-input {
     background: linear-gradient(90deg, 
         #ff9a9e 0%, 
@@ -244,16 +243,16 @@ header #button-menu {
 .linea-vertical {
     border-left: 1px solid #000;
     height: 200px;
-    position: absolute; /* o relative/fixed */
-    left: 650px;       /* ya lo tienes */
-    top: 210px;        /* nueva propiedad para mover verticalmente */
+    position: absolute; 
+    left: 650px;     
+    top: 210px;       
   }
   .linea-horizontal {
     border-bottom: 1px solid #000;
     width: 30%;
     position: relative;
-    left: 450px;       /* mueve horizontalmente */
-    top: 10px;         /* mueve verticalmente */
+    left: 450px;       
+    top: 10px;         
   }
   .pro{
 padding-left: 490px;
@@ -285,32 +284,27 @@ margin-left: 650px;
 margin-top: 15px;
 }
 
-/* Agrega esto al final de tu CSS existente */
 
-/* Contenedor de botones debajo de la línea horizontal */
-/* Agrega esto al final de tu CSS existente */
-
-/* Contenedor de botones debajo de la línea horizontal */
 .botones-fila {
 
     flex-direction: row;
-    gap: 20px; /* Espacio entre botones */
+    gap: 20px; 
     position: absolute;
-    left: 450px; /* Misma posición que la línea horizontal */
-    top: 40%; /* Ajustado para estar debajo de la línea */
+    left: 450px; 
+    top: 40%; 
     justify-content: center;
-    width: 30%; /* Mismo ancho que la línea horizontal */
+    width: 30%; 
 
 }
 
-/* Estilo base para los botones */
+
 .edit, .borro, .agre {
     color: white;
     border-radius: 40px;    
     background: linear-gradient(to right, #20CE38, #13FF00);
     height: 40px;
     width: 150px;
-    margin: 0; /* Eliminamos los márgenes individuales */
+    margin: 0; 
     border: none;
     cursor: pointer;
     font-size: 16px;
@@ -322,48 +316,53 @@ margin-top: 15px;
     margin-left: 50%;
 }
 
-/* Efecto hover para los botones */
+
 .edit:hover, .borro:hover, .agre:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.a a {
-    color: #FF0000; /* Rojo (puedes cambiarlo al color que prefieras) */
-    text-decoration: none; /* Para quitar el subrayado */
+a {
+    color: #FF0000; 
+    text-decoration: none; 
+    font-family: Cursive;
 }
 
-/* Opción 2: Cambiando solo el hover (cuando pasas el mouse) */
+
 .a a:hover {
-    color: #00FF00; /* Verde al hacer hover */
-}
+    color: #00FF00; }
 
-/* Opción 3: Cambiando el color del h1 dentro del enlace */
+
 .a a h1 {
-    color: black; /* Azul para el texto del h1 */
-    transition: color 0.3s ease; /* Transición suave */
+    color: black; 
+    transition: color 0.3s ease; 
 }
 
 .a a h1:hover {
-    color: black /* Morado al hacer hover */
+    color: black 
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 80px;
+    font-family: Cursive;
 }
 
 th,
 td {
-    padding: 4px;
-    text-align: center;
+    padding: 10px;
+    text-align: center;  
     border-bottom: 1px solid black;
+    font-family: Cursive;
 }
 
 th,
 td {
     border-right: 1px solid black;
+    height: 10px;
+  font-size: 35px;
+font-family: Cursive;
 }
 
 th:last-child,
@@ -372,10 +371,14 @@ td:last-child {
 }
 button{
     border-radius: 10px;
-    height: 30px;
-    width: 75px;
+    height: 55px;
+    width: 138px;
     border: 2px solid black;
     font-size: 20px;
-    background-color: #00FF00;
+    background-color: #6ADCAF;
+    font-size: 35px;
+    font-family: Cursive;
 }
-
+button:hover{
+    background-color: #619488;
+}
