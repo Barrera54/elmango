@@ -7,6 +7,7 @@
 body {
     font-family: 'Open sans';
     background: #E8E8E8;
+    background-color: white;
 }
 
 header {
@@ -16,7 +17,7 @@ header {
     left: 0;
     text-decoration: none;
     padding: 20px;
-    background: #21f900;
+    background: #6ADCAF;
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
@@ -40,7 +41,7 @@ header #button-menu {
 .navegacion ul {
     width: 320px;
     height: 100%;
-    background: #21f900;
+    background: #6ADCAF;
     list-style: none;
 
     position: absolute;
@@ -52,7 +53,7 @@ header #button-menu {
 
 .navegacion .menu li.title-menu {
     padding: 20px;
-    background: #21f900;
+    background: #6ADCAF;
     color: #fff;
     text-align: center;
     font-size: 22px;
@@ -70,7 +71,7 @@ header #button-menu {
 }
 
 .navegacion .menu a:hover {
-    background: #953553;
+    background: #619488;
     color: #fff;
 }
 
@@ -127,7 +128,7 @@ header #button-menu {
     margin: 0;
     width: 200px;
     /* Ajusta el ancho según sea necesario */
-    background-color: #21f900;
+    background-color: #6ADCAF;
     /* Color de fondo opcional */
     overflow-y: auto;
     /* Permite el desplazamiento vertical si es necesario */
@@ -137,7 +138,7 @@ header #button-menu {
 
 .navegacion .menu li {
     padding: 10px;
-    border-bottom: 1px solid #21f900;
+    border-bottom: 1px solid #6ADCAF;
     /* Separador opcional entre elementos */
 }
 
@@ -166,6 +167,7 @@ header #button-menu {
 .inve {
     padding-top: 100px;
     padding-left: 40%;
+    font-family: Cursive;
 }
 
 .search-wrapper {
@@ -255,7 +257,8 @@ header #button-menu {
     height: 450px;
     border: 5px solid black;
     margin-top: 40px;
-    margin-left: 30px;
+    margin-left: 35px;
+    font-family: Cursive;
 
 }
 img{
@@ -268,6 +271,7 @@ img{
 a{
     text-decoration: none;
     color: black;
+    font-family: Cursive;
 }
 .mu{
     font-size: 20px;
@@ -278,10 +282,12 @@ button{
     font-size: 25px;
     border: 3px solid black;
     margin-top: 18%;
-margin-left: 20%;
+margin-left: 25%;
 color: black;
-background-color: #3ec70d;
+background-color: #6ADCAF;
 border-radius: 5px;
+font-size: 25px;
+font-family: Cursive;
 }
 .ld{
     display: flex;
