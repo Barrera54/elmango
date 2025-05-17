@@ -20,7 +20,7 @@ header {
 	color: rgb(0, 0, 0);
 	text-decoration: none;
 	z-index: 110;
-	/* Añadido para asegurar que el header esté siempre arriba */
+
 }
 
 header #button-menu {
@@ -199,7 +199,7 @@ td:last-child {
 	background-color: #E8E8E8;
 	padding: 10px 0;
 	z-index: 90;
-	/* Reducido de 200 a 90 */
+	
 }
 
 .li {
@@ -213,7 +213,7 @@ td:last-child {
 	font-family: Cursive;
 	font-size: 24px;
 	z-index: 90;
-	/* Reducido de 200 a 90 */
+	
 }
 
 button {
@@ -224,7 +224,7 @@ button {
 	border-radius: 10px;
 	background-color: #6ADCAF;
 	margin-top: 9px;
-	/* Cambiado de -7% a 10px */
+
 	margin-left: 5%;
 	color: rgb(0, 0, 0);
 	text-decoration: none;
