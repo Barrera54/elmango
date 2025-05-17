@@ -224,15 +224,15 @@ button {
 	border-radius: 10px;
 	background-color: #6ADCAF;
 	margin-top: 9px;
-
 	margin-left: 5%;
-	color: rgb(0, 0, 0);
+	color: white;
 	text-decoration: none;
+
 }
 
 a {
 	text-decoration: none;
-	color: black;
+	color: white;
 	font-family: Cursive;
 }
 

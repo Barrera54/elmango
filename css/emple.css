@@ -147,6 +147,7 @@ header #button-menu {
     color: rgb(0, 0, 0);
     text-decoration: none;
 }
+
 .tit {
     display: flex;
     color: rgb(0, 0, 0);
@@ -157,13 +158,16 @@ header #button-menu {
     padding-left: 85%;
 
 }
-.b{
-	background-color: #99FF99;
+
+.b {
+    background-color: #99FF99;
 }
-.inve{
+
+.inve {
     padding-top: 100px;
     padding-left: 45%;
 }
+
 .search-wrapper {
     display: flex;
     flex-direction: column;
@@ -203,8 +207,8 @@ header #button-menu {
 
 .search-button {
     position: absolute;
-    right: 10px;
-    top: 50%;
+    right: -60px;
+    top: 10%;
     transform: translateY(-50%);
     background: none;
     border: none;
@@ -225,86 +229,100 @@ header #button-menu {
 }
 
 .search-container:hover .search-input {
-    background: linear-gradient(90deg, 
-        #ff9a9e 0%, 
-        #fbc2eb 19%, 
-        #a18cd1 40%, 
-        #8fd3f4 60%, 
-        #84fab0 80%, 
-        #f6d365 100%);
+    background: linear-gradient(90deg,
+            #ff9a9e 0%,
+            #fbc2eb 19%,
+            #a18cd1 40%,
+            #8fd3f4 60%,
+            #84fab0 80%,
+            #f6d365 100%);
     animation: rainbow-bg 2s linear infinite;
     background-size: 400% 100%;
 }
 
 @keyframes rainbow-bg {
-    0% { background-position: 0% 50%; }
-    100% { background-position: 100% 50%; }
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
 }
+
 .linea-vertical {
     border-left: 1px solid #000;
     height: 200px;
-    position: absolute; 
-    left: 650px;     
-    top: 210px;       
-  }
-  .linea-horizontal {
+    position: absolute;
+    left: 650px;
+    top: 210px;
+}
+
+.linea-horizontal {
     border-bottom: 1px solid #000;
     width: 30%;
     position: relative;
-    left: 450px;       
-    top: 10px;         
-  }
-  .pro{
-padding-left: 490px;
-  }
-  .edit{
+    left: 450px;
+    top: 10px;
+}
+
+.pro {
+    padding-left: 490px;
+}
+
+.edit {
     color: white;
-    border-radius: 40px;    
-    background: linear-gradient(to right, #20CE38  , #13FF00 );
+    border-radius: 40px;
+    background: linear-gradient(to right, #20CE38, #13FF00);
     height: 40px;
     width: 150px;
-    margin-left: 650px; 
+    margin-left: 650px;
     margin-top: 15px;
-  }
-.borro{
+}
+
+.borro {
     color: white;
-    border-radius: 40px;    
-    background: linear-gradient(to right, #20CE38  , #13FF00 );
+    border-radius: 40px;
+    background: linear-gradient(to right, #20CE38, #13FF00);
     height: 40px;
     width: 150px;
-    margin-left: 650px; 
+    margin-left: 650px;
     margin-top: 15px;
-  }
-.agre {color: white;
-border-radius: 40px;    
-background: linear-gradient(to right, #20CE38  , #13FF00 );
-height: 40px;
-width: 150px;
-margin-left: 650px; 
-margin-top: 15px;
+}
+
+.agre {
+    color: white;
+    border-radius: 40px;
+    background: linear-gradient(to right, #20CE38, #13FF00);
+    height: 40px;
+    width: 150px;
+    margin-left: 650px;
+    margin-top: 15px;
 }
 
 
 .botones-fila {
 
     flex-direction: row;
-    gap: 20px; 
+    gap: 20px;
     position: absolute;
-    left: 450px; 
-    top: 40%; 
+    left: 450px;
+    top: 40%;
     justify-content: center;
-    width: 30%; 
+    width: 30%;
 
 }
 
 
-.edit, .borro, .agre {
+.edit,
+.borro,
+.agre {
     color: white;
-    border-radius: 40px;    
+    border-radius: 40px;
     background: linear-gradient(to right, #20CE38, #13FF00);
     height: 40px;
     width: 150px;
-    margin: 0; 
+    margin: 0;
     border: none;
     cursor: pointer;
     font-size: 16px;
@@ -317,29 +335,32 @@ margin-top: 15px;
 }
 
 
-.edit:hover, .borro:hover, .agre:hover {
+.edit:hover,
+.borro:hover,
+.agre:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 a {
-    color: #FF0000; 
-    text-decoration: none; 
+    color: #FF0000;
+    text-decoration: none;
     font-family: Cursive;
 }
 
 
 .a a:hover {
-    color: #00FF00; }
+    color: #00FF00;
+}
 
 
 .a a h1 {
-    color: black; 
-    transition: color 0.3s ease; 
+    color: black;
+    transition: color 0.3s ease;
 }
 
 .a a h1:hover {
-    color: black 
+    color: black
 }
 
 table {
@@ -351,8 +372,8 @@ table {
 
 th,
 td {
-    padding: 10px;
-    text-align: center;  
+    padding: 15px;
+    text-align: center;
     border-bottom: 1px solid black;
     font-family: Cursive;
 }
@@ -361,24 +382,26 @@ th,
 td {
     border-right: 1px solid black;
     height: 10px;
-  font-size: 35px;
-font-family: Cursive;
+    font-size: 25px;
+    font-family: Cursive;
 }
 
-th:last-child,
-td:last-child {
-    border-right: none;
-}
-button{
+
+
+button {
     border-radius: 10px;
     height: 55px;
-    width: 138px;
-    border: 2px solid black;
+    width: 185px;
+    border: 5px solid black;
     font-size: 20px;
     background-color: #6ADCAF;
     font-size: 35px;
     font-family: Cursive;
+    margin-left: 50%;
+    margin-top: 5%;
+    color: whitesmoke;
 }
-.mu:hover {
+
+.mu :hover {
     background-color: #619488;
 }

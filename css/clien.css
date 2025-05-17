@@ -297,6 +297,7 @@ header #button-menu {
 .a {
     padding-left: 85%;
     font-family: Cursive;
+background-color: b;
 }
 
 
@@ -308,13 +309,16 @@ header #button-menu {
         border-radius: 10px;
         margin-left: 10%;
         margin-top: 10%;
-        background-color: #76D078;
-        color: black;
+        background-color: #6ADCAF;
+        color: white;
         font-size: 25px;
         font-family: Cursive;
 }
 a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-family: Cursive;
+}
+.hu:hover{
+    background-color: #5F6F81;
 }
