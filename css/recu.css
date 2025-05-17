@@ -54,6 +54,9 @@ body {
     background: none;
     font-size: 20px;
     margin: 20px 20px;
+    border: 5px solid white;
+        border-radius: 10px;
+        margin-top: -12px;
 }
 
 select {
@@ -66,6 +69,8 @@ select {
     right: 1000px;
     background-color: #92B4A7;
     color: white;
+    border: 5px solid white;
+        border-radius: 10px;
 
 }
 
@@ -84,6 +89,7 @@ a {
     color: whitesmoke;
     font-size: 25px;
     font-family: Cursive;
+   
 }
 
 select:focus {

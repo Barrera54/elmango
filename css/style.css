@@ -47,6 +47,9 @@ border: none;
 background: none;
 font-size: 20px;
 margin: 20px 20px;
+border: 5px solid white;
+border-radius: 10px;
+margin-top: -12px;
 }
 select{
     outline: none;
@@ -58,6 +61,9 @@ select{
             right: 1000px; 
             background-color: #92B4A7;
             color: white;
+            border: 5px solid white;
+                border-radius: 10px;
+            
 
 }
 button{
@@ -68,12 +74,14 @@ button{
     font-family: Cursive;
     border-radius: 10px;
 color: whitesmoke;
+margin-top: 25px;
 }
 a{
     text-decoration: none;
     color: whitesmoke;
     font-size: 25px;
         font-family: Cursive;
+        margin-top: -15px;
 }
 
 select:focus{
