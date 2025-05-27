@@ -5,10 +5,11 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import'./index.css'
+import fon from './img/supermarket.jpg'
 
 function Logo() {
   return (
-  
+ 
     <div className="login-container">
       <img src={logo} alt="Logo" />
       <p>Login</p>
@@ -26,12 +27,12 @@ function Logo() {
         <input type="password"   />
         </div>
       </div>
-      <Link to="/crea cuenta"> Crear cuenta</Link>
-      <Link to="/recuperarcontraseña">Reacuperar contraseña</Link>
-      <button><a href="">Ingresar</a></button>
-
-    </div>  
+     <div className="gu"> 
+      <Link to="/crea cuenta">Crear cuenta</Link></div>
+     <Link to="/recuperarcontraseña">Recuperar contraseña</Link>
+<button><Link to="/Principal">Ingresar</Link></button>
+    </div> 
   )
 }
 
-export default Logo
+export default Logo;

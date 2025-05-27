@@ -25,7 +25,7 @@ function Crea() {
         </div>
       </div>
      
-      <button><Link to="/">Ingresar</Link></button>
+      <button><Link to="/">Crear</Link></button>
     </div>  
   )
 }

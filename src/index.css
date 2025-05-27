@@ -4,18 +4,8 @@
   box-sizing: border-box;
 }
 
-body {
-  width: 100vw;
-    height: 100vh;
-    background-image: url(./img/supermarket.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-}
+
+
 
 .login-container {
   position: absolute;
@@ -64,6 +54,7 @@ body {
   border: 5px solid white;
   border-radius: 10px;
   margin-top: -12px;
+  font-family: Cursive;
 }
 
 select {
@@ -96,17 +87,23 @@ button {
 a {
   text-decoration: none;
   color: whitesmoke;
-  font-size: 45px;
   font-family: Cursive;
-  margin-top: -px;
+
 }
 
 select:focus {
   background-color: #92B4A7;
   outline: none;
+  font-family: Cursive;
 }
 .nu{
   color: white;
   height: 30px;
   width: 30px;
+  font-family: Cursive;
+}
+.gu{
+  margin-left: 70px;
+  font-size: 30px;
+  font-family: Cursive;
 }

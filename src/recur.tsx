@@ -5,6 +5,8 @@ import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import'./recupe.css'
 import logo from './img/icons.png'
+
+
 function Crea() {
   return (
   
@@ -22,11 +24,11 @@ function Crea() {
         </div>
         <div className="data">
         <FontAwesomeIcon icon={faLock} className="nu"/>
-        <input type="password"   />
+        <input type="password"/>
         </div>
       </div>
      
-      <button><Link to="/">Ingresar</Link></button>
+      <button><Link to="/">Recuperar</Link></button>
     </div>  
   )
 }
