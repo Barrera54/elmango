@@ -44,31 +44,31 @@ function Menu() {
               <td>Huevo</td>
               <td>12</td>
               <td>32.000</td>
-              <td>12:35</td>
-            </tr>
-            <tr>
-              <td>Quesito alpina pequeño</td>
-              <td>1</td>
-              <td>8.000</td>
               <td>12:36</td>
             </tr>
             <tr>
               <td>Quesito alpina pequeño</td>
               <td>1</td>
               <td>8.000</td>
-              <td>12:36</td>
+              <td>12:37</td>
             </tr>
             <tr>
               <td>Quesito alpina pequeño</td>
               <td>1</td>
               <td>8.000</td>
-              <td>12:36</td>
+              <td>12:38</td>
             </tr>
             <tr>
               <td>Quesito alpina pequeño</td>
               <td>1</td>
               <td>8.000</td>
-              <td>12:36</td>
+              <td>12:39</td>
+            </tr>
+            <tr>
+              <td>Quesito alpina pequeño</td>
+              <td>1</td>
+              <td>8.000</td>
+              <td>12:40</td>
             </tr>
       
           </tbody>
