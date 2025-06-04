@@ -7,6 +7,7 @@ import Menu from './princi';
 import Venta from './vent';
 import Inventario from './inven';
 import Buscador from './busca';
+import Empleado from './datemple'
 
 function App() {
   
@@ -98,6 +99,17 @@ function App() {
           element={
             isAuthenticated ? (
               <Buscador />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+          
+        />
+              <Route 
+          path="/Datosempleado"  
+          element={
+            isAuthenticated ? (
+              <Empleado/>
             ) : (
               <Navigate to="/" replace />
             )

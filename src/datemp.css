@@ -1,0 +1,33 @@
+.empl{
+    width: 100%;
+   align-items: center;
+   font-size: 50px;
+}
+th,
+td {
+    padding: 4px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    font-family: Cursive;
+}
+
+th,
+td {
+    border-right: 1px solid black;
+}
+.ji{
+    width: 300px;
+    height: 90px;
+    font-size: 50px;
+    display: flex;
+    margin-top: 5%;
+align-items: center;
+
+}
+
+.trab{
+    margin-left: 45%;
+}
+.ji:hover{
+    background-color: #3BCAE3;
+}

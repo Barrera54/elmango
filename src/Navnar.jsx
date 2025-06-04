@@ -12,7 +12,7 @@ const Navbar = ({ show }) => {
                 <li><Link to="#">Traductor</Link></li>
                 <li><a href="#">Actividad empleado</a></li>
                 <li><a href="#">Cambio de color</a></li>
-                <li><a href="emple.html">Datos empleado</a></li>
+                <li><Link to="/Datosempleado">Datos empleado</Link></li>
                 <li><a href="acual.html">Actualizar</a></li>
                 <li><a href="devuel.html">Devueltos</a></li>
                 <li><a href="encuespro.html">Encuesta de producto</a></li>
