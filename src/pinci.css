@@ -15,7 +15,7 @@
     bottom: 0;
     width: 100%;
     border: 1px solid black;
-    font-size: 30px;
+    font-size: 3   10px;
     height: 54px;
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@ button {
     border: 5px solid black;
     height: 75px;
     width: 220px;
-    font-size: 30px;
+    font-size: 10px;
     border-radius: 10px;
     background-color: #6ADCAF;
     margin: 9px 10px;
@@ -44,7 +44,7 @@ b {
 }
 
 h1 {
-    margin-right: 80%;
+  
     margin-top: 2%;
 }
 
