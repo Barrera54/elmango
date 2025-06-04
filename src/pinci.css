@@ -1,0 +1,105 @@
+.k {
+    position: fixed;
+    bottom: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    z-index: 10;
+    font-size: 1px;
+}
+
+.i {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    border: 1px solid black;
+    font-size: 30px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+}
+
+button {
+    border: 5px solid black;
+    height: 75px;
+    width: 220px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: #6ADCAF;
+    margin: 9px 10px;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-family: Cursive;
+}
+
+b {
+    text-decoration: none;
+}
+
+h1 {
+    margin-right: 80%;
+    margin-top: 2%;
+}
+
+/* Superposición */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 998;
+}
+
+.prin {
+    font-size: 30px;
+    width: 100%;
+    /* Asegúrate de que la tabla ocupe todo el ancho disponible del contenedor */
+    border-collapse: collapse;
+    /* Para un mejor aspecto de la tabla */
+}
+
+/* Estilos para el contenedor de la tabla */
+.table-container {
+    max-height: 600px;
+   
+    overflow-y: auto;
+  
+    margin-bottom: 120px;
+ 
+    width: 100%;
+
+    margin-left: auto;
+    margin-right: auto;
+    
+   
+}
+
+.prin th,
+.prin td {
+    border: 1px solid #dddddd00;
+    padding: 8px;
+    text-align: left;
+}
+
+.prin thead {
+    position: sticky;
+    /* Hace que el encabezado de la tabla sea pegajoso */
+    top: 0;
+    /* Lo fija en la parte superior del contenedor con scroll */
+    background-color: white;
+    /* Asegura que el fondo del encabezado sea visible al hacer scroll */
+    z-index: 1;
+    /* Asegura que el encabezado esté por encima del contenido al hacer scroll */
+}
+.prin>thead{
+    background-color: #70D8EB;
+}

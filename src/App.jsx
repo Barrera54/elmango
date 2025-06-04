@@ -1,0 +1,110 @@
+import { useState, useEffect } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import Crea from './crea';
+import Logo from './log';
+import Recupe from './recur';
+import Menu from './princi';
+import Venta from './vent';
+import Inventario from './inven';
+
+function App() {
+  
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const location = useLocation();
+
+  // Verificar autenticación al cargar la aplicación
+  useEffect(() => {
+    const authStatus = localStorage.getItem('isAuthenticated') === 'true';
+    setIsAuthenticated(authStatus);
+  }, []);
+
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    localStorage.setItem('isAuthenticated', 'true');
+  };
+
+  // Si estamos en la ruta raíz y ya estamos autenticados, redirigir a Principal
+  if (location.pathname === '/' && isAuthenticated) {
+    return <Navigate to="/Principal" replace />;
+  }
+
+  return (
+    <div className="app-container">
+      <Routes>
+        <Route 
+          path="/" 
+          element={
+            !isAuthenticated ? (
+              <Logo onLogin={handleLogin} />
+            ) : (
+              <Navigate to="/Principal" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/crea-cuenta" 
+          element={
+            !isAuthenticated ? (
+              <Crea />
+            ) : (
+              <Navigate to="/Principal" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/recuperar-contrasena" 
+          element={
+            !isAuthenticated ? (
+              <Recupe />
+            ) : (
+              <Navigate to="/Principal" replace />
+            )
+          } 
+        />
+        <Route 
+          path="/Principal"  
+          element={
+            isAuthenticated ? (
+              <Menu />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route 
+          path="/Venta"  
+          element={
+            isAuthenticated ? (
+              <Venta />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route 
+          path="/Inventario"  
+          element={
+            isAuthenticated ? (
+              <Inventario />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        {/* Ruta por defecto para rutas no encontradas */}
+        <Route 
+          path="*" 
+          element={
+            isAuthenticated ? (
+              <Navigate to="/Principal" replace />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          } 
+        />
+      </Routes>
+    </div>
+  );
+}
+
+export default App;
