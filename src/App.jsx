@@ -7,8 +7,9 @@ import Menu from './princi';
 import Venta from './vent';
 import Inventario from './inven';
 import Buscador from './busca';
-import Empleado from './datemple'
-import Actua from './actualiza'
+import Empleado from './datemple';
+import Actua from './actualiza';
+import Devuel from'./devueltos'
 
 function App() {
   
@@ -122,6 +123,17 @@ function App() {
           element={
             isAuthenticated ? (
               <Actua/>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+          
+        />
+              <Route 
+          path="/Productodevuelto"  
+          element={
+            isAuthenticated ? (
+              <Devuel/>
             ) : (
               <Navigate to="/" replace />
             )

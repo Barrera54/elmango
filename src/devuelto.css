@@ -1,0 +1,34 @@
+.contdev {
+    height: 670px;
+    width: 500px;
+    border: 5px solid rgb(244, 154, 154);
+    margin-top: 5%;
+    margin-left: 500px;
+    border-radius: 30px;
+    text-align: center;
+    background-color: #6ADCAF;
+    font-family: Cursive;
+
+}
+
+.cli {
+    border-radius: 2px;
+    margin-left: 20px;
+    margin-top: 10px;
+    font-size: 25px;
+    font-family: Cursive;
+}
+
+.de {
+
+    border-radius: 2px;
+    margin-left: 20px;
+    margin-top: 10px;
+    font-size: 25px;
+    font-family: Cursive;
+}
+.sa{
+    font-size: 30px;
+    width: 120px;
+    margin-left: 45%;
+}
