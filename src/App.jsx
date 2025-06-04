@@ -8,6 +8,7 @@ import Venta from './vent';
 import Inventario from './inven';
 import Buscador from './busca';
 import Empleado from './datemple'
+import Actua from './actualiza'
 
 function App() {
   
@@ -110,6 +111,17 @@ function App() {
           element={
             isAuthenticated ? (
               <Empleado/>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+          
+        />
+             <Route 
+          path="/Actualizaremmpl"  
+          element={
+            isAuthenticated ? (
+              <Actua/>
             ) : (
               <Navigate to="/" replace />
             )
