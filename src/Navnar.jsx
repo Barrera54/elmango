@@ -5,7 +5,7 @@ const Navbar = ({ show }) => {
         <div className={show ? 'sidnav active' : 'sidnav'}>
             <ul className="scroll-vertical">
                 <li><Link to="/Principal">Principal</Link></li>
-                <li><a href="busca.html">Buscador</a></li>
+                <li><Link to="/Buscador">Buscador</Link></li>
                 <li><a href="cata.html">Catálogo</a></li>
                 <li><Link to="/Inventario">Inventario</Link></li>
                 <li><Link to="/Venta">Venta</Link></li>

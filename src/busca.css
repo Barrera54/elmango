@@ -1,0 +1,76 @@
+
+.search-container {
+    position: relative;
+    width: 400px;
+    margin: 0 auto;
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 50px 15px 20px;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(90deg, #ff9a9e 0%, #fad0c4 100%);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.search-input:focus {
+    outline: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(90deg, #a18cd1 0%, #fbc2eb 100%);
+}
+
+.search-button {
+    position: absolute;
+    right: 10px;
+    top: 90%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.search-icon {
+    width: 24px;
+    height: 24px;
+    fill: url(#lupa-gradient);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+ 
+}
+
+
+
+/* Efecto de arcoíris al hacer hover */
+.search-container:hover .search-input {
+    background: linear-gradient(90deg,
+            #ff9a9e 0%,
+            #fbc2eb 19%,
+            #a18cd1 40%,
+            #8fd3f4 60%,
+            #84fab0 80%,
+            #f6d365 100%);
+    animation: rainbow-bg 2s linear infinite;
+    background-size: 400% 100%;
+}
+
+@keyframes rainbow-bg {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+.busca{
+    width: 20%;
+    margin-left: 40%;
+}

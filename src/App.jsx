@@ -6,6 +6,7 @@ import Recupe from './recur';
 import Menu from './princi';
 import Venta from './vent';
 import Inventario from './inven';
+import Buscador from './busca';
 
 function App() {
   
@@ -90,6 +91,18 @@ function App() {
               <Navigate to="/" replace />
             )
           }
+          
+        />
+        <Route 
+          path="/Buscador"  
+          element={
+            isAuthenticated ? (
+              <Buscador />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+          
         />
         {/* Ruta por defecto para rutas no encontradas */}
         <Route 
