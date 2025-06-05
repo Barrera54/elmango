@@ -20,8 +20,8 @@ function EmployeeData() {
   return (
     <div>
       <Cabe/>
-      <div className="inve">
-        <h1>Datos empleados</h1>
+      <div className="ple">
+        <h1 >Datos empleados</h1>
       </div>
       <div className="search-container">
         <input

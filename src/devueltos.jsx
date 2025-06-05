@@ -32,7 +32,7 @@ function ProductoDevuelto() {
     <>
         <Cabe/>
     <div className="contdev">
-     <div className="sa"><h1>Producto devuelto</h1></div>
+     <h1 className="sa">Producto devuelto</h1>
 
       <div className="cli">
         <h2>Producto</h2>

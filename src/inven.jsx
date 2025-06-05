@@ -10,7 +10,7 @@ function Ventas() {
 
     <div>    <Cabe/>
       <div className="inve">
-        <h1>Inventario</h1>
+        <h1 className='ve'>Inventario</h1>
       </div>
 
       <div className="search-container">
