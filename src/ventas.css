@@ -3,6 +3,7 @@
     margin: 20px auto;
     font-family: Cursive;
     padding: 20px;
+    
    
 
 }
@@ -11,7 +12,7 @@ h1 {
     color: #333;
     text-align: center;
     margin-bottom: 30px; font-size: 70px;
-    margin-left: -5%;
+    margin-left: 35%;
 }
 
 .section {
