@@ -69,7 +69,7 @@ function Menu() {
       </div>
 
       <div className="i">
-        <h1><b>Total: 48.400</b></h1>
+        <h1><b className='h'>Total:48.400</b></h1>
       </div>
     </div>
   );

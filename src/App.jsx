@@ -10,6 +10,7 @@ import Buscador from './busca';
 import Empleado from './datemple';
 import Actua from './actualiza';
 import Devuel from'./devueltos'
+import Sistem from './Sistem'
 
 function App() {
   
@@ -140,6 +141,17 @@ function App() {
           }
           
         />
+                <Route 
+          path="/Encuestasistem"  
+          element={
+            isAuthenticated ? (
+              <Sistem/>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+          
+        />
         {/* Ruta por defecto para rutas no encontradas */}
         <Route 
           path="*" 
@@ -151,6 +163,7 @@ function App() {
             )
           } 
         />
+        
       </Routes>
     </div>
   );

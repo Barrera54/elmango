@@ -6,7 +6,7 @@ const Navbar = ({ show }) => {
             <ul className="scroll-vertical">
                 <li><Link to="/Principal">Principal</Link></li>
                 <li><Link to="/Buscador">Buscador</Link></li>
-                <li><a href="cata.html">Catálogo</a></li>
+                <li><Link to="/Buscador">Catálogo</Link></li>
                 <li><Link to="/Inventario">Inventario</Link></li>
                 <li><Link to="/Venta">Venta</Link></li>
                 <li><Link to="#">Traductor</Link></li>
@@ -15,8 +15,8 @@ const Navbar = ({ show }) => {
                 <li><Link to="/Datosempleado">Datos empleado</Link></li>
                 <li><Link to='/Actualizaremmpl'>Actualizar</Link></li>
                 <li><Link to='/Productodevuelto'>Devueltos</Link></li>
-                <li><a href="encuespro.html">Encuesta de producto</a></li>
-                <li><a href="sistem.html">Encuesta de sistema</a></li>
+                <li><Link to='/Productodevuelto'>Encuesta de producto</Link></li>
+                <li><Link to="/Encuestasistem" >Encuesta de sistema</Link></li>
                 <li><a href="papel.html">Papelera de producto</a></li>
                 <li><a href="llegaprod.html">Llegada de producto</a></li>
             </ul>
