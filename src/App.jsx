@@ -11,6 +11,7 @@ import Empleado from './datemple';
 import Actua from './actualiza';
 import Devuel from'./devueltos'
 import Sistem from './Sistem'
+  import Papel from './papele'
 
 function App() {
   
@@ -150,6 +151,19 @@ function App() {
               <Navigate to="/" replace />
             )
           }
+          
+          
+        />
+         <Route 
+          path="/Papelera"  
+          element={
+            isAuthenticated ? (
+              <Papel/>
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+          
           
         />
         {/* Ruta por defecto para rutas no encontradas */}

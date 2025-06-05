@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; // Necesitamos useState para manejar el estado de la calificación y el comentario
 import { useNavigate } from 'react-router-dom'; // Para manejar la navegación al enviar la valoración
-
+import cabe from './menu'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'; 
@@ -42,6 +42,8 @@ function SystemRating() {
   };
 
   return (
+    <>
+    <Cabe/>
     <div className="contis">
       <h1 className='ssi'>Valoración del Sistema</h1>
       <div className="clin">
@@ -74,7 +76,7 @@ function SystemRating() {
       <button onClick={handleEnviarClick}>
         <h2>Enviar</h2>
       </button>
-    </div>
+    </div></>
   );
 }
 

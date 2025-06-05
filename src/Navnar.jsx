@@ -17,7 +17,7 @@ const Navbar = ({ show }) => {
                 <li><Link to='/Productodevuelto'>Devueltos</Link></li>
                 <li><Link to='/Productodevuelto'>Encuesta de producto</Link></li>
                 <li><Link to="/Encuestasistem" >Encuesta de sistema</Link></li>
-                <li><a href="papel.html">Papelera de producto</a></li>
+                <li><Link to= "/Papelera"  >Papelera de producto</Link></li>
                 <li><a href="llegaprod.html">Llegada de producto</a></li>
             </ul>
         </div>
