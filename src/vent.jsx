@@ -22,7 +22,7 @@ function Ventas() {
       {
         label: 'Ventas ',
         data: [65, 59, ],
-        backgroundColor: 'rgb(21, 226, 150)',
+        backgroundColor: ' #99FFCF',
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1,
       },
@@ -41,12 +41,64 @@ function Ventas() {
       },
     },
   };
+  const vent = {
+    labels: ['Dia', 'Mes', ],
+    datasets: [
+      {
+        label: 'Contabilidad ',
+        
+        data: [20000, 59000],
+        backgroundColor: ' #94F0A9',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const valor = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+       
+      },
+    },
+  };
+  const produ = {
+    labels: ['Coco cola', 'Huevos' ],
+    datasets: [
+      {
+        label: 'Producto Excepcionales',
+    
+        data: [21, 10],
+        backgroundColor: ' #BBFFAD',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  const soliti = {
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top',
+      },
+      title: {
+        display: true,
+       
+      },
+    },
+  };
 
   return (
     <>
       <Cabe />
       <div className="dashboard">
-        <h1>Venta</h1>
+        <h1>Ventas</h1>
         
         <div className="section">
           <div className="section-header" onClick={toggleAccounting}>
@@ -56,16 +108,10 @@ function Ventas() {
           {showAccounting && (
             <div className="accounting">
               <div className="accounting-item">
-                <h3>Ventas del día</h3>
-                <p><strong>Ventas del día:</strong> ---</p>
-                <p><strong>Total de venta:</strong> ---</p>
+              <Bar data={vent} options={valor} />
               </div>
         
-              <div className="accounting-item">
-              <h3>Ventas del mes</h3>
-                <p><strong>Ventas del mes:</strong> ---</p>
-                <p><strong>Total de venta:</strong> ---</p>
-              </div>
+             
             </div>
           )}
         </div>
@@ -79,7 +125,7 @@ function Ventas() {
           </div>
           {showEmployeeSales && (
             <div className="employee-sales">
-              <Bar data={data} options={options} />;
+              <Bar data={data} options={options} />
             </div>
           )}
         </div>
@@ -93,15 +139,9 @@ function Ventas() {
           {showProductExceptions && (
             <div className="product-exceptions">
               <div className="product-item">
-                <h3>Producto estrella</h3>
-                <p><strong>Producto:</strong> ---</p>
-                <p><strong>Cantidad:</strong> #</p>
+              <Bar data={produ} options={soliti} />
               </div>
-              <div className="product-item">
-                <h3>Producto menos deseado</h3>
-                <p><strong>Producto:</strong> ---</p>
-                <p><strong>Cantidad:</strong> #</p>
-              </div>
+             
             </div>
           )}
         </div>

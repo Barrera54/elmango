@@ -1,15 +1,17 @@
 .dashboard {
     max-width: 900px;
     margin: 20px auto;
-
+    font-family: Cursive;
     padding: 20px;
+   
 
 }
 
 h1 {
     color: #333;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 30px; font-size: 70px;
+    margin-left: -5%;
 }
 
 .section {
@@ -25,6 +27,7 @@ h1 {
     background-color: #9fffcb;
     border-radius: 5px;
     transition: background-color 0.3s;
+    font-family: Cursive;
 }
 
 .section-header:hover {
@@ -46,6 +49,7 @@ h1 {
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 15px;
+    font-family: Cursive;
 }
 
 .accounting-item {
@@ -56,6 +60,7 @@ h1 {
     background-color: #f9f9f9;
     border-radius: 5px;
     font-size: 20px;
+    font-family: Cursive;
 }
 
 .divider {
@@ -73,7 +78,7 @@ h1 {
 table {
     width: 100%;
     border-collapse: collapse;
-
+    font-family: Cursive;
     margin-top: 1%;
 }
 
@@ -100,7 +105,9 @@ tr:hover {
     justify-content: space-between;
     flex-wrap: wrap;
     margin-top: 15px;
-    font-size: 70px;
+    font-size: 700px;
+    font-family: Cursive;
+    color: black;
 }
 
 .product-item {

@@ -15,12 +15,12 @@
     bottom: 0;
     width: 100%;
     border: 1px solid black;
-    font-size: 25px;
     height: 54px;
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 11;
+    font-family: Cursive;
 }
 
 button {
@@ -31,6 +31,7 @@ button {
     border-radius: 10px;
     background-color: #6ADCAF;
     margin: 9px 10px;
+    font-family: Cursive;
 }
 
 a {
@@ -41,12 +42,13 @@ a {
 
 b {
     text-decoration: none;
+    font-size: 50px;
     
 }
 
 h1 {
-margin-left: -75%;  
-    margin-top: 2%;
+margin-right: 65%;
+    margin-top: 1%;
 }
 
 /* Superposición */
@@ -75,7 +77,7 @@ margin-left: -75%;
     overflow-y: auto;
   
     margin-bottom: 120px;
- 
+    font-family: Cursive;
     width: 100%;
 
     margin-left: auto;
