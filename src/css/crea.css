@@ -53,6 +53,7 @@
     border: 5px solid white;
     border-radius: 10px;
     margin-top: -12px;
+
 }
 
 select {
@@ -100,3 +101,7 @@ select:focus {
     color: white;
     height: 30px;
     width: 30px; }
+.form-control{
+    background-color: #92B4A7;
+    border: 5px solid white;
+}

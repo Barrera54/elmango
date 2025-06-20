@@ -1,6 +1,6 @@
 import React, { useState } from 'react'; // Importamos useState para manejar el estado de los inputs
 import { useNavigate } from 'react-router-dom'; // Asumiendo que estás usando React Router para la navegación
-import'./actualiza.css'
+import'./css/actualiza.css'
 import Cabe from './menu'
 
 function DatosPersonales() {

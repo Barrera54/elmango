@@ -3,15 +3,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-import'./recupe.css'
-import logo from './img/icons.png'
+import'./css/recupe.css'
+
 
 
 function Crea() {
   return (
   
     <div className="con">
-      <img src={logo} alt="Logo" />
+  
       <p>Recuperar contraseña</p>
       <div className="fields">
         <div className="data">

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Cabe from './menu';
-import './busca.css';
+import './css/busca.css';
 
 
 

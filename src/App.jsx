@@ -9,12 +9,12 @@ import Inventario from './inven';
 import Buscador from './busca';
 import Empleado from './datemple';
 import Actua from './actualiza';
-import Devuel from'./devueltos'
+import Devuel from './devueltos'
 import Sistem from './Sistem'
-  import Papel from './papele'
+import Papel from './papele'
 
 function App() {
-  
+
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const location = useLocation();
 
@@ -29,6 +29,12 @@ function App() {
     localStorage.setItem('isAuthenticated', 'true');
   };
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('userRole');
+  };
+
   // Si estamos en la ruta raíz y ya estamos autenticados, redirigir a Principal
   if (location.pathname === '/' && isAuthenticated) {
     return <Navigate to="/Principal" replace />;
@@ -37,48 +43,48 @@ function App() {
   return (
     <div className="app-container">
       <Routes>
-        <Route 
-          path="/" 
+        <Route
+          path="/"
           element={
             !isAuthenticated ? (
               <Logo onLogin={handleLogin} />
             ) : (
               <Navigate to="/Principal" replace />
             )
-          } 
+          }
         />
-        <Route 
-          path="/crea-cuenta" 
+        <Route
+          path="/crea-cuenta"
           element={
             !isAuthenticated ? (
               <Crea />
             ) : (
               <Navigate to="/Principal" replace />
             )
-          } 
+          }
         />
-        <Route 
-          path="/recuperar-contrasena" 
+        <Route
+          path="/recuperar-contrasena"
           element={
             !isAuthenticated ? (
               <Recupe />
             ) : (
               <Navigate to="/Principal" replace />
             )
-          } 
+          }
         />
-        <Route 
-          path="/Principal"  
+        <Route
+          path="/Principal"
           element={
             isAuthenticated ? (
-              <Menu />
+              <Menu onLogout={handleLogout} />
             ) : (
               <Navigate to="/" replace />
             )
           }
         />
-        <Route 
-          path="/Venta"  
+        <Route
+          path="/Venta"
           element={
             isAuthenticated ? (
               <Venta />
@@ -87,8 +93,8 @@ function App() {
             )
           }
         />
-        <Route 
-          path="/Inventario"  
+        <Route
+          path="/Inventario"
           element={
             isAuthenticated ? (
               <Inventario />
@@ -96,10 +102,10 @@ function App() {
               <Navigate to="/" replace />
             )
           }
-          
+
         />
-        <Route 
-          path="/Buscador"  
+        <Route
+          path="/Buscador"
           element={
             isAuthenticated ? (
               <Buscador />
@@ -107,77 +113,77 @@ function App() {
               <Navigate to="/" replace />
             )
           }
-          
+
         />
-              <Route 
-          path="/Datosempleado"  
+        <Route
+          path="/Datosempleado"
           element={
             isAuthenticated ? (
-              <Empleado/>
+              <Empleado />
             ) : (
               <Navigate to="/" replace />
             )
           }
-          
+
         />
-             <Route 
-          path="/Actualizaremmpl"  
+        <Route
+          path="/Actualizaremmpl"
           element={
             isAuthenticated ? (
-              <Actua/>
+              <Actua />
             ) : (
               <Navigate to="/" replace />
             )
           }
-          
+
         />
-              <Route 
-          path="/Productodevuelto"  
+        <Route
+          path="/Productodevuelto"
           element={
             isAuthenticated ? (
-              <Devuel/>
+              <Devuel />
             ) : (
               <Navigate to="/" replace />
             )
           }
-          
+
         />
-                <Route 
-          path="/Encuestasistem"  
+        <Route
+          path="/Encuestasistem"
           element={
             isAuthenticated ? (
-              <Sistem/>
+              <Sistem />
             ) : (
               <Navigate to="/" replace />
             )
           }
-          
-          
+
+
         />
-         <Route 
-          path="/Papelera"  
+        <Route
+          path="/Papelera"
           element={
             isAuthenticated ? (
-              <Papel/>
+              <Papel />
             ) : (
               <Navigate to="/" replace />
             )
           }
-          
-          
+
+
         />
         {/* Ruta por defecto para rutas no encontradas */}
-        <Route 
-          path="*" 
+        <Route
+          path="*"
           element={
             isAuthenticated ? (
               <Navigate to="/Principal" replace />
             ) : (
               <Navigate to="/" replace />
             )
-          } 
+          }
         />
-        
+
       </Routes>
     </div>
   );

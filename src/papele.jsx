@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './papele.css'; // Asegúrate de crear este archivo CSS para tus estilos
+import './css/papele.css'; // Asegúrate de crear este archivo CSS para tus estilos
 import Cabe from './menu';
 // Puedes tener un componente de botón si lo usas a menudo,
 // pero por ahora lo incorporo directamente en el JSX.

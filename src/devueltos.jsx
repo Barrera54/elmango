@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Asumiendo que usas React Router para la navegación
-import './Devuelto.css'; // Asegúrate de crear este archivo CSS para tus estilos
+import './css/Devuelto.css'; // Asegúrate de crear este archivo CSS para tus estilos
 import Cabe from './menu';
 
 function ProductoDevuelto() {

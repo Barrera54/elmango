@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cabe from './menu';
-import './pinci.css';
+import './css/pinci.css';
 
-function Menu() {
+function Menu({ onLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -66,6 +66,7 @@ function Menu() {
         <button>Anular</button>
         <button>Deudores</button>
         <button>Pago</button>
+        <button onClick={onLogout}>Cerrar Sesión</button>
       </div>
 
       <div className="i">

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Cabe from './menu';
-import './inve.css';
+import './css/inve.css';
 
 
 function Ventas() {

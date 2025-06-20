@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faLock } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
-import'./crea.css'
+import'./css/crea.css'
 function Crea() {
   return (
   

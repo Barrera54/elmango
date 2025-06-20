@@ -3,8 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
 import logo from './img/icons.png';
-import './index.css';
-
+import './css/login.css';
 function Logo({ onLogin }) {
   const [contraseña, setContraseña] = useState('');
   const [tipoUsuario, setTipoUsuario] = useState('');
@@ -13,7 +12,7 @@ function Logo({ onLogin }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Validación básica
     if (!tipoUsuario || !contraseña) {
       setError('Por favor complete todos los campos');
@@ -26,10 +25,10 @@ function Logo({ onLogin }) {
       // Guardamos el estado de autenticación en localStorage
       localStorage.setItem('isAuthenticated', 'true');
       localStorage.setItem('userRole', tipoUsuario);
-      
+
       // Llamamos a la función onLogin proporcionada por el componente padre
       onLogin();
-      
+
       // Redirigimos a la página principal
       navigate('/Principal');
     } catch (err) {
@@ -39,17 +38,17 @@ function Logo({ onLogin }) {
   };
 
   return (
-    <div className="login-container">
+    <div className="login-container"  >
       <img src={logo} alt="Logo" className="login-logo" />
       <h2 className="login-title">Iniciar Sesión</h2>
-      
+
       {error && <div className="error-message">{error}</div>}
-      
+
       <form onSubmit={handleSubmit} className="login-form">
         <div className="form-group">
           <div className="input-group">
             <FontAwesomeIcon icon={faUser} className="input-icon" />
-            <select 
+            <select
               value={tipoUsuario}
               onChange={(e) => setTipoUsuario(e.target.value)}
               className="form-control"
@@ -60,34 +59,36 @@ function Logo({ onLogin }) {
               <option value="empleado">Empleado</option>
             </select>
           </div>
-        </div>
-        
-        <div className="form-group">
-          <div className="input-group">
-            <FontAwesomeIcon icon={faLock} className="input-icon"/>
-            <input 
-              type="password" 
-              value={contraseña}
-              onChange={(e) => setContraseña(e.target.value)}
-              placeholder="Contraseña"
-              className="form-control"
-              required
-            />
+          
+          <div className="form-group">
+            <div className="input-group">
+              <FontAwesomeIcon icon={faLock} className="input-icon" />
+              <input
+                type="password"
+                value={contraseña}
+                onChange={(e) => setContraseña(e.target.value)}
+                placeholder="Contraseña"
+                className="form-control"
+                required
+              />
+            </div>
           </div>
         </div>
-        
-        <div className="form-actions">
+
+
+
+        <div className="login">
+          <Link to="/crea-cuenta" className="login__link">Crear cuenta</Link>
+          <Link to="/recuperar-contrasena" className="login__link">¿Olvidaste tu contraseña?</Link>
+        </div>
+
+        <div className="form__actions">
           <button type="submit" className="login-button">
             Ingresar
           </button>
-          
-          <div className="login-links">
-            <Link to="/crea-cuenta" className="login-link">Crear cuenta</Link>
-            <Link to="/recuperar-contrasena" className="login-link">¿Olvidaste tu contraseña?</Link>
-          </div>
         </div>
       </form>
-    </div> 
+    </div>
   );
 }
 
