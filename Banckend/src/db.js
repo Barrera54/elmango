@@ -3,7 +3,7 @@ export const pool = mysql.createPool({
     host: 'localhost',
     user: 'root',
     Password:'',
-    database:'tienda'
+    database:'el mango'
 });
 
 (async () => {
