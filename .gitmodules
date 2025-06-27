@@ -1,0 +1,3 @@
+[submodule "elmango"]
+	path = elmango
+	url = https://github.com/Barrera54/elmango.git
