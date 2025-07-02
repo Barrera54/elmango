@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Cabe from './menu';
 import './css/pinci.css';
 
+
 function Menu({ onLogout }) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
@@ -14,6 +15,18 @@ function Menu({ onLogout }) {
       navigate('/');
     }
   }, [navigate]);
+
+  useEffect ( ()=>{
+    fetch("http://localhost:3000/api/producto")
+    .then((res)=> res.json)
+    .then((res) => {
+     console.log(res)      
+    })
+    .catch ((e) =>{
+      console.log(e)
+    })
+  },[]);
+
 
   return (
     <div className="main-container">

@@ -6,10 +6,10 @@ const router = Router();
 router.get("/", async (req, res) => {
   try {
     // La tabla se sigue llamando 'productos', la consulta es correcta
-    const [rows] = await pool.query("SELECT * FROM producto");
+    const [rows] = await pool.query("SELECT * FROM ventas");
     res.json(rows);
   } catch (error) {
-    res.status(500).json({ Error: "al obtener los productos" });
+    res.status(500).json({ Error: "al obtener el inventario" });
   }
 });
 
@@ -17,7 +17,7 @@ router.get("/:ID_produ", async (req, res) => {
   try {
     // Se cambia 'id' por 'ID_produ' en la consulta SQL
     const [rows] = await pool.query(
-      "SELECT nombre, precio FROM producto WHERE ID_produ = ?",
+      "SELECT nombre, precio FROM ventas WHERE ID_produ = ?",
       [req.params.ID_produ]
     );
 
@@ -45,7 +45,7 @@ router.post("/", async (req, res) => {
     // Se asume que la columna ID_produ se genera automáticamente o se manejará aparte si no es autoincremental.
     // Si 'ID_produ' es una columna autoincremental, 'insertId' seguirá funcionando para obtener el último ID insertado.
     const [result] = await pool.query(
-      "INSERT INTO productos (nombre, descripcion, precio) values (?, ?, ?)",
+      "INSERT INTO ventas (nombre, descripcion, precio) values (?, ?, ?)",
       [nombre, descripcion, precio]
     );
     res.json({ ID_produ: result.insertId, nombre, descripcion, precio }); // Se cambió 'id' por 'ID_produ' en la respuesta
@@ -59,7 +59,7 @@ router.put("/:ID_produ", async (req, res) => {
   try {
     // Se cambia 'id' por 'ID_produ' en la consulta SQL
     const [result] = await pool.query(
-      "UPDATE productos SET nombre = ?, descripcion = ?, precio = ? WHERE ID_produ = ?",
+      "UPDATE ventas SET nombre = ?, descripcion = ?, precio = ? WHERE ID_produ = ?",
       [nombre, descripcion, precio, req.params.ID_produ]
     );
 
@@ -76,7 +76,7 @@ router.delete("/:ID_produ", async (req, res) => {
   try {
     // Se cambia 'id' por 'ID_produ' en la consulta SQL
     const [result] = await pool.query(
-      "DELETE FROM productos WHERE ID_produ = ?",
+      "DELETE FROM  ventas WHERE ID_produ = ?",
       [req.params.ID_produ]
     );
     if (result.affectedRows === 0)
