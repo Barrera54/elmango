@@ -9,9 +9,10 @@ import Inventario from './inven';
 import Buscador from './busca';
 import Empleado from './datemple';
 import Actua from './actualiza';
-import Devuel from './devueltos'
-import Sistem from './Sistem'
-import Papel from './papele'
+import Devuel from './devueltos';
+import Sistem from './Sistem';
+import Papel from './papele';
+import ActividadEmpleado from './ActividadEmpleado';
 
 function App() {
 
@@ -172,7 +173,19 @@ function App() {
 
 
         />
-        {/* Ruta por defecto para rutas no encontradas */}
+
+<Route
+          path="/ActividadEmpleado"
+          element={
+            isAuthenticated ? (
+              <ActividadEmpleado />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+
+
+        />        {/* Ruta por defecto para rutas no encontradas */}
         <Route
           path="*"
           element={

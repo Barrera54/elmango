@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import ModeToggle from './ModeToggle';
+import './css/modeToggle.css';
 
 const Navbar = ({ show }) => {
     return (
@@ -9,9 +11,12 @@ const Navbar = ({ show }) => {
                 <li><Link to="/Buscador">&#128722;Catálogo</Link></li>
                 <li><Link to="/Inventario">&#128230;Inventario</Link></li>
                 <li><Link to="/Venta">&#128178;Venta</Link></li>
-                <li><Link to="#">&#127760;Traductor</Link></li>
-                <li><a href="#">&#129333;Actividad empleado</a></li>
-                <li><a href="#">&#127752;Cambio de color</a></li>
+                <li><Link to="/ActividadEmpleado">&#129333;Actividad empleado</Link></li>
+                <li>
+                  
+                  <ModeToggle/>cambio de color
+                </li>
+               
                 <li><Link to="/Datosempleado">&#128221;Datos empleado</Link></li>
                 <li><Link to='/Actualizaremmpl'>&#128260;Actualizar</Link></li>
                 <li><Link to='/Productodevuelto'>&#128229;Devueltos</Link></li>

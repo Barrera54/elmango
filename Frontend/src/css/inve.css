@@ -101,6 +101,14 @@
 
     
 }
+.no-data {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+    font-family: Cursive;
+}
+
 .ta{
    width: 100%;
     font-size: 35px;

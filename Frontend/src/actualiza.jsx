@@ -1,80 +1,123 @@
-import React, { useState } from 'react'; // Importamos useState para manejar el estado de los inputs
-import { useNavigate } from 'react-router-dom'; // Asumiendo que estás usando React Router para la navegación
-import'./css/actualiza.css'
-import Cabe from './menu'
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import './css/actualiza.css';
+import Cabe from './menu';
 
 function DatosPersonales() {
-  // Variables de estado para almacenar los valores de cada campo de entrada
+  const [idEmpleado, setIdEmpleado] = useState(''); // ID del empleado a actualizar
   const [nombreEmpleado, setNombreEmpleado] = useState('');
   const [telefono, setTelefono] = useState('');
   const [correoElectronico, setCorreoElectronico] = useState('');
   const [numeroCedula, setNumeroCedula] = useState('');
+  const [empleados, setEmpleados] = useState([]);
 
-  // Hook de React Router para la navegación programática
   const navigate = useNavigate();
 
-  // Función para manejar el clic del botón "Aceptar"
-  const handleAceptarClick = () => {
-    // Aquí puedes realizar acciones como validar los datos o enviarlos a un servidor
+  useEffect(() => {
+    fetch('http://localhost:3001/empleados')
+      .then(res => res.json())
+      .then(data => {
+        console.log('Datos recibidos:', data);
+        setEmpleados(data);
+      })
+      .catch(err => console.error(err));
+  }, []);
+
+  const handleAceptarClick = async () => {
     console.log('Datos personales enviados:');
+    console.log('ID Empleado:', idEmpleado);
     console.log('Empleado:', nombreEmpleado);
     console.log('Teléfono:', telefono);
     console.log('Correo Electrónico:', correoElectronico);
     console.log('Número de Cédula:', numeroCedula);
 
-    // Navegar a la ruta '/inic' usando React Router
-    // Si 'inic.html' fuera un archivo HTML estático real, usarías: window.location.href = 'inic.html';
-    // Pero en una aplicación React, la navegación interna con React Router es lo preferido.
-    navigate('/inic');
+    try {
+      const response = await fetch(`http://localhost:3001/empleados/${idEmpleado}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          Nombre: nombreEmpleado,
+          Telefono: telefono,
+          Correo: correoElectronico,
+          Cedula: numeroCedula,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Error al actualizar');
+      }
+
+      const data = await response.json();
+      console.log('Respuesta del servidor:', data);
+      alert('Empleado actualizado correctamente');
+
+      navigate('/inic'); // Redirige después de actualizar
+
+    } catch (error) {
+      console.error(error);
+      alert('Error al actualizar empleado');
+    }
   };
 
   return (
     <>
-    <Cabe/>
-    <div className="cont">
-     <div className="da"> Datos personales</div>
+      <Cabe/>
+      <div className="cont">
+        <div className="da">Datos personales</div>
 
-      <div className="cli">
-        <h2>Empleado</h2>
-        <input
-          type="text"
-          value={nombreEmpleado} // El valor del input está controlado por el estado 'nombreEmpleado'
-          onChange={(e) => setNombreEmpleado(e.target.value)} // Actualiza el estado cuando el input cambia
-        />
+        <div className="de">
+          <h2>ID Empleado</h2>
+          <input
+            type="text"
+            value={idEmpleado}
+            onChange={(e) => setIdEmpleado(e.target.value)}
+            placeholder="ID del empleado"
+          />
+        </div>
+
+        <div className="cli">
+          <h2>Empleado</h2>
+          <input
+            type="text"
+            value={nombreEmpleado}
+            onChange={(e) => setNombreEmpleado(e.target.value)}
+          />
+        </div>
+
+        <div className="de">
+          <h2>Teléfono</h2>
+          <input
+            type="text"
+            value={telefono}
+            onChange={(e) => setTelefono(e.target.value)}
+          />
+        </div>
+
+        <div className="de">
+          <h2>Correo electrónico</h2>
+          <input
+            type="text"
+            value={correoElectronico}
+            onChange={(e) => setCorreoElectronico(e.target.value)}
+          />
+        </div>
+
+        <div className="de">
+          <h2>N° de cédula</h2>
+          <input
+            type="text"
+            value={numeroCedula}
+            onChange={(e) => setNumeroCedula(e.target.value)}
+          />
+        </div>
+
+        <button onClick={handleAceptarClick} className='go'>
+          <h2>Aceptar</h2>
+        </button>
       </div>
-
-      <div className="de">
-        <h2>Teléfono</h2>
-        <input
-          type="text"
-          value={telefono} // El valor del input está controlado por el estado 'telefono'
-          onChange={(e) => setTelefono(e.target.value)} // Actualiza el estado cuando el input cambia
-        />
-      </div>
-
-      <div className="de">
-        <h2>Correo electrónico</h2>
-        <input
-          type="text"
-          value={correoElectronico} // El valor del input está controlado por el estado 'correoElectronico'
-          onChange={(e) => setCorreoElectronico(e.target.value)} // Actualiza el estado cuando el input cambia
-        />
-      </div>
-
-      <div className="de">
-        <h2>N° de cédula</h2>
-        <input
-          type="text"
-          value={numeroCedula} // El valor del input está controlado por el estado 'numeroCedula'
-          onChange={(e) => setNumeroCedula(e.target.value)} // Actualiza el estado cuando el input cambia
-        />
-      </div>
-
-      {/* Botón con manejador de evento onClick */}
-      <button onClick={handleAceptarClick} className='go'>
-        <h2>Aceptar</h2>
-      </button>
-    </div></>
+    </>
   );
 }
 

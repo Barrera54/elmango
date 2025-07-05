@@ -2,7 +2,7 @@ import React, { useState } from 'react'; // Necesitamos useState para manejar el
 import { useNavigate } from 'react-router-dom'; // Para manejar la navegación al enviar la valoración
 import Cabe from './menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as faStarRegular } from '@fortawesome/free-regular-svg-icons';
+
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'; 
 import './css/sistem.css'; // Asegúrate de tener este archivo CSS para tus estilos
 

@@ -1,19 +1,18 @@
-import mysql from 'mysql2/promise';
-export const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    Password:'',
-    database:'el mango'
+const mysql = require('mysql');
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'TU_USUARIO_MYSQL',
+  password: 'TU_CONTRASEÑA_MYSQL',
+  database: 'elmango'
 });
 
-(async () => {
-    try{
-        const connection = await pool.getConnection();
-        console.log('Estas conectado a la base de datos tienda');
-        connection.release();
-}
-catch(error){
-    console.error('Error al conectarse a la base de datos tienda',error.message)
-}
-}
-)();
+connection.connect((err) => {
+  if (err) {
+    console.error('Error al conectar:', err);
+    return;
+  }
+  console.log('✅ Conexión a la base de datos elmango exitosa.');
+});
+
+module.exports = connection;

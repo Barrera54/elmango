@@ -1,10 +1,10 @@
 {
   "name": "back",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.cjs",
   "scripts": {
-    "start": "node.js",
-    "dev": "node --watch index.js"
+    "start": "node index.cjs",
+    "dev": "node --watch index.cjs"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +12,9 @@
   "type": "module",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "morgan": "^1.10.0",
-    "mysql2": "^3.14.1",
-    "promise": "^8.3.0"
+    "mysql2": "^3.14.1"
   }
 }

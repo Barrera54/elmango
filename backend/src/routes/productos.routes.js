@@ -13,29 +13,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/:ID_produ", async (req, res) => {
-  try {
-    // Se cambia 'id' por 'ID_produ' en la consulta SQL
-    const [rows] = await pool.query(
-      "SELECT nombre, precio FROM producto WHERE ID_produ = ?",
-      [req.params.ID_produ]
-    );
-
-    if (rows.length === 0) {
-      return res.status(404).json({ error: "Producto no encontrado" });
-    }
-
-    // Devuelve el primer resultado (debería ser único si ID_produ es PK)
-    res.json({
-      nombre: rows[0].nombre,
-      precio: rows[0].precio,
-    });
-  } catch (error) {
-    console.error(error); // Para debugging
-    res.status(500).json({ error: "Error al obtener el producto" });
-  }
-});
-
 router.post("/", async (req, res) => {
   const { nombre, descripcion, precio } = req.body;
   if (!nombre || !precio) {
@@ -86,5 +63,7 @@ router.delete("/:ID_produ", async (req, res) => {
     res.status(500).json({ error: "Error al eliminar el producto" });
   }
 });
+
+
 
 export default router;

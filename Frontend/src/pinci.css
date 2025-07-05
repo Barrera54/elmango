@@ -1,0 +1,100 @@
+.tabla-contenedor {
+    padding-bottom: 160px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Cursive;
+    transition: opacity 0.3s ease;
+    border: 1px solid black;
+}
+
+th,
+td {
+    padding: 4px;
+    text-align: center;
+    border-bottom: 1px solid black;
+    background-color: #77A69B;
+    border-right: 1px solid black;
+}
+
+th {
+    background-color: #95B19A;
+}
+
+th:last-child,
+td:last-child {
+    border-right: none;
+}
+
+.k {
+    position: fixed;
+    bottom: 60px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px 0;
+    background-color: white;
+    z-index: 10;
+    /* Bajado para que quede debajo del menú */
+    font-size: 1px;
+}
+
+.i {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid black;
+    font-size: 30px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 11;
+    /* Bajado para que quede debajo del menú */
+}
+
+button {
+    border: 5px solid black;
+    height: 75px;
+    width: 220px;
+    font-size: 30px;
+    border-radius: 10px;
+    background-color: #6ADCAF;
+    margin: 9px 10px;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-family: Cursive;
+}
+
+button:hover {
+    background-color: #619488;
+}
+
+b {
+    text-decoration: none;
+}
+
+h1 {
+    margin-right: 80%;
+    margin-top: 2%;
+}
+
+/* Superposición */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 998;
+    /* Debajo del menú pero encima del resto */
+}
