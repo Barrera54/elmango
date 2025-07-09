@@ -1,12 +1,7 @@
 import { useState } from 'react';
 import Cabe from './menu';
-import'./css/ventas.css'
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import './css/ventas.css';
 
-
-
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 function Ventas() {
   const [showAccounting, setShowAccounting] = useState(false);
   const [showEmployeeSales, setShowEmployeeSales] = useState(false);
@@ -16,102 +11,49 @@ function Ventas() {
   const toggleEmployeeSales = () => setShowEmployeeSales(!showEmployeeSales);
   const toggleProductExceptions = () => setShowProductExceptions(!showProductExceptions);
 
-  const data = {
-    labels: ['Jose', 'maria', ],
-    datasets: [
-      {
-        label: 'Ventas ',
-        data: [65, 59, ],
-        backgroundColor: ' #99FFCF',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-      },
-    ],
-  };
+  const employeeSales = [
+    { name: 'Jose', sales: 65 },
+    { name: 'Maria', sales: 59 },
+  ];
 
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-       
-      },
-    },
-  };
-  const vent = {
-    labels: ['Dia', 'Mes', ],
-    datasets: [
-      {
-        label: 'Contabilidad ',
-        
-        data: [20000, 59000],
-        backgroundColor: ' #94F0A9',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-      },
-    ],
-  };
+  const accounting = [
+    { period: 'Dia', amount: 20000 },
+    { period: 'Mes', amount: 59000 },
+  ];
 
-  const valor = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-       
-      },
-    },
-  };
-  const produ = {
-    labels: ['Coco cola', 'Huevos' ],
-    datasets: [
-      {
-        label: 'Producto Excepcionales',
-    
-        data: [21, 10],
-        backgroundColor: ' #BBFFAD',
-        borderColor: 'rgba(75, 192, 192, 1)',
-        borderWidth: 1,
-      },
-    ],
-  };
-
-  const soliti = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-       
-      },
-    },
-  };
+  const productExceptions = [
+    { product: 'Coca Cola', quantity: 21 },
+    { product: 'Huevos', quantity: 10 },
+  ];
 
   return (
     <>
       <Cabe />
       <div className="dashboard">
         <h1>Ventas</h1>
-        
+
         <div className="section">
           <div className="section-header" onClick={toggleAccounting}>
             <h2>Contabilidad</h2>
-           
           </div>
           {showAccounting && (
             <div className="accounting">
-              <div className="accounting-item">
-              <Bar data={vent} options={valor} />
-              </div>
-        
-             
+              <table>
+                <thead>
+                  <tr>
+                    <th>Periodo</th>
+                    <th>Monto</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {accounting.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.period}</td>
+                      <td>${item.amount.toLocaleString()}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </div>
@@ -120,12 +62,26 @@ function Ventas() {
 
         <div className="section">
           <div className="section-header" onClick={toggleEmployeeSales}>
-            <h2>Ventas empleado</h2>
-            
+            <h2>Ventas por Empleado</h2>
           </div>
           {showEmployeeSales && (
             <div className="employee-sales">
-              <Bar data={data} options={options} />
+              <table>
+                <thead>
+                  <tr>
+                    <th>Empleado</th>
+                    <th>Ventas</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {employeeSales.map((emp, index) => (
+                    <tr key={index}>
+                      <td>{emp.name}</td>
+                      <td>{emp.sales}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </div>
@@ -134,14 +90,26 @@ function Ventas() {
 
         <div className="section">
           <div className="section-header" onClick={toggleProductExceptions}>
-            <h2>Productos excepciones</h2>
+            <h2>Productos Excepcionales</h2>
           </div>
           {showProductExceptions && (
             <div className="product-exceptions">
-              <div className="product-item">
-              <Bar data={produ} options={soliti} />
-              </div>
-             
+              <table>
+                <thead>
+                  <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {productExceptions.map((prod, index) => (
+                    <tr key={index}>
+                      <td>{prod.product}</td>
+                      <td>{prod.quantity}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           )}
         </div>

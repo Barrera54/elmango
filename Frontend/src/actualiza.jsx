@@ -4,7 +4,7 @@ import './css/actualiza.css';
 import Cabe from './menu';
 
 function DatosPersonales() {
-  const [idEmpleado, setIdEmpleado] = useState(''); // ID del empleado a actualizar
+  const [idEmpleado, setIdEmpleado] = useState('');
   const [nombreEmpleado, setNombreEmpleado] = useState('');
   const [telefono, setTelefono] = useState('');
   const [correoElectronico, setCorreoElectronico] = useState('');
@@ -38,10 +38,10 @@ function DatosPersonales() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          Nombre: nombreEmpleado,
-          Telefono: telefono,
-          Correo: correoElectronico,
-          Cedula: numeroCedula,
+          nombre: nombreEmpleado,
+          telefono: telefono,
+          correo: correoElectronico,
+          cedula: numeroCedula,
         }),
       });
 
@@ -53,7 +53,7 @@ function DatosPersonales() {
       console.log('Respuesta del servidor:', data);
       alert('Empleado actualizado correctamente');
 
-      navigate('/inic'); // Redirige después de actualizar
+      navigate('/inic');
 
     } catch (error) {
       console.error(error);

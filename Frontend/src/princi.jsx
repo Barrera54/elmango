@@ -21,7 +21,7 @@ function Menu({ onLogout }) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:3001/productos")
+   fetch("http://localhost:3001/productos")
       .then((res) => {
         if (!res.ok) {
           throw new Error('Error al obtener los productos');
@@ -124,6 +124,7 @@ function Menu({ onLogout }) {
         </table>
 
       </div>
+      
 
       <div className="k">
         <button onClick={() => navigate('/Venta')}>Cliente</button>

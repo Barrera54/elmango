@@ -1,112 +1,184 @@
+
+
+/* Main Container */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* Table Container */
+.table-container {
+    flex-grow: 1; /* Allows the table to take up available space */
+    background-color: #ffffff; /* White background for the table area */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft shadow for depth */
+    overflow-x: auto; /* Ensures responsiveness for tables on smaller screens */
+    margin-bottom: 120px; /* Space for fixed bottom elements */
+  
+}
+
+/* Table Styles */
+.prin {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0; /* Remove default table margin */
+}
+
+.prin th,
+.prin td {
+    padding: 12px 15px; /* More padding for better spacing */
+    text-align: left; /* Align text to the left for better readability */
+    border-bottom: 1px solid #e0e0e0; /* Lighter border for a softer look */
+}
+
+.prin th {
+    background-color: #eef2f3; /* Light background for headers */
+    color: #555; /* Slightly darker text for headers */
+    font-weight: 600; /* Semi-bold headers */
+    text-transform: uppercase; /* Uppercase for a professional touch */
+    font-size: 0.9em;
+}
+
+.prin tr:last-child td {
+    border-bottom: none; /* No border for the last row */
+}
+
+.prin tbody tr:hover {
+    background-color: #f8f8f8; /* Subtle hover effect */
+}
+
+/* Buttons Container (k) */
 .k {
     position: fixed;
-    bottom: 60px;
+    bottom: 60px; /* Adjusted to be above the total section */
+    left: 0;
     width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding: 10px 0;
+    padding: 15px 10px;
+    background-color: #ffffff;
+    border-top: 1px solid #e0e0e0; /* Separator line */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05); /* Shadow for elevated look */
     z-index: 10;
-    font-size: 1px;
+    box-sizing: border-box;
 }
 
+/* Individual Button Styles */
+button {
+    flex: 1 1 auto; /* Allows buttons to grow and shrink, but maintain minimum width */
+    max-width: 180px; /* Limit max width for larger screens */
+    height: 55px; /* Slightly reduced height for a sleeker look */
+    font-size: 1.05em; /* Adjusted font size */
+    border: none; /* Remove default border */
+    border-radius: 6px; /* Softer border-radius */
+    background-color: #4CAF50; /* A pleasant green */
+    color: white;
+    margin: 8px; /* Consistent margin around buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow for buttons */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
+}
+
+button:active {
+    transform: translateY(0); /* Reset on click */
+}
+
+/* Total Section (i) */
 .i {
     position: fixed;
     bottom: 0;
+    left: 0;
     width: 100%;
-    border: 1px solid black;
-    height: 54px;
+    background-color: #333; /* Dark background for the total section */
+    color: white;
+    height: 60px; /* Fixed height */
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end; /* Align total to the right */
+    padding: 0 30px; /* Padding on the sides */
+    box-sizing: border-box;
     z-index: 11;
-    font-family: Cursive;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1); /* Stronger shadow to separate from content */
 }
 
-button {
-    border: 5px solid black;
-    height: 75px;
-    width: 220px;
-    font-size: 30px;
-    border-radius: 10px;
-    background-color: #6ADCAF;
-    margin: 9px 10px;
-    font-family: Cursive;
+.i h1 {
+    margin: 0; /* Remove default margin for h1 */
+    font-size: 1.8em; /* Larger font for the total */
+    font-weight: 700; /* Bold total */
+    letter-spacing: 1px; /* A bit of letter spacing */
 }
 
-a {
-    text-decoration: none;
-    color: white;
-    font-family: Cursive;
+.i .h {
+    color: #8BC34A; /* A bright green for the total amount */
+    margin-left: 10px; /* Space between "Total:" and the amount */
 }
 
-b {
-    text-decoration: none;
-    font-size: 50px;
-    
-}
-
-h1 {
-margin-right: 65%;
-    margin-top: 1%;
-}
-
-/* Superposición */
+/* Overlay for Menu */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent white for a soft overlay */
     z-index: 998;
+    backdrop-filter: blur(3px); /* Optional: adds a slight blur effect */
 }
 
-.prin {
-    font-size: 30px;
-    width: 100%;
-    /* Asegúrate de que la tabla ocupe todo el ancho disponible del contenedor */
-    border-collapse: collapse;
-    /* Para un mejor aspecto de la tabla */
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .table-container {
+        padding: 10px;
+    }
+
+    .prin th,
+    .prin td {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    button {
+        width: 100%; /* Buttons take full width on smaller screens */
+        max-width: none;
+        margin: 5px 0;
+        font-size: 0.95em;
+        height: 50px;
+    }
+
+    .k {
+        padding: 10px;
+        flex-direction: column; /* Stack buttons vertically */
+    }
+
+    .i {
+        height: 50px;
+        padding: 0 20px;
+        justify-content: center; /* Center total on smaller screens */
+    }
+
+    .i h1 {
+        font-size: 1.5em;
+    }
 }
 
-/* Estilos para el contenedor de la tabla */
-.table-container {
-    max-height: 600px;
-   
-    overflow-y: auto;
-  
-    margin-bottom: 120px;
-    font-family: Cursive;
-    width: 100%;
+@media (max-width: 480px) {
+    .main-container {
+        padding: 10px;
+    }
 
-    margin-left: auto;
-    margin-right: auto;
-    
-   
-}
+    .i h1 {
+        font-size: 1.3em;
+    }
 
-.prin th,
-.prin td {
-    border: 1px solid #dddddd00;
-    padding: 8px;
-    text-align: left;
-}
-
-.prin thead {
-    position: sticky;
-    /* Hace que el encabezado de la tabla sea pegajoso */
-    top: 0;
-    /* Lo fija en la parte superior del contenedor con scroll */
-    background-color: white;
-    /* Asegura que el fondo del encabezado sea visible al hacer scroll */
-    z-index: 1;
-    /* Asegura que el encabezado esté por encima del contenido al hacer scroll */
-}
-.prin>thead{
-    background-color: #70D8EB;
-}
-.h{
-    font-size: 40px;
-   margin-right: 690px;
+    button {
+        font-size: 0.9em;
+        height: 45px;
+    }
 }

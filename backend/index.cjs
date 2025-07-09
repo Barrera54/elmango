@@ -5,14 +5,15 @@ const cors = require('cors');
 const app = express();
 const PORT = 3001;
 
-// Middleware CORS
+// Middleware CORS y JSON
 app.use(cors());
+app.use(express.json()); // <<--- ¡IMPORTANTE para leer req.body!
 
 // Conexión a MySQL
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '',      // Usa tu contraseña si tiene
+  password: '', // Cambia si tienes clave
   database: 'elmango'
 });
 
@@ -38,6 +39,28 @@ app.get('/empleados', (req, res) => {
   });
 });
 
+// ✅ NUEVO: Endpoint PUT para actualizar empleado
+app.put('/empleados/:id', (req, res) => {
+  const { id } = req.params;
+  const { nombre, telefono, correo, cedula } = req.body;
+
+  console.log('ID:', id);
+  console.log('Body:', req.body);
+
+  const sql = 'UPDATE empleados SET nombre = ?, telefono = ?, correo = ?, cedula = ? WHERE id = ?';
+  db.query(sql, [nombre, telefono, correo, cedula, id], (err, result) => {
+    if (err) {
+      console.error('Error en la actualización:', err);
+      res.status(500).json({ error: 'Error al actualizar empleado' });
+      return;
+    }
+    if (result.affectedRows === 0) {
+      res.status(404).json({ error: 'Empleado no encontrado' });
+      return;
+    }
+    res.json({ message: 'Empleado actualizado correctamente' });
+  });
+});
 
 // Endpoint GET productos por ID_produ
 app.get('/productos/:ID_produ', (req, res) => {
@@ -66,13 +89,11 @@ app.get('/productos', (req, res) => {
       console.error('Error en la consulta:', err);
       return;
     }
-    res.json(results);  
+    res.json(results);
   });
 });
-
 
 // Iniciar servidor
 app.listen(PORT, () => {
   console.log(`Servidor backend corriendo en http://localhost:${PORT}`);
 });
-

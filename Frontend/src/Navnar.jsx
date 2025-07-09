@@ -14,7 +14,9 @@ const Navbar = ({ show }) => {
                 <li><Link to="/ActividadEmpleado">&#129333;Actividad empleado</Link></li>
                 <li>
                   
-                  <ModeToggle/>cambio de color
+                  <ModeToggle/> <div className=" text-3cdxl text-white text-left">
+Cambio de color
+  </div>
                 </li>
                
                 <li><Link to="/Datosempleado">&#128221;Datos empleado</Link></li>

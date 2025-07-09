@@ -1,125 +1,75 @@
 .dashboard {
     max-width: 900px;
     margin: 20px auto;
-    font-family: Cursive;
     padding: 20px;
-    
-   
 
-}
-
-h1 {
-    color: #333;
+    border-radius: 8px;
+  }
+  
+  h1 {
+    color: #222;
     text-align: center;
-    margin-bottom: 30px; font-size: 70px;
-    margin-left: 35%;
-}
-
-.section {
     margin-bottom: 30px;
-}
-
-.section-header {
+    font-size: 70px;
+    
+  }
+  
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  .section-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     cursor: pointer;
-    padding: 10px;
+    padding: 15px 20px;
     background-color: #9fffcb;
     border-radius: 5px;
     transition: background-color 0.3s;
-    font-family: Cursive;
-}
-
-.section-header:hover {
-    background-color: #9fffcb;
-}
-
-.section-header h2 {
+  }
+  
+  .section-header:hover {
+    background-color: #80e8b3;
+  }
+  
+  .section-header h2 {
     margin: 0;
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.toggle-icon {
-    font-size: 3.2em;
-}
-
-.accounting {
- 
-    justify-content: space-between;
-    flex-wrap: wrap;
+  }
+  
+  .accounting,
+  .employee-sales,
+  .product-exceptions {
     margin-top: 15px;
-    font-family: Cursive;
-}
-
-.accounting-item {
-    flex: 1;
-    min-width: 200px;
-    margin: 10px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    font-size: 20px;
-    font-family: Cursive;
-}
-
-.divider {
-    height: 1px;
-    background-color: #eee;
-    margin: 20px 0;
-}
-
-.employee-sales {
     overflow-x: auto;
-    margin-top: 15px;
- background-color: white;
-}
-
-table {
+  }
+  
+  table {
     width: 100%;
     border-collapse: collapse;
-    font-family: Cursive;
-    margin-top: 1%;
-}
-
-th,
-td {
+    margin-top: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  th,
+  td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
- 
-}
-
-th {
-
+  }
+  
+  th {
+    background-color: #dfffe9;
     font-weight: bold;
-
-}
-
-tr:hover {
-    background-color: #f5f5f5;
-}
-
-.product-exceptions {
-
-    justify-content: space-between;
-    flex-wrap: wrap;
-    margin-top: 15px;
-    font-size: 700px;
-    font-family: Cursive;
-    color: black;
-}
-
-.product-item {
-    flex: 1;
-    min-width: 200px;
-    margin: 10px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    font-size: 30px;
-}
-
-strong {
-    color: #333; }
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+  }
+  
