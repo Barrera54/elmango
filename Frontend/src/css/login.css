@@ -1,6 +1,4 @@
-
-
-
+/* Estilos para el contenedor principal del login */
 .login-container {
   background-color: rgba(255, 255, 255, 0.95);
   padding: 40px;
@@ -11,8 +9,10 @@
   align-items: center;
   width: 450px;
   max-width: 90%;
-  margin-top: 2%;
-  margin-left: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .login-container .login-logo {
@@ -65,7 +65,6 @@
   padding: 10px 15px;
   background-color: #f9f9f9;
   transition: all 0.3s ease;
-  
 }
 
 .input-group:focus-within {
@@ -88,6 +87,7 @@
   flex-grow: 1;
   padding: 5px 0;
   color: #333;
+  width: 100%;
 }
 
 .form-control::placeholder {
@@ -99,12 +99,14 @@ select.form-control {
   -moz-appearance: none;
   appearance: none;
   cursor: pointer;
-  padding-right: 25px; /* Space for a custom arrow if desired */
+  padding-right: 25px;
 }
 
 .login {
-
-  justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
   width: 100%;
   margin-top: 10px;
   margin-bottom: 30px;
@@ -112,12 +114,11 @@ select.form-control {
 }
 
 .login__link {
-  display: flex;
   color: #007bff;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-size: 30px;
-  width: 500px;
+  font-size: 1em;
+  text-align: center;
 }
 
 .login__link:hover {
@@ -131,7 +132,7 @@ select.form-control {
 }
 
 .login-button {
-
+  background-color: #28a745;
   color: white;
   border: none;
   border-radius: 8px;
@@ -139,18 +140,68 @@ select.form-control {
   font-size: 1.2em;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
   width: 100%;
   max-width: 250px;
   box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
 }
 
 .login-button:hover {
-
+  background-color: #218838;
   transform: translateY(-2px);
 }
 
 .login-button:active {
   transform: translateY(0);
+}
 
+/* Responsive Design */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 30px;
+    width: 85%;
+  }
+
+  .login-container .login-title {
+    font-size: 2em;
+  }
+
+  .login__link {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container {
+    padding: 20px;
+    width: 90%;
+  }
+
+  .login-container .login-logo {
+    width: 120px;
+    height: 120px;
+  }
+
+  .login-container .login-title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+  }
+
+  .login-button {
+    padding: 12px 25px;
+    font-size: 1em;
+  }
+
+  .input-group {
+    padding: 8px 12px;
+  }
+
+  .input-icon {
+    font-size: 1em;
+    margin-right: 10px;
+  }
+
+  .form-control {
+    font-size: 1em;
+  }
 }
