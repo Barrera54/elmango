@@ -1,0 +1,117 @@
+.dashboard {
+    max-width: 900px;
+    margin: 20px auto;
+
+    padding: 20px;
+
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.section {
+    margin-bottom: 30px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    background-color: #9fffcb;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.section-header:hover {
+    background-color: #9fffcb;
+}
+
+.section-header h2 {
+    margin: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.toggle-icon {
+    font-size: 3.2em;
+}
+
+.accounting {
+ 
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.accounting-item {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 20px 0;
+}
+
+.employee-sales {
+    overflow-x: auto;
+    margin-top: 15px;
+ background-color: white;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    margin-top: 1%;
+}
+
+th,
+td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+ 
+}
+
+th {
+
+    font-weight: bold;
+
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.product-exceptions {
+
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    font-size: 70px;
+}
+
+.product-item {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 30px;
+}
+
+strong {
+    color: #333; }

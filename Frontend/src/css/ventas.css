@@ -1,0 +1,78 @@
+.dashboard {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+
+    border-radius: 8px;
+  }
+  
+  h1 {
+    color: #222;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 70px;
+    
+  }
+  
+  .section {
+    margin-bottom: 30px;
+  }
+  
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px 20px;
+    background-color: #9fffcb;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  .section-header:hover {
+    background-color: #80e8b3;
+  }
+  
+  .section-header h2 {
+    margin: 0;
+  }
+  
+  .accounting,
+  .employee-sales,
+  .product-exceptions {
+    margin-top: 15px;
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  th,
+  td {
+    padding: 5px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #dfffe9;
+    font-weight: bold;
+  }
+  
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .divider {
+    height: 1px;
+    background-color: #ddd;
+    margin: 20px 0;
+  }
+  
+  .id{
+    height: 1px;
+  }
