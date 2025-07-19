@@ -13,6 +13,7 @@ import Devuel from './devueltos';
 import Sistem from './Sistem';
 import Papel from './papele';
 import ActividadEmpleado from './ActividadEmpleado';
+import Catalogo from './cata';
 
 
 
@@ -171,6 +172,16 @@ function App() {
           element={
             isAuthenticated ? (
               <ActividadEmpleado />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/Catalogo"
+          element={
+            isAuthenticated ? (
+              <Catalogo />
             ) : (
               <Navigate to="/" replace />
             )

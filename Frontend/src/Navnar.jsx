@@ -8,7 +8,7 @@ const Navbar = ({ show }) => {
             <ul className="scroll-vertical">
                 <li><Link to="/Principal">🏠Principal</Link></li>
                 <li><Link to="/Buscador">&#128269;Buscador</Link></li>
-                <li><Link to="/Buscador">&#128722;Catálogo</Link></li>
+                <li><Link to="/Catalogo">&#128722;Catálogo</Link></li>
                 <li><Link to="/Inventario">&#128230;Inventario</Link></li>
                 <li><Link to="/Venta">&#128178;Venta</Link></li>
                 <li><Link to="/ActividadEmpleado">&#129333;Actividad empleado</Link></li>
