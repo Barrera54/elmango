@@ -1,107 +1,187 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-
-
+/* Estilos para el contenedor principal del formulario */
 .container {
-    position: absolute;
-    width: 600px;
-    height: 550px;
-    top: 15%;
-    left: 40%;
-    border-radius: 20px;
-    background-color: #92B4A7;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
+    position: absolute; /* Posicionamiento absoluto para centrar el formulario */
+    width: 400px; /* Ancho fijo del contenedor */
+    max-width: 90%; /* Ancho máximo para adaptabilidad en pantallas más pequeñas */
+    height: auto; /* Altura se ajusta al contenido */
+    top: 75%; /* Centrado vertical */
+    left: 50%; /* Centrado horizontal */
+    transform: translate(-50%, -50%); /* Ajuste para un centrado perfecto */
+    border-radius: 20px; /* Bordes redondeados */
+    background-color: white; /* Fondo blanco */
+    display: flex; /* Contenedor como flexbox para organizar elementos internos */
+    flex-direction: column; /* Elementos apilados verticalmente */
+    align-items: center; /* Centrar elementos horizontalmente */
+    padding: 40px 30px; /* Espaciado interno */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Sombra suave para un efecto de elevación */
+    box-sizing: border-box; /* Incluir padding y borde en el tamaño total del elemento */
 }
 
-.container img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
+/* Estilos para la imagen del logo */
+.logo-image {
+    width: 120px; /* Ancho del logo */
+    height: 120px; /* Altura del logo */
+    border-radius: 50%; /* Forma circular */
+    margin-bottom: 35px; /* Margen inferior para separar del título */
+    object-fit: cover; /* Ajustar imagen dentro del contenedor */
+    border: 1px solid #eee; /* Borde sutil */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra para el logo */
 }
 
-.container p {
-    font-size: 75px;
-    font-weight: 600;
-    color: white;
-    letter-spacing: 5px;
+/* Estilos para el título del formulario */
+.form-title {
+    font-size: 30px; /* Tamaño de fuente del título */
+    font-weight: 700; /* Negrita */
+    color: #333; /* Color de texto oscuro */
+    letter-spacing: 0.5px; /* Espaciado entre letras */
+    margin-bottom: 40px; /* Margen inferior para separar de los campos */
+    text-align: center; /* Alinear texto al centro */
+    text-transform: uppercase; /* Texto en mayúsculas */
 }
 
-.container .fields .data {
-    border-radius: 20px;
-    box-shadow: inset 5px 5px 5px #667A7A,
-        inset -5x -8px #7C888D;
+/* Estilos para el contenedor de los campos del formulario */
+.fields {
+    width: 100%; /* Ocupa el ancho completo del contenedor padre */
+    display: flex; /* Usar flexbox para organizar los campos */
+    flex-direction: column; /* Campos apilados verticalmente */
+    gap: 20px; /* Espacio entre cada campo */
 }
 
-.container .fields .data i {
-    color: green;
-    margin: 20px 5px 20px 20px;
+/* Estilos para cada grupo de entrada (icono + input) */
+.input-group {
+    display: flex; /* Flexbox para alinear el icono y el input */
+    align-items: center; /* Alinear verticalmente los elementos */
+    background-color: #f7f7f7; /* Fondo gris claro */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 14px 18px; /* Espaciado interno */
+    border: 1px solid #e0e0e0; /* Borde delgado */
+    transition: all 0.3s ease; /* Transición suave para efectos de enfoque */
 }
 
-.container .fields .data input {
-    outline: none;
-    border: none;
-    background: none;
-    font-size: 30px;
-    margin: 20px 20px;
-    border: 5px solid white;
-    border-radius: 10px;
-    margin-top: -12px;
-
+/* Efecto al enfocar un grupo de entrada */
+.input-group:focus-within {
+    border-color: #4CAF50; /* Color de borde al enfocar */
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); /* Sombra suave al enfocar */
 }
 
-select {
-    outline: none;
-    border: none;
-    background: none;
-    font-size: 35px;
-    margin: 20px 40px;
-    width: 200px;
-    right: 1000px;
-    background-color: #92B4A7;
-    color: white;
-    border: 5px solid white;
-    border-radius: 10px;
-
-
+/* Estilos para los iconos dentro de los campos */
+.input-icon {
+    color: #888; /* Color gris de los iconos */
+    margin-right: 15px; /* Margen a la derecha del icono */
+    font-size: 20px; /* Tamaño del icono */
+    height: 20px; /* Altura del icono */
+    width: 20px; /* Ancho del icono */
 }
 
-button {
-    background-color: #A68A77;
-    height: 55px;
-    width: 250px;
-    font-size: 25px;
-    font-family: Cursive;
-    border-radius: 10px;
-    color: whitesmoke;
-    margin-top: 25px;
+/* Estilos generales para los campos de entrada y selección */
+.form-control {
+    flex-grow: 1; /* El campo de entrada ocupa el espacio restante */
+    outline: none; /* Eliminar el contorno al enfocar */
+    border: none; /* Sin borde */
+    background: none; /* Fondo transparente */
+    font-size: 17px; /* Tamaño de fuente del texto de entrada */
+    padding: 0; /* Sin padding */
+    color: #333; /* Color de texto oscuro */
 }
 
-a {
-    text-decoration: none;
-    color: whitesmoke;
-    font-size: 45px;
-    font-family: Cursive;
-    margin-top: -px;
+/* Estilos para el texto de placeholder */
+.form-control::placeholder {
+    color: #aaa; /* Color claro para el placeholder */
 }
 
-select:focus {
-    background-color: #92B4A7;
-    outline: none;
-    font-size: 35px;
+/* Estilos específicos para el campo select */
+select.form-control {
+    -webkit-appearance: none; /* Eliminar estilo por defecto en WebKit */
+    -moz-appearance: none; /* Eliminar estilo por defecto en Mozilla */
+    appearance: none; /* Eliminar estilo por defecto en otros navegadores */
+    /* Icono de flecha personalizado para el select */
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23888%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13%205.7L146.2%20202.7%2018.6%2075.1c-6.7-6.7-17.6-6.7-24.3%200-6.7%206.7-6.7%2017.6%200%2024.2l129.2%20129.2c6.7%206.7%2017.6%206.7%2024.3%200l129.2-129.2a17.6%2017.6%200%200%200%200-24.2c-6.8-6.6-17.7-6.6-24.4%200z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat; /* No repetir el fondo */
+    background-position: right 15px center; /* Posición de la flecha */
+    background-size: 10px; /* Tamaño de la flecha */
+    padding-right: 30px; /* Espacio para la flecha */
 }
 
-.nu {
-    color: white;
-    height: 30px;
-    width: 30px; }
-.form-control{
-    background-color: #92B4A7;
-    border: 5px solid white;
+/* Estilos para las opciones dentro del select */
+select.form-control option {
+    color: #333; /* Color de texto de las opciones */
+    background-color: white; /* Fondo blanco de las opciones */
+}
+
+/* Estilo al enfocar el select */
+select.form-control:focus {
+    background-color: #f7f7f7; /* Mantener el color de fondo al enfocar */
+}
+
+/* Estilos para el botón de crear cuenta */
+.create-button {
+    background-color: #4CAF50; /* Color de fondo verde */
+    height: 52px; /* Altura del botón */
+    width: 100%; /* Ancho completo */
+    font-size: 20px; /* Tamaño de fuente */
+    font-weight: 600; /* Negrita */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente del botón */
+    border-radius: 10px; /* Bordes redondeados */
+    color: white; /* Color de texto blanco */
+    margin-top: 45px; /* Margen superior */
+    border: none; /* Sin borde */
+    cursor: pointer; /* Cursor de puntero */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transiciones suaves */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Sombra */
+}
+
+/* Efecto al pasar el ratón sobre el botón */
+.create-button:hover {
+    background-color: #45a049; /* Verde ligeramente más oscuro al pasar el ratón */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el ratón */
+}
+
+/* Estilos para el enlace dentro del botón (si se usa) */
+.create-button a {
+    text-decoration: none; /* Sin subrayado */
+    color: white; /* Color de texto blanco */
+    font-size: 20px; /* Tamaño de fuente */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente */
+    display: block; /* Ocupar todo el espacio del botón */
+    line-height: 52px; /* Centrar texto verticalmente */
+}
+
+/* Estilos para el campo de contraseña con el icono de alternar visibilidad */
+.password-field {
+    position: relative; /* Para posicionar el icono de alternar */
+}
+
+/* Estilos para el icono de alternar visibilidad de contraseña */
+.password-toggle {
+    position: absolute; /* Posicionamiento absoluto dentro del campo */
+    right: 15px; /* Distancia desde la derecha */
+    cursor: pointer; /* Cursor de puntero */
+    color: #888; /* Color del icono */
+    font-size: 20px; /* Tamaño del icono */
+    padding: 5px; /* Área de clic más grande */
+}
+
+/* Estilos para los mensajes de notificación */
+.message {
+  padding: 10px 15px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-bottom: 20px; /* Margen inferior */
+  width: 100%; /* Ancho completo */
+  text-align: center; /* Texto centrado */
+  font-size: 16px; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita */
+}
+
+/* Estilos para mensajes de éxito */
+.success-message {
+  background-color: #d4edda; /* Fondo verde claro */
+  color: #155724; /* Color de texto verde oscuro */
+  border: 1px solid #c3e6cb; /* Borde verde */
+}
+
+/* Estilos para mensajes de error */
+.error-message {
+  background-color: #f8d7da; /* Fondo rojo claro */
+  color: #721c24; /* Color de texto rojo oscuro */
+  border: 1px solid #f5c6cb; /* Borde rojo */
 }

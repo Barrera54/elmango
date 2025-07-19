@@ -22,12 +22,12 @@ function Menu({ onLogout }) {
 
   const handleSearch = () => {
     if (!searchId) {
-      setError('Por favor ingresa un ID');
+      setError('Por favor ingresa un código');
       return;
     }
 
     const isProductAlreadyAdded = products.some(
-      (p) => p.ID_produ.toString() === searchId
+      (p) => p.Codi_produ.toString() === searchId
     );
     if (isProductAlreadyAdded) {
       setError('Este producto ya ha sido agregado.');
@@ -44,9 +44,9 @@ function Menu({ onLogout }) {
       })
       .then((data) => {
         setProducts((prevProducts) => [...prevProducts, data]);
-        setQuantities(prev => ({
+        setQuantities((prev) => ({
           ...prev,
-          [data.ID_produ]: 1
+          [data.Codi_produ]: 1
         }));
         setError(null);
         setSearchId('');
@@ -58,7 +58,7 @@ function Menu({ onLogout }) {
 
   const handleQuantityChange = (productId, value) => {
     const newQuantity = Math.max(1, parseInt(value) || 1);
-    setQuantities(prev => ({
+    setQuantities((prev) => ({
       ...prev,
       [productId]: newQuantity
     }));
@@ -86,7 +86,7 @@ function Menu({ onLogout }) {
 
     products.forEach((product) => {
       yPos += 10;
-      const quantity = quantities[product.ID_produ] || 1;
+      const quantity = quantities[product.Codi_produ] || 1;
       const productTotal = parseFloat(product.precio) * quantity;
 
       doc.text(`${product.Nomproducto}`, 20, yPos);
@@ -115,7 +115,7 @@ function Menu({ onLogout }) {
   };
 
   const totalAmount = products.reduce((sum, product) => {
-    const quantity = quantities[product.ID_produ] || 1;
+    const quantity = quantities[product.Codi_produ] || 1;
     return sum + (parseFloat(product.precio || 0) * quantity);
   }, 0);
 
@@ -138,18 +138,20 @@ function Menu({ onLogout }) {
           </thead>
           <tbody>
             {products.map((product) => {
-              const quantity = quantities[product.ID_produ] || 1;
+              const quantity = quantities[product.Codi_produ] || 1;
               const productTotal = parseFloat(product.precio) * quantity;
 
               return (
-                <tr key={product.ID_produ}>
+                <tr key={product.Codi_produ}>
                   <td>{product.Nomproducto}</td>
                   <td>
                     <input
                       type="number"
                       min="1"
                       value={quantity}
-                      onChange={(e) => handleQuantityChange(product.ID_produ, e.target.value)}
+                      onChange={(e) =>
+                        handleQuantityChange(product.Codi_produ, e.target.value)
+                      }
                       className="styled-input"
                     />
                   </td>
@@ -160,8 +162,8 @@ function Menu({ onLogout }) {
             <tr>
               <td>
                 <input
-                  type="number"
-                  placeholder="Buscar por ID"
+                  type="text"
+                  placeholder="Buscar por Código"
                   value={searchId}
                   onChange={(e) => setSearchId(e.target.value)}
                   onKeyDown={(e) => {

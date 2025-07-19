@@ -1,37 +1,121 @@
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import './css/recupe.css';
+import logo from './img/icons.png';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { faLock } from '@fortawesome/free-solid-svg-icons'
-import { Link } from 'react-router-dom'
-import'./css/recupe.css'
-import logo from './img/icons.png'
+function PasswordRecovery() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('seleccione-un-rol');
+  const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState('');
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-function Crea() {
+    if (!username || !password || userType === 'seleccione-un-rol') {
+      setMessage('Por favor, completa todos los campos.');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:3001/cuenta/contrasena', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          usuario: username,
+          cargo: userType,
+          nuevaContrasena: password
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(data.mensaje || 'Contraseña actualizada correctamente.');
+      } else {
+        setMessage(data.mensaje || 'Error al actualizar la contraseña.');
+      }
+    } catch (error) {
+      console.error('❌ Error de conexión:', error);
+      setMessage('Error de conexión con el servidor.');
+    }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
   return (
-  
-    <div className="con">
-      <img src={logo} alt="Logo" />
-      <p>Recuperar contraseña</p>
-      <div className="fields">
-        <div className="data">
-          <FontAwesomeIcon icon={faUser} className="nu" />
-          <select>
-                <option value="administrador"></option>
-                <option value="editor">Administrador</option>
-                <option value="lector">Empleado</option>
-            </select>
-        </div>
-        <div className="data">
-        <FontAwesomeIcon icon={faLock} className="nu"/>
-        <input type="password"/>
-        </div>
+    <div className="recovery-container">
+      <div className="recovery-card">
+        <img src={logo} alt="Tienda El Mango Logo" className="logo" />
+        <h1 className="recovery-title">Cambiar Contraseña</h1>
+
+        {message && <p>{message}</p>}
+
+        <form onSubmit={handleSubmit} className="recovery-form">
+          <div className="form-group">
+            <div className="input-wrapper">
+              <FontAwesomeIcon icon={faUser} className="input-icon" />
+              <select
+                value={userType}
+                onChange={(e) => setUserType(e.target.value)}
+                className="form-select"
+                required
+              >
+                <option value="seleccione-un-rol" disabled>Seleccione un rol</option>
+                <option value="administrador">Administrador</option>
+                <option value="empleado">Asistente</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="input-wrapper">
+              <FontAwesomeIcon icon={faUser} className="input-icon" />
+              <input
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                placeholder="Usuario"
+                className="form-input"
+                required
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="input-wrapper">
+              <FontAwesomeIcon icon={faLock} className="input-icon" />
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Nueva contraseña"
+                className="form-input"
+                required
+              />
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="password-toggle"
+              >
+                <FontAwesomeIcon icon={showPassword ? faEyeSlash : faEye} />
+              </button>
+            </div>
+          </div>
+
+          <button type="submit" className="recovery-button">
+            Actualizar Contraseña
+          </button>
+        </form>
       </div>
-     
-      <button><Link to="/">Recuperar</Link></button>
-    </div>  
-  )
+    </div>
+  );
 }
 
-export default Crea;
-  
+export default PasswordRecovery;
