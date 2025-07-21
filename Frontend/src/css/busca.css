@@ -7,7 +7,7 @@
     height: 100%;
 }
 
-.search-container {
+.search-cont {
     position: relative;
     width: 400px;
     margin: 0 auto;
@@ -165,7 +165,7 @@
     color: #666;
 }
 
-.in {
+.busca{
     font-size: 40px;
     text-align: center;
     margin: 2rem 0;

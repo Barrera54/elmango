@@ -14,7 +14,7 @@ import Sistem from './Sistem';
 import Papel from './papele';
 import ActividadEmpleado from './ActividadEmpleado';
 import Catalogo from './cata';
-
+import Edit from './Edit';
 
 
 function App() {
@@ -188,6 +188,16 @@ function App() {
           }
         />
        
+       <Route
+          path="/Edit"
+          element={
+            isAuthenticated ? (
+              <Edit />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
           
         
         {/* Ruta por defecto para rutas no encontradas */}

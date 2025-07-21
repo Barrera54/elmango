@@ -140,3 +140,36 @@ table tr:hover {
     font-size: 50px;
     margin-left: -15%;
 }
+.paginacion {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Cursive;
+    gap: 20px;
+  }
+  
+  .pagina-btn {
+    padding: 8px 20px;
+    background: #84fab0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-family: Cursive;
+  }
+  
+  .pagina-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .pagina-btn:hover:enabled {
+    background: #a18cd1;
+    color: #fff;
+  }
+  
+  .pagina-info {
+    font-size: 18px;
+  }
+  

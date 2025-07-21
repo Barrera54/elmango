@@ -1,26 +1,21 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Importa useNavigate
 import Cabe from './menu';
 import './css/inve.css';
 
-function Ventas() {
+function Inventario() {
   const [productos, setProductos] = useState([]);
-  const [nuevoProducto, setNuevoProducto] = useState({
-    nombre: '',
-    descripcion: '',
-    precio: '',
-    stock: '',
-    categoria: '',
-    imagen_url: ''
-  });
+  const [pagina, setPagina] = useState(1);
+  const productosPorPagina = 3;
+  const navigate = useNavigate(); // ✅ Instancia navigate
 
-  // Cargar productos al inicio
   useEffect(() => {
     fetchProductos();
   }, []);
 
   const fetchProductos = async () => {
     try {
-      const response = await fetch('http://localhost:3000/api/producto');
+      const response = await fetch('http://localhost:3001/productos');
       const data = await response.json();
       console.log('Datos recibidos del backend:', data);
       setProductos(data);
@@ -29,49 +24,29 @@ function Ventas() {
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNuevoProducto(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const borrarProducto = (id) => {
+    console.log(`Borrar producto con ID: ${id}`);
   };
 
-  const agregarProducto = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await fetch('http://localhost:3001/productos', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          nombre: nuevoProducto.nombre,
-          descripcion: nuevoProducto.descripcion,
-          precio: nuevoProducto.precio,
-          stock: nuevoProducto.stock,
-          categoria: nuevoProducto.categoria,
-          imagen_url: nuevoProducto.imagen_url
-        })
-      });
+  const editarProducto = (id) => {
+    console.log(`Editar producto con ID: ${id}`);
+    navigate(`/Edit/${id}`); // ✅ Mejor: pasa el ID
+  };
 
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.error || data.mensaje || 'Error al agregar el producto');
-      }
+  const totalPaginas = Math.ceil(productos.length / productosPorPagina);
+  const inicio = (pagina - 1) * productosPorPagina;
+  const fin = inicio + productosPorPagina;
+  const productosPagina = productos.slice(inicio, fin);
 
-      // Limpiar el formulario
-      setNuevoProducto({ nombre: '', descripcion: '', precio: '', stock: '', categoria: '', imagen_url: '' });
-      
-      // Actualizar la lista de productos
-      console.log('Respuesta del servidor:', data);
-      fetchProductos();
-      
-      // Mostrar mensaje de éxito
-      alert('Producto agregado exitosamente');
-    } catch (error) {
-      console.error('Error:', error);
-      alert('Error al agregar el producto: ' + error.message);
+  const avanzarPagina = () => {
+    if (pagina < totalPaginas) {
+      setPagina(pagina + 1);
+    }
+  };
+
+  const retrocederPagina = () => {
+    if (pagina > 1) {
+      setPagina(pagina - 1);
     }
   };
 
@@ -87,9 +62,8 @@ function Ventas() {
           type="text"
           className="search-input"
           placeholder="Buscar..."
-          id="searchInput"
         />
-        <svg className="search-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <svg className="search-icon" viewBox="0 0 24 24">
           <defs>
             <linearGradient id="lupa-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="#FF512F" />
@@ -101,60 +75,6 @@ function Ventas() {
         </svg>
       </div>
 
-      {/* Formulario para agregar producto */}
-      <form onSubmit={agregarProducto} className="add-product-form">
-        <input
-          type="text"
-          name="nombre"
-          value={nuevoProducto.nombre}
-          onChange={handleInputChange}
-          placeholder="Nombre del producto"
-          required
-        />
-        <input
-          type="text"
-          name="descripcion"
-          value={nuevoProducto.descripcion}
-          onChange={handleInputChange}
-          placeholder="Descripcion"
-          required
-        />
-        <input
-          type="number"
-          name="precio"
-          value={nuevoProducto.precio}
-          onChange={handleInputChange}
-          placeholder="Precio"
-          required
-        />
-        <input
-          type="number"
-          name="stock"
-          value={nuevoProducto.stock}
-          onChange={handleInputChange}
-          placeholder="Stock"
-          required
-        />
-        <input
-          type="text"
-          name="categoria"
-          value={nuevoProducto.categoria}
-          onChange={handleInputChange}
-          placeholder="Categoria"
-          required
-        />
-        <input
-          type="text"
-          name="imagen_url"
-          value={nuevoProducto.imagen_url}
-          onChange={handleInputChange}
-          placeholder="Imagen URL"
-          required
-        />
-        <button type="submit" className="mu">Agregar Producto</button>
-      </form>
-
-      {/* Tabla de productos */}
       <table className="ta">
         <thead>
           <tr>
@@ -165,15 +85,17 @@ function Ventas() {
           </tr>
         </thead>
         <tbody>
-          {productos.length > 0 ? (
-            productos.map((producto) => (
+          {productosPagina.length > 0 ? (
+            productosPagina.map((producto) => (
               <tr key={producto.ID_produ}>
                 <td>{producto.Nomproducto}</td>
                 <td>{producto.cantidad}</td>
                 <td>{producto.precio}</td>
                 <td>
-                  <button className="mu">Editar</button>
-                  <button className="mu">Borrar</button>
+                  <div className="acciones">
+                    <button onClick={() => navigate('/Edit')}>Editar</button>
+                    <button onClick={() => borrarProducto(producto.ID_produ)}>Borrar</button>
+                  </div>
                 </td>
               </tr>
             ))
@@ -184,8 +106,14 @@ function Ventas() {
           )}
         </tbody>
       </table>
+
+      <div className="paginacion">
+        <button className="pagina-btn" onClick={retrocederPagina} disabled={pagina === 1}>⬅️ Anterior</button>
+        <span className="pagina-info">Página {pagina} de {totalPaginas}</span>
+        <button className="pagina-btn" onClick={avanzarPagina} disabled={pagina === totalPaginas}>Siguiente ➡️</button>
+      </div>
     </div>
   );
 }
 
-export default Ventas;
+export default Inventario;

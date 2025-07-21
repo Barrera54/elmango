@@ -55,10 +55,10 @@ function ProductSearch() {
       <Cabe />
 
       <div className="inve">
-        <h1 className='in'>Buscador de Producto </h1>
+        <h1 className='busca'>Buscador de Producto </h1>
       </div>
 
-      <div className="search-container">
+      <div className="search-cont">
         <input
           type="text"
           className="search-input"

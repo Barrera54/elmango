@@ -77,7 +77,7 @@ function Logo({ onLogin }) {
               >
                 <option value="">Seleccione un rol</option>
                 <option value="Administrador">Administrador</option>
-                <option value="Asistente">Asistente</option>
+                <option value="Empleado">Empleado</option>
               </select>
             </div>
           </div>

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./css/cata.css";
 import Cabe from './menu'; // Asegúrate de que este componente 'menu' existe y funciona correctamente.
+import { useNavigate } from 'react-router-dom'; // Importa useNavigate
 
 const Catalogo = () => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Llama a useNavigate dentro del componente
 
   useEffect(() => {
     // Function to fetch products from the API
@@ -37,7 +39,7 @@ const Catalogo = () => {
       </div>
 
       {/* The search section is maintained, although it does not have real-time search functionality here */}
-      <div className="search-container">
+      <div className="search-con">
         <input
           type="text"
           className="search-input"
@@ -45,7 +47,6 @@ const Catalogo = () => {
           id="searchInput"
           // No real-time search logic here, it's just a visual input
         />
-        
       </div>
 
       {loading ? (
@@ -57,13 +58,18 @@ const Catalogo = () => {
       ) : (
         <div className="ld">
           {productos.map((producto) => (
-            <div key={producto.Imagen} className="lu">
+            <div key={producto.id} className="lu"> {/* Usar producto.id como key si existe, o un identificador único */}
               {/* Imagen del producto */}
-              
+              <img
+                src={producto.imagen || "https://placehold.co/100x100/cccccc/ffffff?text=No+Img"} // Fallback image with smaller size
+                alt={producto.nombre}
+                className="product-image-small" // New class for small image
+              />
               <div className="mu">
-                <h1>Producto: {producto.Nomproducto}</h1>
+                <h1>Producto: {producto.Nomproducto}</h1> {/* Usar producto.nombre si es el nombre de la columna */}
                 <h1>Precio: ${producto.precio ? producto.precio.toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</h1>
                 <h1>Categoria: {producto.categoria}</h1>
+                <button onClick={() => navigate('/Edit')}>Editar</button>
               </div>
             </div>
           ))}
