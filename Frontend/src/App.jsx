@@ -15,7 +15,11 @@ import Papel from './papele';
 import ActividadEmpleado from './ActividadEmpleado';
 import Catalogo from './cata';
 import Edit from './Edit';
-
+import ClientsPanel from './clien';
+import Deudor from './deudo';
+import FrequentClientForm from './frecun';
+import Domicilios from './domi';
+import Select from './select';
 
 function App() {
 
@@ -199,7 +203,56 @@ function App() {
           }
         />
           
-        
+          <Route
+          path="/Clientes"
+          element={
+            isAuthenticated ? (
+              <ClientsPanel />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/Deudor"
+          element={
+            isAuthenticated ? (
+              <Deudor />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/Frecun"
+          element={
+            isAuthenticated ? (
+              <FrequentClientForm />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/Domicilios"
+          element={
+            isAuthenticated ? (
+              <Domicilios />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/Select"
+          element={
+            isAuthenticated ? (
+              <Select />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
         {/* Ruta por defecto para rutas no encontradas */}
         <Route
           path="*"

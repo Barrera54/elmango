@@ -182,12 +182,12 @@ function Menu({ onLogout }) {
       </div>
 
       <div className="k">
-        <button onClick={() => navigate('/Venta')}>Cliente</button>
-        <button>Domicilios</button>
+        <button onClick={() => navigate('/Clientes')}>Cliente</button>
+        <button onClick={() => navigate('/Domicilios')}>Domicilios</button>
         <button onClick={generatePDF}>Factura</button>
         <button onClick={clearProducts}>Anular</button>
-        <button>Deudores</button>
-        <button>Pago</button>
+        <button onClick={() => navigate('/Deudor')}>Deudores</button>
+        <button onClick={() => navigate('/Select')}>Pago</button>
         <button onClick={onLogout}>Cerrar Sesión</button>
       </div>
 
