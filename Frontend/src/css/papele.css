@@ -1,3 +1,185 @@
-.papel > thead{
+/* Estilos generales para el encabezado de la papelera */
+.papel > thead {
     background-color: #6CEF9E;
+}
+
+.Papelera {
+    text-align: center; /* Centra el título */
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+}
+
+/* Estilos para la barra de búsqueda */
+.search-container {
+    display: flex;
+    justify-content: center; /* Centra la barra de búsqueda */
+    margin-bottom: 20px;
+    gap: 10px;
+    padding: 0 20px; /* Añade un poco de padding para evitar que toque los bordes */
+}
+
+.search-input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    flex-grow: 1; /* Permite que el input crezca para ocupar espacio */
+    max-width: 400px; /* Limita el ancho máximo del input */
+}
+
+.search-button {
+    background-color: #007bff; /* Color azul */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos para la tabla - ¡ANCHO COMPLETO! */
+.papel {
+    width: 100%; /* Ajusta el ancho de la tabla para que sea casi completo */
+    margin: 20px auto; /* Centra la tabla y añade margen */
+    border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.papel th, .papel td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.papel th {
+    background-color: #f2f2f2;
+    color: #333;
+    font-weight: bold;
+}
+
+.papel tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.papel tbody tr:hover {
+    background-color: #e9e9e9;
+}
+
+/* Ajuste para los botones de acción dentro de la tabla */
+.mu-recover, .mu-delete {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-right: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.mu-recover {
+    background-color: #28a745; /* Verde para recuperar */
+    color: white;
+}
+
+.mu-recover:hover {
+    background-color: #218838;
+}
+
+.mu-delete {
+    background-color: #dc3545; /* Rojo para borrar */
+    color: white;
+}
+
+.mu-delete:hover {
+    background-color: #c82333;
+}
+
+/* Estilos para la paginación */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 15px; /* Espacio entre los elementos de paginación */
+}
+
+.pagination button {
+    background-color: #4CAF50; /* Color verde */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #45a049;
+}
+
+.pagination button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.pagination span {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Ajustes para la notificación/toast */
+.notification-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    z-index: 1000;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 80%;
+}
+
+.notification-content p {
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.notification-actions button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.notification-actions .confirm {
+    background-color: #28a745;
+    color: white;
+}
+
+.notification-actions .confirm:hover {
+    background-color: #218838;
+}
+
+.notification-actions .cancel {
+    background-color: #6c757d;
+    color: white;
+}
+
+.notification-actions .cancel:hover {
+    background-color: #5a6268;
 }
