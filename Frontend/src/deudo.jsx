@@ -1,57 +1,79 @@
 import React, { useState } from 'react';
-import './css/deudo.css'; // This will be our new CSS file
+import './css/deudo.css';
 import Cabe from './menu';
+    import { useNavigate } from 'react-router-dom';
+
 const Deudor = () => {
-    const [clientName, setClientName] = useState('');
-    const [debtAmount, setDebtAmount] = useState('');
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
+  const [clientName, setClientName] = useState('');
+  const [debtAmount, setDebtAmount] = useState('');
 
-    const handleAccept = () => {
-        // Here you would typically handle the form submission,
-        // e.g., send data to a backend or update global state.
-        console.log('Client:', clientName);
-        console.log('Debt:', debtAmount);
-        alert('Deudor information submitted!');
-        // For now, we'll just redirect to the home page as in the original HTML
-        window.location.href = 'inic.html';
+  const navigate = useNavigate();
+
+  const handleAccept = async () => {
+    const data = {
+      nomDeu: clientName,
+      valoDeu: debtAmount
     };
 
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
+    try {
+      const response = await fetch('http://localhost:3001/deudor', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
 
-    return (
-        <>
-          <Cabe />
+      if (response.ok) {
+        alert('Deudor registrado con éxito');
+        setClientName('');
+        setDebtAmount('');
+        navigate('/Clientes') // Redirección tras éxito
+      } else {
+        const error = await response.json();
+        alert('Error al registrar deudor: ' + error.error);
+        console.error('Error:', error);
+      }
+    } catch (err) {
+      alert('Error de conexión con el servidor');
+      console.error('Error:', err);
+    }
+  };
 
-            <div className="debtor-container">
-                <h1 className="form-title">Deudor</h1>
-                <div className="form-group">
-                    <label htmlFor="clientNameInput" className="form-label">Cliente:</label>
-                    <input
-                        type="text"
-                        id="clientNameInput"
-                        className="form-input"
-                        value={clientName}
-                        onChange={(e) => setClientName(e.target.value)}
-                    />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="debtAmountInput" className="form-label">Deuda:</label>
-                    <input
-                        type="text"
-                        id="debtAmountInput"
-                        className="form-input"
-                        value={debtAmount}
-                        onChange={(e) => setDebtAmount(e.target.value)}
-                    />
-                </div>
-                <button onClick={handleAccept} className="submit-button">
-                    <h2>Aceptar</h2>
-                </button>
-            </div>
-        </>
-    );
+  return (
+    <>
+      <Cabe />
+
+      <div className="debtor-container">
+        <h1 className="form-title">Deudor</h1>
+        <div className="form-group">
+          <label htmlFor="clientNameInput" className="form-label">Cliente:</label>
+          <input
+            type="text"
+            id="clientNameInput"
+            className="form-input"
+            value={clientName}
+            onChange={(e) => setClientName(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="debtAmountInput" className="form-label">Deuda:</label>
+          <input
+            type="number"
+            id="debtAmountInput"
+            className="form-input"
+            value={debtAmount}
+            onChange={(e) => setDebtAmount(e.target.value)}
+            required
+          />
+        </div>
+        <button onClick={handleAccept} className="submit-button">
+          <h2>Aceptar</h2>
+        </button>
+      </div>
+    </>
+  );
 };
 
 export default Deudor;

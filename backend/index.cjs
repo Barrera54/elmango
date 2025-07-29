@@ -217,6 +217,12 @@ app.get('/productos/:Codi_produ', (req, res) => {
     res.json(results[0]);
   });
 });
+app.get('/cliente_frecuent', (req, res) => {
+  db.query('SELECT * FROM cliente_frecuent', (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(200).json(results);
+  });
+});
 
 app.post('/productos', (req, res) => {
   const { Codi_produ, Nomproducto, descripcion, precio, stock, categoria } = req.body;
@@ -245,38 +251,50 @@ app.post('/papelera_producto', (req, res) => {
     }
   );
 });
-app.post('/cliente_frecuente', (req, res) => {
-  // Desestructura los datos del cuerpo de la solicitud
-  const { NombreClien, numeroCelular, numeroCCoTI } = req.body;
-
-  // Valida que todos los campos requeridos estén presentes
-  if (!NombreClien || !numeroCelular || !numeroCCoTI) {
-    return res.status(400).json({ error: 'Faltan datos requeridos: NombreClien, numeroCelular, o numeroCCoTI' });
-  }
-
-  // Define la consulta SQL para insertar un nuevo cliente frecuente
-  // Los nombres de las columnas se han actualizado para que coincidan con la imagen original:
-  // `NombreClien`, `N° de celular.`, `N° de CC o TI`
-  const sqlQuery = 'INSERT INTO `cliente_frecuent` (`NombreClien`, `N° de celular.`, `N° de CC o TI`) VALUES (?, ?, ?)';
-
-  // Ejecuta la consulta en la base de datos
+app.post('/cliente_frecuent', (req, res) => {
+  const { nomFrecu, docuFrecu, celuFrecu } = req.body;
   db.query(
-    sqlQuery,
-    [NombreClien, numeroCelular, numeroCCoTI], // Los valores a insertar
+    'INSERT INTO cliente_frecuent (nomFrecu, docuFrecu, celuFrecu) VALUES (?, ?, ?)',
+    [nomFrecu, docuFrecu, celuFrecu],
     (err, results) => {
-      // Manejo de errores si la inserción falla
+      if (err) return res.status(500).json({ error: err.message });
+      res.status(201).json({ message: 'Cliente agregado', id: results.insertId });
+    }
+  );
+});
+app.post('/deudor', (req, res) => {
+  const { nomDeu, valoDeu } = req.body;
+
+  db.query(
+    'INSERT INTO deudor (nomDeu, valoDeu) VALUES (?, ?)',
+    [nomDeu, valoDeu],
+    (err, results) => {
       if (err) {
-        console.error('Error insertando cliente frecuente:', err);
-        // Proporciona detalles de error más específicos si es necesario
-        return res.status(500).json({ error: 'Error al insertar cliente frecuente en la base de datos', details: err.message });
+        console.error('Error insertando deudor:', err);
+        return res.status(500).json({
+          error: 'Error insertando en la tabla deudor',
+          details: err.message
+        });
       }
 
-      // Responde con un mensaje de éxito y el ID de la fila recién insertada
-      res.status(201).json({ message: 'Cliente frecuente insertado exitosamente', id: results.insertId, results });
+      res.status(201).json({
+        message: 'Deudor insertado exitosamente',
+        id: results.insertId,
+        results
+      });
     }
   );
 });
 
+app.get('/deudor', (req, res) => {
+  db.query('SELECT * FROM deudor', (err, results) => {
+    if (err) {
+      console.error('Error consultando deudores:', err);
+      return res.status(500).json({ error: 'Error consultando deudores', details: err.message });
+    }
+    res.status(200).json(results);
+  });
+});
 app.put('/productos/:NomproductoActual', (req, res) => {
   const { NomproductoActual } = req.params;
   const { Codi_produ, descripcion, precio, stock, categoria } = req.body;
