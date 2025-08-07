@@ -1,81 +1,108 @@
-import React, { useState } from 'react'; // Necesitamos useState para manejar el estado de la calificación y el comentario
-import { useNavigate } from 'react-router-dom'; // Para manejar la navegación al enviar la valoración
+import React, { useState } from 'react';
+import { FaStar } from 'react-icons/fa';
+import './css/sistem.css';
 import Cabe from './menu';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'; 
-import './css/sistem.css'; // Asegúrate de tener este archivo CSS para tus estilos
+const SystemRating = () => {
+  const [rating, setRating] = useState(0);
+  const [hover, setHover] = useState(0);
+  const [comment, setComment] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
-function SystemRating() {
-  // Estado para la calificación seleccionada (0 a 5 estrellas)
-  const [rating, setRating] = useState(0); 
-  // Estado para el texto del comentario
-  const [comment, setComment] = useState(''); 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  // Hook de React Router para manejar la navegación
-  const navigate = useNavigate();
+    if (rating === 0) {
+      alert('Por favor selecciona una calificación');
+      return;
+    }
 
-  // Función para manejar el clic en una estrella
-  const handleStarClick = (selectedRating) => {
-    setRating(selectedRating); // Actualiza el estado 'rating'
+    try {
+      const response = await fetch('http://localhost:3001/guardarValoracion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          calificacion: rating,
+          comentario: comment
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        alert(data.mensaje || 'Error al guardar la valoración');
+        return;
+      }
+
+      console.log('Valoración guardada:', data);
+      setSubmitted(true);
+
+      setTimeout(() => {
+        window.location.href = '/inic.html';
+      }, 2000);
+    } catch (error) {
+      console.error('Error al enviar:', error);
+      alert('Ocurrió un error al enviar la valoración');
+    }
   };
 
-  // Función para manejar el cambio en el campo de texto del comentario
-  const handleCommentChange = (event) => {
-    setComment(event.target.value); // Actualiza el estado 'comment'
-  };
+  return (
+    <> 
+      <Cabe />
+      <div className="cont">
+        {!submitted ? (
+          <form onSubmit={handleSubmit}>
+            <h1 className="title">¿Cómo calificarías el sistema?</h1>
+            
+            <div className="rating-section">
+              <p className="subtitle">Tu calificación:</p>
+              <div className="stars-container">
+                {[...Array(5)].map((_, index) => {
+                  const ratingValue = index + 1;
+                  return (
+                    <FaStar
+                      key={index}
+                      className="star"
+                      color={ratingValue <= (hover || rating) ? "#FFD700" : "#e4e5e9"}
+                      size={40}
+                      onClick={() => setRating(ratingValue)}
+                      onMouseEnter={() => setHover(ratingValue)}
+                      onMouseLeave={() => setHover(0)}
+                    />
+                  );
+                })}
+              </div>
+              <p className="rating-text">
+                {rating > 0 ? `Seleccionaste ${rating} estrella${rating > 1 ? 's' : ''}` : 'Selecciona una calificación'}
+              </p>
+            </div>
 
-  // Función que se ejecuta al hacer clic en el botón "Enviar"
-  const handleEnviarClick = () => {
-    // Aquí puedes añadir la lógica para procesar la valoración y el comentario.
-    // Por ejemplo, enviar esta información a una API.
-    console.log('Valoración del sistema enviada:');
-    console.log('Calificación:', rating);
-    console.log('Comentario:', comment);
-
-    // Navega a la ruta '/inic' (similar a como lo hace ProductoDevuelto)
-    // Asegúrate de que esta ruta esté configurada en tu React Router.
-    navigate('/inic');
-    // Si 'inic.html' es un archivo HTML estático externo, deberías usar:
-    // window.location.href = 'inic.html';
-  };
-
-  return  <>
-   <Cabe/>
-    <div className="contis">
-      <h1 className='ssi'>Valoración del Sistema</h1>
-      <div className="clin">
-        <h2>Calificación</h2>
-        <div >
-          {/* Mapea sobre un array para renderizar 5 estrellas */}
-          {[1, 2, 3, 4, 5].map((starValue) => (
-            <FontAwesomeIcon
-              key={starValue}
-              // Condicionalmente renderiza la estrella sólida o regular
-              // basándose en si el valor de la estrella es menor o igual a la calificación actual.
-              icon={starValue <= rating ? faStarSolid : faStarRegular}
-              onClick={() => handleStarClick(starValue)} // Asocia el clic a la función de manejo
-              className="star-icon" // Clase para estilos CSS
-            />
-          ))}
-        </div>
+            <div className="comment-section">
+              <label htmlFor="comentario" className="subtitle">Comentario adicional:</label>
+              <textarea 
+                id="comentario"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Escribe tus comentarios..."
+                rows="4"
+              />
+            </div>
+            
+            <button type="submit" className="submit-btn">
+              Enviar valoración
+            </button>
+          </form>
+        ) : (
+          <div className="thank-you-message">
+            <h2>¡Gracias por tu valoración!</h2>
+            <p>Redirigiendo a la página principal...</p>
+          </div>
+        )}
       </div>
-      <div className="den">
-        <h2>Comentario</h2>
-        <input
-          type="text"
-          value={comment} // El valor del input está vinculado al estado 'comment'
-          onChange={handleCommentChange} // Actualiza el estado cuando el usuario escribe
-          placeholder="Escribe tu comentario aquí..."
-        />
-      </div>
-
-      {/* Botón que, al hacer clic, ejecuta la función handleEnviarClick */}
-      <button onClick={handleEnviarClick}>
-        <h2>Enviar</h2>
-      </button>
-    </div>
-  </>
-}
+    </>
+  );
+};
 
 export default SystemRating;

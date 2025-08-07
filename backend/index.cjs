@@ -163,6 +163,47 @@ app.post('/crearCuenta', (req, res) => {
   });
 });
 
+app.post('/guardarValoracion', (req, res) => {
+  const { calificacion, comentario } = req.body;
+
+  if (!calificacion) {
+    return res.status(400).json({ mensaje: 'La calificación es obligatoria' });
+  }
+
+  db.query(
+    'INSERT INTO encusystem (Calificacion, Comentario) VALUES (?, ?)',
+    [calificacion, comentario || null],
+    (err, result) => {
+      if (err) {
+        console.error('Error al guardar valoración:', err);
+        return res.status(500).json({ mensaje: 'Error al guardar la valoración' });
+      }
+
+      res.status(201).json({ mensaje: 'Valoración guardada exitosamente', id: result.insertId });
+    }
+  );
+});
+app.post('/guardarValoracion', (req, res) => {
+  const { calificacion, comentario } = req.body;
+
+  if (!calificacion) {
+    return res.status(400).json({ mensaje: 'La calificación es obligatoria' });
+  }
+
+  db.query(
+    'INSERT INTO encusystem (Calificacion, Comentario) VALUES (?, ?)',
+    [calificacion, comentario || null],
+    (err, result) => {
+      if (err) {
+        console.error('Error al guardar valoración:', err);
+        return res.status(500).json({ mensaje: 'Error al guardar la valoración' });
+      }
+
+      res.status(201).json({ mensaje: 'Valoración guardada exitosamente', id: result.insertId });
+    }
+  );
+});
+
 // CRUD empleados
 app.get('/empleados', (_, res) => {
   db.query('SELECT * FROM empleados', (err, results) => {
@@ -171,18 +212,51 @@ app.get('/empleados', (_, res) => {
   });
 });
 
-app.put('/empleados/:id', (req, res) => {
+app.put('/cuenta/:id', (req, res) => {
   const { id } = req.params;
   const { nombre, telefono, correo, cedula } = req.body;
-  db.query(
-    'UPDATE empleados SET nombre = ?, telefono = ?, correo = ?, cedula = ? WHERE id = ?',
-    [nombre, telefono, correo, cedula, id],
-    (err, result) => {
-      if (err) return res.status(500).json({ error: 'Error actualización' });
-      if (result.affectedRows === 0) return res.status(404).json({ error: 'Empleado no encontrado' });
-      res.json({ message: 'Empleado actualizado' });
-    }
-  );
+
+  // Validar que el ID sea numérico
+  if (!/^\d+$/.test(id)) {
+    return res.status(400).json({ error: 'ID inválido' });
+  }
+
+  // Construir dinámicamente la consulta con solo los campos válidos
+  const campos = [];
+  const valores = [];
+
+  if (nombre && nombre.trim() !== '') {
+    campos.push('nombre = ?');
+    valores.push(nombre.trim());
+  }
+
+  if (telefono && telefono.trim() !== '') {
+    campos.push('Telefono = ?');
+    valores.push(telefono.trim());
+  }
+
+  if (correo && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+    campos.push('Correo = ?');
+    valores.push(correo.trim());
+  }
+
+  if (cedula && /^\d{5,15}$/.test(cedula)) {
+    campos.push('Cedula = ?');
+    valores.push(cedula.trim());
+  }
+
+  if (campos.length === 0) {
+    return res.status(400).json({ error: 'No hay campos válidos para actualizar' });
+  }
+
+  const sql = `UPDATE cuenta SET ${campos.join(', ')} WHERE id = ?`;
+  valores.push(id);
+
+  db.query(sql, valores, (err, result) => {
+    if (err) return res.status(500).json({ error: 'Error al actualizar' });
+    if (result.affectedRows === 0) return res.status(404).json({ error: 'Empleado no encontrado' });
+    res.json({ message: 'Empleado actualizado correctamente' });
+  });
 });
 
 // CRUD productos

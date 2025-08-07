@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './css/actualiza.css';
 import Cabe from './menu';
@@ -9,30 +9,39 @@ function DatosPersonales() {
   const [telefono, setTelefono] = useState('');
   const [correoElectronico, setCorreoElectronico] = useState('');
   const [numeroCedula, setNumeroCedula] = useState('');
-  const [empleados, setEmpleados] = useState([]);
-
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  
   const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch('http://localhost:3001/empleados')
-      .then(res => res.json())
-      .then(data => {
-        console.log('Datos recibidos:', data);
-        setEmpleados(data);
-      })
-      .catch(err => console.error(err));
-  }, []);
-
   const handleAceptarClick = async () => {
-    console.log('Datos personales enviados:');
-    console.log('ID Empleado:', idEmpleado);
-    console.log('Empleado:', nombreEmpleado);
-    console.log('Teléfono:', telefono);
-    console.log('Correo Electrónico:', correoElectronico);
-    console.log('Número de Cédula:', numeroCedula);
+    setError('');
+    setSuccess('');
+
+    // Validaciones
+    if (!/^\d+$/.test(idEmpleado)) {
+      setError('El ID del empleado debe ser un número válido');
+      return;
+    }
+
+    if (!nombreEmpleado.trim()) {
+      setError('El nombre es requerido');
+      return;
+    }
+
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correoElectronico)) {
+      setError('Por favor ingrese un correo electrónico válido');
+      return;
+    }
+
+    if (!/^\d{5,15}$/.test(numeroCedula)) {
+      setError('La cédula debe contener entre 5 y 15 dígitos');
+      return;
+    }
 
     try {
-      const response = await fetch(`http://localhost:3001/empleados/${idEmpleado}`, {
+      // Solicitud PUT a la API
+      const updateResponse = await fetch(`http://localhost:3001/cuenta/${idEmpleado}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -45,76 +54,95 @@ function DatosPersonales() {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Error al actualizar');
+      if (!updateResponse.ok) {
+        const errorData = await updateResponse.json();
+        throw new Error(errorData.error || 'Error al actualizar');
       }
 
-      const data = await response.json();
-      console.log('Respuesta del servidor:', data);
-      alert('Empleado actualizado correctamente');
+      // Éxito: mostrar mensaje y limpiar campos
+      setSuccess('Datos personales actualizados correctamente');
+      setIdEmpleado('');
+      setNombreEmpleado('');
+      setTelefono('');
+      setCorreoElectronico('');
+      setNumeroCedula('');
 
-      navigate('/inic');
+      // Esperar 2 segundos antes de redirigir
+      setTimeout(() => {
+        navigate('/inic');
+      }, 2000);
 
     } catch (error) {
-      console.error(error);
-      alert('Error al actualizar empleado');
+      console.error('Fetch error:', error);
+      setError(error.message);
     }
   };
 
   return (
     <>
-      <Cabe/>
+      <Cabe />
       <div className="cont">
-        <div className="da">Datos personales</div>
+        <div className="da">Actualizar datos</div>
 
-        <div className="de">
-          <h2>ID Empleado</h2>
+        {error && <div className="error-message">{error}</div>}
+        {success && <div className="success-message">{success}</div>}
+
+        <div className="form-group">
+          <h2>ID del empleado</h2>
           <input
             type="text"
             value={idEmpleado}
             onChange={(e) => setIdEmpleado(e.target.value)}
             placeholder="ID del empleado"
+            required
           />
         </div>
 
-        <div className="cli">
-          <h2>Empleado</h2>
+        <div className="form-group">
+          <h2>Nombre</h2>
           <input
             type="text"
             value={nombreEmpleado}
             onChange={(e) => setNombreEmpleado(e.target.value)}
+            placeholder="Nombre completo"
+            required
           />
         </div>
 
-        <div className="de">
+        <div className="form-group">
           <h2>Teléfono</h2>
           <input
             type="text"
             value={telefono}
             onChange={(e) => setTelefono(e.target.value)}
+            placeholder="Número de teléfono"
           />
         </div>
 
-        <div className="de">
+        <div className="form-group">
           <h2>Correo electrónico</h2>
           <input
-            type="text"
+            type="email"
             value={correoElectronico}
             onChange={(e) => setCorreoElectronico(e.target.value)}
+            placeholder="ejemplo@correo.com"
+            required
           />
         </div>
 
-        <div className="de">
+        <div className="form-group">
           <h2>N° de cédula</h2>
           <input
             type="text"
             value={numeroCedula}
             onChange={(e) => setNumeroCedula(e.target.value)}
+            placeholder="Cédula"
+            required
           />
         </div>
 
-        <button onClick={handleAceptarClick} className='go'>
-          <h2>Aceptar</h2>
+        <button onClick={handleAceptarClick} className="go">
+          <h2>Actualizar Datos</h2>
         </button>
       </div>
     </>

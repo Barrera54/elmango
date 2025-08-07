@@ -1,47 +1,122 @@
-.contis {
-    height: 400px;
-    width: 400px;
-    border: 5px solid rgb(244, 154, 154);
-    margin-top: 10%;
-    margin-left: 500px;
-    border-radius: 30px;
+.cont {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 40px;
+    background: linear-gradient(135deg, #e0f7f1, #b2ebf2);
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', sans-serif;
+    display: flex;
+    flex-direction: column;
+    max-height: 600px;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 25px;
     text-align: center;
-    background-color: #6ADCAF;
-    font-family: Cursive;
-
-}
-
-.clin {
-    border-radius: 2px;
-    margin-left: 20px;
-    margin-top: 10px;
-    font-size: 25px;
-    font-family: Cursive;
-}
-
-.den {
-
-    border-radius: 2px;
-    margin-left: 20px;
-    margin-top: 10px;
-    font-size: 25px;
-    font-family: Cursive;
-}
-
-input {
-    background-color: #85F5FF;
-    border: #9DC25B;
-    border-radius: 5px;
-    width: 300px;
-    font-size: 20px;
-    margin-left: 10px;
-    margin-top: 20px;
-    height: 40px;
-}
-.ssi{
-    font-size: 32px;
-    width:20px;
-    width: 500px;
-   
-    margin-left: -65px;
-}
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #34495e;
+    margin-bottom: 10px;
+  }
+  
+  .rating-section, .comment-section {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .stars-container {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 15px 0;
+  }
+  
+  .rating-text {
+    font-size: 1rem;
+    color: #2c3e50;
+    margin-top: 5px;
+  }
+  
+  .comment-section textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid #b2dfdb;
+    background-color: #ffffff;
+    resize: vertical;
+    font-size: 1rem;
+    font-family: 'Segoe UI', sans-serif;
+    transition: 0.3s ease;
+  }
+  
+  .comment-section textarea:focus {
+    outline: none;
+    border-color: #4db6ac;
+    box-shadow: 0 0 10px rgba(77, 182, 172, 0.5);
+  }
+  
+  .submit-btn {
+    background-color: #26a69a;
+    color: #fff;
+    border: none;
+    padding: 0px 30px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  .submit-btn:hover {
+    background-color: #00796b;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .star {
+    transition: transform 0.2s;
+    cursor: pointer;
+  }
+  
+  .star:hover {
+    transform: scale(1.2);
+  }
+  
+  .thank-you-message {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .thank-you-message h2 {
+    font-size: 2rem;
+    color: #2e7d32;
+    margin-bottom: 15px;
+  }
+  
+  .thank-you-message p {
+    font-size: 1.1rem;
+    color: #455a64;
+  }
+  
+  @media (max-width: 650px) {
+    .cont {
+      padding: 20px;
+      margin: 30px 10px;
+    }
+  
+    .title {
+      font-size: 1.8rem;
+    }
+  }
+  

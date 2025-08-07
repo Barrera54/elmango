@@ -8,6 +8,7 @@
     color: #333;
     margin-bottom: 2rem;
     margin-left: -50%;
+    font-family: Cursive;
 }
 
 .inve h1 {
@@ -126,6 +127,8 @@
     font-size: 1.1rem;
     margin-bottom: 1rem;
     width: 100%; /* Ensure it takes full width */
+    margin-right: 40%;
+    font-family: Cursive;
 }
 
 .mu h1 {

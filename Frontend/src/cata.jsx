@@ -39,15 +39,7 @@ const Catalogo = () => {
       </div>
 
       {/* The search section is maintained, although it does not have real-time search functionality here */}
-      <div className="search-con">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Buscar..."
-          id="searchInput"
-          // No real-time search logic here, it's just a visual input
-        />
-      </div>
+    
 
       {loading ? (
         <p className="message">Cargando productos...</p>
