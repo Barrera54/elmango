@@ -22,9 +22,7 @@ function PasswordRecovery() {
     try {
       const response = await fetch('http://localhost:3001/cuenta/contrasena', {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           usuario: username,
           cargo: userType,
@@ -69,7 +67,7 @@ function PasswordRecovery() {
               >
                 <option value="seleccione-un-rol" disabled>Seleccione un rol</option>
                 <option value="administrador">Administrador</option>
-                <option value="empleado">Asistente</option>
+                <option value="empleado">Empleado</option>
               </select>
             </div>
           </div>

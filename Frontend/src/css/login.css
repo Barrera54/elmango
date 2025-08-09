@@ -57,49 +57,43 @@
   width: 100%;
 }
 
+/* Ajuste para uniformidad en los campos */
 .input-group {
   display: flex;
   align-items: center;
-  border: 1px solid #ddd;
   border-radius: 8px;
-  padding: 10px 15px;
-  background-color: #f9f9f9;
+  background-color: #f7f7f7; /* color uniforme */
   transition: all 0.3s ease;
-}
-
-.input-group:focus-within {
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-  background-color: #fff;
+  width: 100%;
+  height: 48px; /* altura uniforme */
+  padding: 0 15px;
 }
 
 .input-icon {
-  color: #555;
+  color: #888888;
   margin-right: 15px;
   font-size: 1.2em;
 }
 
-.form-control {
+/* Inputs y selects con mismo color y sin bordes */
+.custom-input {
   border: none;
   outline: none;
-  background: none;
+  background-color: #f7f7f7; /* mismo color del contenedor */
   font-size: 1.1em;
   flex-grow: 1;
-  padding: 5px 0;
+  padding: 0 5px;
   color: #333;
   width: 100%;
+  height: 100%;
+  box-sizing: border-box;
 }
 
-.form-control::placeholder {
-  color: #aaa;
-}
-
-select.form-control {
+select.custom-input {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   cursor: pointer;
-  padding-right: 25px;
 }
 
 .login {
@@ -193,7 +187,7 @@ select.form-control {
   }
 
   .input-group {
-    padding: 8px 12px;
+    padding: 0 8px;
   }
 
   .input-icon {
@@ -201,7 +195,7 @@ select.form-control {
     margin-right: 10px;
   }
 
-  .form-control {
+  .custom-input {
     font-size: 1em;
   }
 }

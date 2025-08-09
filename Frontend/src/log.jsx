@@ -26,11 +26,10 @@ function Logo({ onLogin }) {
       const response = await fetch('http://localhost:3001/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        // 🔑 Envía exactamente los campos que la API espera:
         body: JSON.stringify({
-          usuario,          // Coincide con columna Usuario
-          contrasena,       // Coincide con columna Contraseña
-          tipoUsuario       // Se compara con cargo
+          usuario,
+          contrasena,
+          tipoUsuario
         }),
       });
 
@@ -39,7 +38,7 @@ function Logo({ onLogin }) {
       if (response.ok) {
         localStorage.setItem('isAuthenticated', 'true');
         localStorage.setItem('userRole', data.cargo);
-        localStorage.setItem('userName', data.nombre); // Tu API devuelve 'nombre': Usuario
+        localStorage.setItem('userName', data.nombre);
 
         onLogin();
         navigate('/Principal');
@@ -72,7 +71,7 @@ function Logo({ onLogin }) {
               <select
                 value={tipoUsuario}
                 onChange={(e) => setTipoUsuario(e.target.value)}
-                className="form-control"
+                className="custom-input"
                 required
               >
                 <option value="">Seleccione un rol</option>
@@ -91,7 +90,7 @@ function Logo({ onLogin }) {
                 value={usuario}
                 onChange={(e) => setUsuario(e.target.value)}
                 placeholder="Usuario"
-                className="form-control"
+                className="custom-input"
                 required
               />
             </div>
@@ -106,7 +105,7 @@ function Logo({ onLogin }) {
                 value={contrasena}
                 onChange={(e) => setContrasena(e.target.value)}
                 placeholder="Contraseña"
-                className="form-control"
+                className="custom-input"
                 required
               />
               <FontAwesomeIcon
