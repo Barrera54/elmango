@@ -1,34 +1,104 @@
-.contdev {
-    height: 670px;
+/* Estilos base */
+.producto-devuelto-container {
     width: 500px;
-    border: 5px solid rgb(244, 154, 154);
-    margin-top: 5%;
-    margin-left: 500px;
-    border-radius: 30px;
+    min-height: 600px;
+    margin: 2% auto;
+    padding: 40px;
+    border-radius: 20px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
     text-align: center;
-    background-color: #6ADCAF;
-    font-family: Cursive;
-
-}
-
-.cli {
-    border-radius: 2px;
-    margin-left: 20px;
-    margin-top: 10px;
-    font-size: 25px;
+    border: 1px solid #e0e0e0;
+ 
     font-family: Cursive;
 }
 
-.de {
+.producto-devuelto-title {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #2c3e50;
+    font-weight: 600;
+    background: linear-gradient(to right, #26a69a, #4db6ac);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
 
-    border-radius: 2px;
-    margin-left: 20px;
-    margin-top: 10px;
-    font-size: 25px;
+.producto-devuelto-field {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.producto-devuelto-label {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #34495e;
+    display: block;
+    font-weight: 500;
+}
+
+.producto-devuelto-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f9f9f9;
+}
+
+.producto-devuelto-input:focus {
+    outline: none;
+    border-color: #4db6ac;
+    box-shadow: 0 0 0 3px rgba(77, 182, 172, 0.2);
+    background-color: #fff;
+}
+
+.producto-devuelto-button {
+    background: linear-gradient(to right, #26a69a, #4db6ac);
+    color: white;
+    border: none;
+    padding: 15px 40px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    margin-top: 20px;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(38, 166, 154, 0.3);
+    min-height: 80px;
     font-family: Cursive;
 }
-.sa{
-    font-size: 50px;
-    width: 120px;
-    margin-left: 35%;
+
+.producto-devuelto-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(38, 166, 154, 0.4);
+}
+
+.producto-devuelto-button:active {
+    transform: translateY(1px);
+}
+
+/* Efecto de tarjeta flotante */
+.producto-devuelto-container {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.producto-devuelto-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .producto-devuelto-container {
+        width: 90%;
+        padding: 30px 20px;
+    }
+
+    .producto-devuelto-title {
+        font-size: 2rem;
+    }
 }

@@ -1,6 +1,15 @@
 @import "tailwindcss";
-body {
-    background-color: aliceblue;
+
+
+.App {
+    position: relative;
+    min-height: 7vh;
+    padding-left: 0; /* Inicialmente sin padding */
+    transition: padding-left 0.5s; /* Transición suave al abrir el menú */
+}
+
+.App.menu-active {
+    padding-left: 300px; /* Espacio para el menú cuando está abierto */
 }
 
 header {
@@ -9,19 +18,39 @@ header {
     height: 40px;
     color: white;
     display: flex;
+    position: fixed; /* Fija el header en la parte superior */
+    width: 100%;
+    top: 0;
+    z-index: 100; /* Asegura que el header esté sobre otros elementos */
 }
 
 .sidnav {
     width: 300px;
     background: #6ADCAF;
-    height: 105vh;
-    position: absolute;
+    height: 100vh;
+    position: fixed;
     padding: 0 10px;
-    left: -100%;
+    left: -300px; /* Oculta completamente el menú */
     transition: all 0.5s;
     font-family: Cursive;
-    z-index: 199;
-    /* Alto para que tape todo */
+    z-index: 99; /* Menos que el header para que no lo cubra */
+    top: 60px;
+    overflow-y: auto; /* Permite desplazamiento si el menú es muy largo */
+}
+
+.sidnav.active {
+    left: 0; /* Muestra el menú */
+}
+
+/* Ajusta el contenido principal para que no quede detrás del menú */
+.main-content {
+    margin-top: 80px; /* Espacio para el header */
+    padding: 20px;
+    transition: margin-left 0.5s;
+}
+
+.main-content.menu-active {
+    margin-left: 300px; /* Desplaza el contenido cuando el menú está abierto */
 }
 
 .sidnav.active {

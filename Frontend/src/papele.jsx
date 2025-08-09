@@ -198,16 +198,7 @@ function ProductBin() {
       )}
 
       {/* Barra de búsqueda */}
-      <div className="search-container">
-        <input
-          type="text"
-          className="search-input"
-          placeholder="Buscar producto..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
-        <button className="search-button" onClick={handleSearchClick}>Buscar</button>
-      </div>
+     
 
       <table className='papel'>
         <thead>

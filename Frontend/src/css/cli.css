@@ -1,44 +1,7 @@
-.clients-wrapper {
-  max-width: 800px;
-  margin: 0 auto;
-  padding-top: 120px;
-}
-
-.clients-header {
-  background: #2c3e50;
-  color: #fff;
-  padding: 20px 40px;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
-
-.clients-title {
-  margin: 0;
-  font-size: 28px;
-}
-
-.clients-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px;
-  margin: 10px 0 0 0;
-  padding: 0;
-}
-
-.clients-nav a {
-  color: #ecf0f1;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.clients-nav a:hover {
-  text-decoration: underline;
-}
 
 .clients-container {
   padding: 40px 20px;
+  font-family: Cursive;
 }
 
 .clients-subtitle {

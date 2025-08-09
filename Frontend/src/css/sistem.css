@@ -1,15 +1,13 @@
 .cont {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 40px;
-    background: linear-gradient(135deg, #e0f7f1, #b2ebf2);
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    font-family: 'Segoe UI', sans-serif;
-    display: flex;
-    flex-direction: column;
-    max-height: 600px;
-  }
+  width: 400px;
+  min-height: 10px; /* Altura mínima */
+  margin: 50px auto;
+  background: linear-gradient(135deg, #e0f7f1, #b2ebf2);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  font-family: Cursive;
+}
+
   
   .title {
     font-size: 2.2rem;
@@ -52,7 +50,7 @@
     background-color: #ffffff;
     resize: vertical;
     font-size: 1rem;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: Cursive;
     transition: 0.3s ease;
   }
   
@@ -76,7 +74,8 @@
     letter-spacing: 1px;
     display: block;
     margin: 0 auto;
-  }
+    font-family: Cursive;
+    }
   
   .submit-btn:hover {
     background-color: #00796b;
@@ -96,7 +95,8 @@
   .thank-you-message {
     text-align: center;
     margin-top: 50px;
-  }
+    font-family: Cursive;
+      }
   
   .thank-you-message h2 {
     font-size: 2rem;
