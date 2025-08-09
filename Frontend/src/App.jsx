@@ -20,6 +20,7 @@ import Deudor from './deudo';
 import FrequentClientForm from './frecun';
 import Domicilios from './domi';
 import Select from './select';
+import IngresProdu from './IngresProdu';  
 
 function App() {
 
@@ -248,6 +249,16 @@ function App() {
           element={
             isAuthenticated ? (
               <Select />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/IngresProdu"
+          element={
+            isAuthenticated ? (
+              <IngresProdu />
             ) : (
               <Navigate to="/" replace />
             )

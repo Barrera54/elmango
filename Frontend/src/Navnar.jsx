@@ -25,7 +25,7 @@ Cambio de color
                 <li><Link to='/Productodevuelto'>&#128227;Encuesta de producto</Link></li>
                 <li><Link to="/Encuestasistem" >&#128242;Encuesta de sistema</Link></li>
                 <li><Link to="/Papelera" >&#128465;Papelera de producto</Link></li>
-                <li><a href="llegaprod.html">&#128666;Llegada de producto</a></li>
+                <li><Link to="/IngresProdu">&#128666;Llegada de producto</Link></li>
 
             </ul>
         </div>
