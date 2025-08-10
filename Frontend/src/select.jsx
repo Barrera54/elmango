@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './css/select.css'; // This will be our new CSS file
-import Cabe from './menu';
 
 const SelectPage = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,7 +10,7 @@ const SelectPage = () => {
 
     return (
        <div>
-<Cabe />
+
             <main className="payment-options-section">
                 <div className="payment-heading">
                     <h2>Forma de pago</h2>

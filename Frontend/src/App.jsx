@@ -17,10 +17,11 @@ import Catalogo from './cata';
 import Edit from './Edit';
 import ClientsPanel from './clien';
 import Deudor from './deudo';
-import FrequentClientForm from './frecun';
+import FrequentClientForm from './frecun';  
 import Domicilios from './domi';
 import Select from './select';
 import IngresProdu from './IngresProdu';  
+import EncuestaProducto from './encuesProd';
 
 function App() {
 
@@ -259,6 +260,16 @@ function App() {
           element={
             isAuthenticated ? (
               <IngresProdu />
+            ) : (
+              <Navigate to="/" replace />
+            )
+          }
+        />
+        <Route
+          path="/EncuestaProducto"
+          element={
+            isAuthenticated ? (
+              <EncuestaProducto />
             ) : (
               <Navigate to="/" replace />
             )

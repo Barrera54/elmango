@@ -3,150 +3,173 @@ import { useNavigate } from 'react-router-dom';
 import './css/actualiza.css';
 import Cabe from './menu';
 
-function DatosPersonales() {
-  const [idEmpleado, setIdEmpleado] = useState('');
-  const [nombreEmpleado, setNombreEmpleado] = useState('');
-  const [telefono, setTelefono] = useState('');
-  const [correoElectronico, setCorreoElectronico] = useState('');
-  const [numeroCedula, setNumeroCedula] = useState('');
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
-  
+function ActualizarEmpleado() {
+  const [formData, setFormData] = useState({
+    nombre: '',
+    telefono: '',
+    correo: '',
+    cedula: ''
+  });
+  const [message, setMessage] = useState('');
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
-  const handleAceptarClick = async () => {
-    setError('');
-    setSuccess('');
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
 
-    // Validaciones
-    if (!/^\d+$/.test(idEmpleado)) {
-      setError('El ID del empleado debe ser un número válido');
-      return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    const { nombre, telefono, correo, cedula } = formData;
+    const updateFields = {};
+    let url;
+    let identifierProvided = false;
+    let isUpdatingByName = false;
+    let isUpdatingByPhone = false;
+
+    // Lógica para determinar el identificador principal
+    // Priorizamos el nombre si está presente y el teléfono está vacío o es inválido.
+    if (nombre.trim() !== '') {
+        url = `http://localhost:3001/cuenta/${nombre.trim()}`;
+        isUpdatingByName = true;
+        identifierProvided = true;
+    } else if (telefono.trim() !== '') {
+        const phoneRegex = /^[0-9]{10}$/; 
+        if (phoneRegex.test(telefono.trim())) {
+            url = `http://localhost:3001/cuenta/telefono/${telefono.trim()}`;
+            isUpdatingByPhone = true;
+            identifierProvided = true;
+        } else {
+            setMessage('El formato del teléfono es incorrecto. No se puede usar como identificador.');
+            setIsError(true);
+            return;
+        }
     }
 
-    if (!nombreEmpleado.trim()) {
-      setError('El nombre es requerido');
-      return;
+    if (!identifierProvided) {
+        setMessage('Debe proporcionar el nombre o un teléfono válido para identificar al empleado.');
+        setIsError(true);
+        return;
+    }
+    
+    // Llenar `updateFields` con los datos que se van a actualizar
+    if (correo.trim() !== '') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(correo.trim())) {
+            setMessage('El formato del correo electrónico es incorrecto.');
+            setIsError(true);
+            return;
+        }
+        updateFields.correo = correo.trim();
+    }
+    
+    if (cedula.trim() !== '') {
+        updateFields.cedula = cedula.trim();
+    }
+    
+    // Si estamos actualizando por nombre, el teléfono se considera un campo a actualizar.
+    // No validamos su formato aquí, simplemente se envía tal cual.
+    if (isUpdatingByName && telefono.trim() !== '') {
+        updateFields.telefono = telefono.trim();
+    }
+    
+    // Si estamos actualizando por teléfono, el nombre se considera un campo a actualizar.
+    if (isUpdatingByPhone && nombre.trim() !== '') {
+        updateFields.nombre = nombre.trim();
     }
 
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correoElectronico)) {
-      setError('Por favor ingrese un correo electrónico válido');
-      return;
-    }
-
-    if (!/^\d{5,15}$/.test(numeroCedula)) {
-      setError('La cédula debe contener entre 5 y 15 dígitos');
-      return;
+    if (Object.keys(updateFields).length === 0) {
+        setMessage('No hay campos válidos para actualizar.');
+        setIsError(true);
+        return;
     }
 
     try {
-      // Solicitud PUT a la API
-      const updateResponse = await fetch(`http://localhost:3001/cuenta/${idEmpleado}`, {
+      const response = await fetch(url, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          nombre: nombreEmpleado,
-          telefono: telefono,
-          correo: correoElectronico,
-          cedula: numeroCedula,
-        }),
+        body: JSON.stringify(updateFields)
       });
 
-      if (!updateResponse.ok) {
-        const errorData = await updateResponse.json();
-        throw new Error(errorData.error || 'Error al actualizar');
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al actualizar el empleado.');
       }
 
-      // Éxito: mostrar mensaje y limpiar campos
-      setSuccess('Datos personales actualizados correctamente');
-      setIdEmpleado('');
-      setNombreEmpleado('');
-      setTelefono('');
-      setCorreoElectronico('');
-      setNumeroCedula('');
-
-      // Esperar 2 segundos antes de redirigir
+      const result = await response.json();
+      setMessage('✅ ' + result.message);
+      setIsError(false);
+      
       setTimeout(() => {
-        navigate('/inic');
-      }, 2000);
-
+        navigate('/Principal'); 
+      }, 2000); 
+      
     } catch (error) {
-      console.error('Fetch error:', error);
-      setError(error.message);
+      console.error('Error:', error);
+      setMessage('❌ ' + error.message);
+      setIsError(true);
     }
   };
 
   return (
     <>
-      <Cabe />
+      <Cabe/>
       <div className="cont">
-        <div className="da">Actualizar datos</div>
-
-        {error && <div className="error-message">{error}</div>}
-        {success && <div className="success-message">{success}</div>}
-
-        <div className="form-group">
-          <h2>ID del empleado</h2>
-          <input
-            type="text"
-            value={idEmpleado}
-            onChange={(e) => setIdEmpleado(e.target.value)}
-            placeholder="ID del empleado"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <h2>Nombre</h2>
-          <input
-            type="text"
-            value={nombreEmpleado}
-            onChange={(e) => setNombreEmpleado(e.target.value)}
-            placeholder="Nombre completo"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <h2>Teléfono</h2>
-          <input
-            type="text"
-            value={telefono}
-            onChange={(e) => setTelefono(e.target.value)}
-            placeholder="Número de teléfono"
-          />
-        </div>
-
-        <div className="form-group">
-          <h2>Correo electrónico</h2>
-          <input
-            type="email"
-            value={correoElectronico}
-            onChange={(e) => setCorreoElectronico(e.target.value)}
-            placeholder="ejemplo@correo.com"
-            required
-          />
-        </div>
-
-        <div className="form-group">
-          <h2>N° de cédula</h2>
-          <input
-            type="text"
-            value={numeroCedula}
-            onChange={(e) => setNumeroCedula(e.target.value)}
-            placeholder="Cédula"
-            required
-          />
-        </div>
-
-        <button onClick={handleAceptarClick} className="go">
-          <h2>Actualizar Datos</h2>
-        </button>
+        <h1 className='da'>Actualizar Empleado</h1>
+        {message && (
+          <div className={isError ? "error-message" : "success-message"}>
+            {message}
+          </div>
+        )}
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <h2>Nombre del Empleado</h2>
+            <input 
+              type="text" 
+              name="nombre" 
+              value={formData.nombre} 
+              onChange={handleChange} 
+            />
+          </div>
+          <div className="form-group">
+            <h2>Teléfono</h2>
+            <input 
+              type="text" 
+              name="telefono" 
+              value={formData.telefono} 
+              onChange={handleChange} 
+            />
+          </div>
+          <div className="form-group">
+            <h2>Nuevo Correo</h2>
+            <input 
+              type="email" 
+              name="correo" 
+              value={formData.correo} 
+              onChange={handleChange} 
+            />
+          </div>
+          <div className="form-group">
+            <h2> Cédula</h2>
+            <input 
+              type="text" 
+              name="cedula" 
+              value={formData.cedula} 
+              onChange={handleChange} 
+            />
+          </div>
+          <button type="submit" className='go'>Actualizar</button>
+        </form>
       </div>
     </>
   );
 }
 
-export default DatosPersonales;
+export default ActualizarEmpleado;

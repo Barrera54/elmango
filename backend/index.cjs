@@ -18,7 +18,6 @@ const db = mysql.createConnection({
   database: 'elmango',
   charset: 'utf8mb4'
 });
-
 db.connect(err => {
   if (err) {
     console.error('❌ Error de conexión a MySQL:', err);
@@ -29,57 +28,91 @@ db.connect(err => {
 
 // ----------------- RUTAS -----------------
 
-// LOGIN sin JWT
-app.post('/login', (req, res) => {
-  const { usuario, contrasena, tipoUsuario } = req.body;
-
-  console.log('--- Nueva solicitud de Login ---');
-  console.log('Datos recibidos:', { usuario, contrasena, tipoUsuario });
-
-  if (!usuario || !contrasena || !tipoUsuario) {
-    console.log('Faltan campos: Devolviendo 400.');
-    return res.status(400).json({ mensaje: 'Faltan campos' });
-  }
-
-  const sql = 'SELECT * FROM cuenta WHERE Usuario = ?';
-  db.query(sql, [usuario], (err, results) => {
-    if (err) {
-      console.error('Error en la consulta de la base de datos:', err);
-      return res.status(500).json({ mensaje: 'Error en el servidor' });
-    }
-
-    console.log('Resultados de la consulta SQL (results.length):', results.length);
-    if (results.length === 0) {
-      console.log('Usuario no encontrado: Devolviendo 401.');
-      // Este es el caso para "debería fallar si el usuario no existe"
-      return res.status(401).json({ mensaje: 'Usuario no encontrado' });
-    }
-
-    const cuenta = results[0];
-    console.log('Cuenta encontrada:', { Usuario: cuenta.Usuario, Contraseña: cuenta.Contraseña, cargo: cuenta.cargo });
-    console.log('Contraseña recibida en request:', contrasena);
-    console.log('Contraseña en DB:', cuenta.Contraseña);
-
-    if (cuenta.Contraseña !== contrasena) {
-      console.log('Contraseña incorrecta: Devolviendo 401.');
-      // Este es el caso para "debería fallar con contraseña incorrecta"
-      return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
-    }
-
-    console.log('Tipo de usuario recibido en request:', tipoUsuario);
-    console.log('Cargo en DB:', cuenta.cargo);
-
-    if ((cuenta.cargo || '').toLowerCase() !== tipoUsuario.toLowerCase()) {
-      console.log('Rol no coincide: Devolviendo 401.');
-      // Este es el caso para "debería fallar si el rol no coincide"
-      return res.status(401).json({ mensaje: 'Rol no coincide' });
-    }
-
-    console.log('Login exitoso: Devolviendo 200.');
-    res.json({ mensaje: 'Login exitoso', nombre: cuenta.Usuario, cargo: cuenta.cargo });
+// RUTAS GET
+// Obtener todos los empleados
+app.get('/cuenta', (_, res) => {
+  db.query('SELECT * FROM Cuenta', (err, results) => {
+    if (err) return res.status(500).json({ error: 'Error consulta empleados' });
+    res.json(results);
   });
 });
-// LOGIN con JWT
+
+// Obtener todos los productos
+app.get('/productos', (_, res) => {
+  db.query('SELECT * FROM productos', (err, results) => {
+    if (err) return res.status(500).json({ error: 'Error consulta productos' });
+    res.json(results);
+  });
+});
+
+// Obtener productos de la papelera
+app.get('/papelera-productos', (_, res) => {
+  const sql = 'SELECT * FROM papelera_producto';
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error en la consulta de productos de la papelera:', err);
+      return res.status(500).json({ error: 'Error al consultar productos en papelera' });
+    }
+    res.json(results);
+  });
+});
+
+// Obtener un producto por su código
+app.get('/productos/:Codi_produ', (req, res) => {
+  db.query('SELECT * FROM productos WHERE Codi_produ = ?', [req.params.Codi_produ], (err, results) => {
+    if (err) return res.status(500).json({ error: 'Error consulta producto' });
+    if (results.length === 0) return res.status(404).json({ error: 'Producto no encontrado' });
+    res.json(results[0]);
+  });
+});
+
+// Obtener clientes frecuentes
+app.get('/cliente_frecuent', (req, res) => {
+  db.query('SELECT * FROM cliente_frecuent', (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.status(200).json(results);
+  });
+});
+
+// Obtener deudores
+app.get('/deudor', (req, res) => {
+  db.query('SELECT * FROM deudor', (err, results) => {
+    if (err) {
+      console.error('Error consultando deudores:', err);
+      return res.status(500).json({ error: 'Error consultando deudores', details: err.message });
+    }
+    res.status(200).json(results);
+  });
+});
+
+// Obtener ventas de empleado
+app.get('/ventas-empleado', (_, res) => {
+  db.query('SELECT * FROM ventas_empleado', (err, results) => {
+    if (err) return res.status(500).json({ error: 'Error consulta ventas empleado' });
+    res.json(results);
+  });
+});
+
+
+// RUTAS DELETE
+// Eliminar producto de la papelera
+app.delete('/papelera-productos/:ID_produ', (req, res) => {
+  const productoId = req.params.ID_produ;
+  db.query('DELETE FROM papelera_producto WHERE id = ?', [productoId], (err, result) => {
+    if (err) {
+      console.error('Error al eliminar producto de la papelera:', err);
+      return res.status(500).json({ error: 'Error eliminando producto de la papelera' });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado en la papelera' });
+    }
+    res.json({ message: 'Producto eliminado de la papelera con éxito' });
+  });
+});
+
+
+// RUTAS PUT
+// Login con JWT
 app.put('/login', (req, res) => {
   const { usuario, contrasena, tipoUsuario } = req.body;
   if (!usuario || !contrasena || !tipoUsuario) {
@@ -139,6 +172,99 @@ app.put('/cuenta/:id/contrasena', (req, res) => {
   });
 });
 
+// Actualizar cuenta
+app.put('/cuenta/:nombre', (req, res) => {
+  const { nombre } = req.params; // Obtener el nombre del parámetro de la URL
+  const { telefono, correo, cedula } = req.body; // Obtener los campos del cuerpo de la solicitud
+
+  // Campos a actualizar y sus valores
+  const campos = [];
+  const valores = [];
+
+  if (telefono && telefono.trim() !== '') {
+    campos.push('Telefono = ?');
+    valores.push(telefono.trim());
+  }
+  if (correo && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
+    campos.push('Correo = ?');
+    valores.push(correo.trim());
+  }
+  if (cedula && /^\d{5,15}$/.test(cedula)) {
+    campos.push('Cedula = ?');
+    valores.push(cedula.trim());
+  }
+
+  if (campos.length === 0) {
+    return res.status(400).json({ error: 'No hay campos válidos para actualizar' });
+  }
+
+  // Se añade el campo "nombre" a la cláusula WHERE
+  const sql = `UPDATE cuenta SET ${campos.join(', ')} WHERE nombre = ?`;
+  valores.push(nombre); // Se añade el nombre al final de los valores
+
+  db.query(sql, valores, (err, result) => {
+    if (err) return res.status(500).json({ error: 'Error al actualizar' });
+    if (result.affectedRows === 0) return res.status(404).json({ error: 'Empleado no encontrado' });
+    res.json({ message: 'Empleado actualizado correctamente' });
+  });
+});
+
+// Actualizar producto
+app.put('/productos/:NomproductoActual', (req, res) => {
+  const { NomproductoActual } = req.params;
+  const { Codi_produ, descripcion, precio, stock, categoria } = req.body;
+  db.query(
+    'UPDATE productos SET Codi_produ = ?, descripcion = ?, precio = ?, stock = ?, categoria = ? WHERE Nomproducto = ?',
+    [Codi_produ, descripcion, precio, stock, categoria, NomproductoActual],
+    (err, results) => {
+      if (err) return res.status(500).json({ error: 'Error actualizando producto' });
+      if (results.affectedRows === 0) return res.status(404).json({ error: 'Producto no encontrado' });
+      res.json({ message: 'Producto actualizado' });
+    }
+  );
+});
+
+
+// RUTAS POST
+// Login sin JWT
+app.post('/login', (req, res) => {
+  const { usuario, contrasena, tipoUsuario } = req.body;
+  console.log('--- Nueva solicitud de Login ---');
+  console.log('Datos recibidos:', { usuario, contrasena, tipoUsuario });
+  if (!usuario || !contrasena || !tipoUsuario) {
+    console.log('Faltan campos: Devolviendo 400.');
+    return res.status(400).json({ mensaje: 'Faltan campos' });
+  }
+  const sql = 'SELECT * FROM cuenta WHERE Usuario = ?';
+  db.query(sql, [usuario], (err, results) => {
+    if (err) {
+      console.error('Error en la consulta de la base de datos:', err);
+      return res.status(500).json({ mensaje: 'Error en el servidor' });
+    }
+    console.log('Resultados de la consulta SQL (results.length):', results.length);
+    if (results.length === 0) {
+      console.log('Usuario no encontrado: Devolviendo 401.');
+      return res.status(401).json({ mensaje: 'Usuario no encontrado' });
+    }
+    const cuenta = results[0];
+    console.log('Cuenta encontrada:', { Usuario: cuenta.Usuario, Contraseña: cuenta.Contraseña, cargo: cuenta.cargo });
+    console.log('Contraseña recibida en request:', contrasena);
+    console.log('Contraseña en DB:', cuenta.Contraseña);
+    if (cuenta.Contraseña !== contrasena) {
+      console.log('Contraseña incorrecta: Devolviendo 401.');
+      return res.status(401).json({ mensaje: 'Contraseña incorrecta' });
+    }
+    console.log('Tipo de usuario recibido en request:', tipoUsuario);
+    console.log('Cargo en DB:', cuenta.cargo);
+    if ((cuenta.cargo || '').toLowerCase() !== tipoUsuario.toLowerCase()) {
+      console.log('Rol no coincide: Devolviendo 401.');
+      return res.status(401).json({ mensaje: 'Rol no coincide' });
+    }
+    console.log('Login exitoso: Devolviendo 200.');
+    res.json({ mensaje: 'Login exitoso', nombre: cuenta.Usuario, cargo: cuenta.cargo });
+  });
+});
+
 // Crear cuenta
 app.post('/crearCuenta', (req, res) => {
   const { nombre, telefono, correo, cedula, cargo, usuario, contrasena } = req.body;
@@ -163,13 +289,12 @@ app.post('/crearCuenta', (req, res) => {
   });
 });
 
+// Guardar valoración
 app.post('/guardarValoracion', (req, res) => {
   const { calificacion, comentario } = req.body;
-
   if (!calificacion) {
     return res.status(400).json({ mensaje: 'La calificación es obligatoria' });
   }
-
   db.query(
     'INSERT INTO encusystem (Calificacion, Comentario) VALUES (?, ?)',
     [calificacion, comentario || null],
@@ -178,126 +303,32 @@ app.post('/guardarValoracion', (req, res) => {
         console.error('Error al guardar valoración:', err);
         return res.status(500).json({ mensaje: 'Error al guardar la valoración' });
       }
-
       res.status(201).json({ mensaje: 'Valoración guardada exitosamente', id: result.insertId });
     }
   );
 });
-app.post('/guardarValoracion', (req, res) => {
-  const { calificacion, comentario } = req.body;
+app.post('/guardarValoracionProducto', (req, res) => {
+  const { producto_Cal, calificacion } = req.body;
 
-  if (!calificacion) {
-    return res.status(400).json({ mensaje: 'La calificación es obligatoria' });
+  // Validación de campos obligatorios
+  if (!producto_Cal || !calificacion) {
+      return res.status(400).json({ mensaje: 'El nombre del producto y la calificación son obligatorios.' });
   }
 
-  db.query(
-    'INSERT INTO encusystem (Calificacion, Comentario) VALUES (?, ?)',
-    [calificacion, comentario || null],
-    (err, result) => {
+  // Consulta SQL para insertar los datos
+  const sql = 'INSERT INTO encuestas_producto (producto_Cal, calificacion, fecha) VALUES (?, ?, NOW())';
+  
+  // Ejecutar la consulta
+  db.query(sql, [producto_Cal, calificacion], (err, result) => {
       if (err) {
-        console.error('Error al guardar valoración:', err);
-        return res.status(500).json({ mensaje: 'Error al guardar la valoración' });
+          console.error('Error al guardar la valoración del producto:', err);
+          return res.status(500).json({ mensaje: 'Error al guardar la valoración.' });
       }
-
-      res.status(201).json({ mensaje: 'Valoración guardada exitosamente', id: result.insertId });
-    }
-  );
-});
-
-// CRUD empleados
-app.get('/empleados', (_, res) => {
-  db.query('SELECT * FROM empleados', (err, results) => {
-    if (err) return res.status(500).json({ error: 'Error consulta empleados' });
-    res.json(results);
+      res.status(201).json({ mensaje: 'Valoración guardada exitosamente.', id: result.insertId });
   });
 });
 
-app.put('/cuenta/:id', (req, res) => {
-  const { id } = req.params;
-  const { nombre, telefono, correo, cedula } = req.body;
-
-  // Validar que el ID sea numérico
-  if (!/^\d+$/.test(id)) {
-    return res.status(400).json({ error: 'ID inválido' });
-  }
-
-  // Construir dinámicamente la consulta con solo los campos válidos
-  const campos = [];
-  const valores = [];
-
-  if (nombre && nombre.trim() !== '') {
-    campos.push('nombre = ?');
-    valores.push(nombre.trim());
-  }
-
-  if (telefono && telefono.trim() !== '') {
-    campos.push('Telefono = ?');
-    valores.push(telefono.trim());
-  }
-
-  if (correo && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo)) {
-    campos.push('Correo = ?');
-    valores.push(correo.trim());
-  }
-
-  if (cedula && /^\d{5,15}$/.test(cedula)) {
-    campos.push('Cedula = ?');
-    valores.push(cedula.trim());
-  }
-
-  if (campos.length === 0) {
-    return res.status(400).json({ error: 'No hay campos válidos para actualizar' });
-  }
-
-  const sql = `UPDATE cuenta SET ${campos.join(', ')} WHERE id = ?`;
-  valores.push(id);
-
-  db.query(sql, valores, (err, result) => {
-    if (err) return res.status(500).json({ error: 'Error al actualizar' });
-    if (result.affectedRows === 0) return res.status(404).json({ error: 'Empleado no encontrado' });
-    res.json({ message: 'Empleado actualizado correctamente' });
-  });
-});
-
-// CRUD productos
-app.get('/productos', (_, res) => {
-  db.query('SELECT * FROM productos', (err, results) => {
-    if (err) return res.status(500).json({ error: 'Error consulta productos' });
-    res.json(results);
-  });
-});
-
-app.get('/papelera-productos', (_, res) => {
-  // Consulta SQL para seleccionar todos los registros de la tabla 'papelera_producto'
-  const sql = 'SELECT * FROM papelera_producto';
-
-  // Ejecuta la consulta a la base de datos
-  db.query(sql, (err, results) => {
-    // Manejo de errores de la base de datos
-    if (err) {
-      console.error('Error en la consulta de productos de la papelera:', err);
-      // Si hay un error en el servidor, devuelve un estado 500 Internal Server Error
-      return res.status(500).json({ error: 'Error al consultar productos en papelera' });
-    }
-    // Si la consulta es exitosa, devuelve los resultados en formato JSON con un estado 200 OK
-    res.json(results);
-  });
-});
-
-app.get('/productos/:Codi_produ', (req, res) => {
-  db.query('SELECT * FROM productos WHERE Codi_produ = ?', [req.params.Codi_produ], (err, results) => {
-    if (err) return res.status(500).json({ error: 'Error consulta producto' });
-    if (results.length === 0) return res.status(404).json({ error: 'Producto no encontrado' });
-    res.json(results[0]);
-  });
-});
-app.get('/cliente_frecuent', (req, res) => {
-  db.query('SELECT * FROM cliente_frecuent', (err, results) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.status(200).json(results);
-  });
-});
-
+// Agregar producto
 app.post('/productos', (req, res) => {
   const { Codi_produ, Nomproducto, descripcion, precio, stock, categoria } = req.body;
   db.query(
@@ -310,7 +341,7 @@ app.post('/productos', (req, res) => {
   );
 });
 
-
+// Agregar producto a la papelera
 app.post('/papelera_producto', (req, res) => {
   const { Nomproducto, precio, descripcion } = req.body;
   db.query(
@@ -325,6 +356,8 @@ app.post('/papelera_producto', (req, res) => {
     }
   );
 });
+
+// Agregar cliente frecuente
 app.post('/cliente_frecuent', (req, res) => {
   const { nomFrecu, docuFrecu, celuFrecu } = req.body;
   db.query(
@@ -336,9 +369,10 @@ app.post('/cliente_frecuent', (req, res) => {
     }
   );
 });
+
+// Agregar deudor
 app.post('/deudor', (req, res) => {
   const { nomDeu, valoDeu } = req.body;
-
   db.query(
     'INSERT INTO deudor (nomDeu, valoDeu) VALUES (?, ?)',
     [nomDeu, valoDeu],
@@ -350,7 +384,6 @@ app.post('/deudor', (req, res) => {
           details: err.message
         });
       }
-
       res.status(201).json({
         message: 'Deudor insertado exitosamente',
         id: results.insertId,
@@ -360,61 +393,38 @@ app.post('/deudor', (req, res) => {
   );
 });
 
-app.get('/deudor', (req, res) => {
-  db.query('SELECT * FROM deudor', (err, results) => {
-    if (err) {
-      console.error('Error consultando deudores:', err);
-      return res.status(500).json({ error: 'Error consultando deudores', details: err.message });
-    }
-    res.status(200).json(results);
-  });
-});
-app.put('/productos/:NomproductoActual', (req, res) => {
-  const { NomproductoActual } = req.params;
-  const { Codi_produ, descripcion, precio, stock, categoria } = req.body;
+app.post('/devolucion', (req, res) => {
+  // Extrae los datos del cuerpo de la petición.
+  // Es importante que los nombres de las propiedades coincidan con los nombres de las columnas en tu base de datos
+  const { producto_Nom, cantidad, Monto, fecha_devolucion } = req.body;
+
+  // Consulta SQL para insertar los datos en la tabla 'devoluciones'
+  const sql = 'INSERT INTO devoluciones (producto_Nom, cantidad, Monto, fecha_devolucion) VALUES (?, ?, ?, ?)';
+  
+  // Ejecuta la consulta
   db.query(
-    'UPDATE productos SET Codi_produ = ?, descripcion = ?, precio = ?, stock = ?, categoria = ? WHERE Nomproducto = ?',
-    [Codi_produ, descripcion, precio, stock, categoria, NomproductoActual],
+    sql,
+    [producto_Nom, cantidad, Monto, fecha_devolucion],
     (err, results) => {
-      if (err) return res.status(500).json({ error: 'Error actualizando producto' });
-      if (results.affectedRows === 0) return res.status(404).json({ error: 'Producto no encontrado' });
-      res.json({ message: 'Producto actualizado' });
+      // Manejo de errores
+      if (err) {
+        console.error('Error insertando devolución:', err);
+        return res.status(500).json({
+          error: 'Error insertando en la tabla devoluciones',
+          details: err.message
+        });
+      }
+      
+      // Si la inserción es exitosa, envía una respuesta
+      res.status(201).json({
+        message: 'Devolución insertada exitosamente',
+        id: results.insertId,
+        results
+      });
     }
   );
 });
-
-
-// Tu API de eliminación actual
-app.delete('/papelera-productos/:ID_produ', (req, res) => {
-  const productoId = req.params.ID_produ; // El ID del producto a eliminar
-
-  // Consulta SQL para eliminar el producto de la tabla 'papelera_producto'
-  // Usamos 'id' como la columna de clave primaria en papelera_producto
-  db.query('DELETE FROM papelera_producto WHERE id = ?', [productoId], (err, result) => {
-    if (err) {
-      console.error('Error al eliminar producto de la papelera:', err);
-      return res.status(500).json({ error: 'Error eliminando producto de la papelera' });
-    }
-
-    // Si no se afectó ninguna fila, significa que el producto no fue encontrado
-    if (result.affectedRows === 0) {
-      return res.status(404).json({ error: 'Producto no encontrado en la papelera' });
-    }
-
-    // Si la eliminación fue exitosa
-    res.json({ message: 'Producto eliminado de la papelera con éxito' });
-  });
-});
-
-// Ventas empleado
-app.get('/ventas-empleado', (_, res) => {
-  db.query('SELECT * FROM ventas_empleado', (err, results) => {
-    if (err) return res.status(500).json({ error: 'Error consulta ventas empleado' });
-    res.json(results);
-  });
-});
-
-// --- ✅ Listen solo si NO es test ---
+// --- Listen solo si NO es test ---
 if (require.main === module) {
   app.listen(PORT, () => {
     console.log(`🚀 Servidor backend corriendo en http://localhost:${PORT}`);

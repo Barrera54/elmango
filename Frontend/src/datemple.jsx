@@ -3,65 +3,95 @@ import './css/datemp.css';
 import Cabe from './menu';
 import { useNavigate } from 'react-router-dom';
 import { Table } from "@radix-ui/themes";
+
 function EmployeeData() {
-  const [empleados, setEmpleados] = useState([]); // Lista de empleados
+  const [employees, setEmployees] = useState([]); // Employee list
+  const [currentPage, setCurrentPage] = useState(0); // Pagination state
+  const employeesPerPage = 4; // Number of rows per page
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('http://localhost:3001/empleados')
+    // The API call now points to the /cuenta route
+    fetch('http://localhost:3001/cuenta')
       .then(res => res.json())
       .then(data => {
         console.log('Datos recibidos:', data);
-        setEmpleados(data);
+        setEmployees(data); // State is updated with API data
       })
       .catch(err => console.error(err));
   }, []);
 
+  // Calculate total number of pages
+  const totalPages = Math.ceil(employees.length / employeesPerPage);
+
+  // Get employees for the current page
+  const employeesOnPage = employees.slice(
+    currentPage * employeesPerPage,
+    (currentPage + 1) * employeesPerPage
+  );
+
+  // Function to go to the next page (right)
+  const nextPage = () => {
+    setCurrentPage(prev => (prev + 1) % totalPages);
+  };
+
+  // Function to go to the previous page (left)
+  const previousPage = () => {
+    setCurrentPage(prev => (prev - 1 + totalPages) % totalPages);
+  };
+
   return (
-    <div>
+    <div className="employee-data-container">
       <Cabe/>
-      <div>
-        <h1 className="ple">Datos empleados</h1>
+      <div className="employee-table-card">
+        <h1 className="table-title">Datos de Empleados</h1>
+        <div className="table-wrapper">
+          <Table.Root>
+            <Table.Header>
+              <Table.Row>
+                <Table.ColumnHeaderCell className="table-header-cell">Nombre</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell className="table-header-cell">Telefono</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell className="table-header-cell">Correo</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell className="table-header-cell">Cedula</Table.ColumnHeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {employeesOnPage.map((employee, index) => (
+                <Table.Row key={index} className="table-row">
+                  <Table.RowHeaderCell className="table-cell">{employee.nombre}</Table.RowHeaderCell>
+                  <Table.Cell className="table-cell">{employee.Telefono}</Table.Cell>
+                  <Table.Cell className="table-cell">{employee.Correo}</Table.Cell>
+                  <Table.Cell className="table-cell">{employee.Cedula}</Table.Cell>
+                </Table.Row>
+              ))}
+            </Table.Body>
+          </Table.Root>
+        </div>
+        <div className="pagination-controls">
+          <button 
+            onClick={previousPage} 
+            disabled={currentPage === 0} 
+            className="pagination-button"
+          >
+            Anterior
+          </button>
+          <span className="pagination-info">Página {currentPage + 1} de {totalPages}</span>
+          <button 
+            onClick={nextPage} 
+            disabled={currentPage === totalPages - 1 || totalPages === 0}
+            className="pagination-button"
+          >
+            Siguiente
+          </button>
+        </div>
       </div>
-      <Table.Root>
-	<Table.Header>
-		<Table.Row>
-			<Table.ColumnHeaderCell>Nombre</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>Telefono</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>Correo</Table.ColumnHeaderCell>
-			<Table.ColumnHeaderCell>Cedula</Table.ColumnHeaderCell>
-		</Table.Row>
-	</Table.Header>
-
-	<Table.Body>
-		<Table.Row>
-			<Table.RowHeaderCell>Marlon Palacio</Table.RowHeaderCell>
-			<Table.Cell>356465</Table.Cell>
-			<Table.Cell>Marlonp@gmail.com</Table.Cell>
-      <Table.Cell>311444569</Table.Cell>
-		</Table.Row>
-
-		<Table.Row>
-			<Table.RowHeaderCell>Samuel Barrera</Table.RowHeaderCell>
-      <Table.Cell>564644</Table.Cell>
-			<Table.Cell>Samuelb@gmail.com</Table.Cell>
-      <Table.Cell>320517486</Table.Cell>
-		</Table.Row>
-
-		<Table.Row>
-			<Table.RowHeaderCell>Santiago Lopera</Table.RowHeaderCell>
-      <Table.Cell>564679</Table.Cell>
-			<Table.Cell>Salto@gmail.com</Table.Cell>
-      <Table.Cell>321465465</Table.Cell>
-		</Table.Row>
-	</Table.Body>
-</Table.Root>
-      <div className="trab">
-        <button onClick={() => navigate('/Actualizaremmpl')} className='ji'>Actualizar</button>
+      <div className="update-button-container">
+        <button onClick={() => navigate('/Actualizaremmpl')} className="update-button">
+          Actualizar
+        </button>
       </div>
     </div>
   );
 }
 
 export default EmployeeData;
-

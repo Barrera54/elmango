@@ -1,0 +1,95 @@
+/* Variables para colores */
+:root {
+    --color-primario: #007bff;
+    --color-secundario: #f8f9fa;
+    --color-texto: #343a40;
+    --color-borde: #dee2e6;
+    --color-fondo: #ffffff;
+    --color-estrellas: #ffc107;
+  }
+  
+  /* Estilos generales del contenedor */
+  .encuesta-container {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: var(--color-fondo);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--color-texto);
+    margin-top: 10%;
+  }
+  
+  /* Títulos y subtítulos */
+  .encuesta-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: var(--color-primario);
+  }
+  
+  .seccion-title {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--color-borde);
+    padding-bottom: 8px;
+  }
+  
+  /* Sección de calificación con estrellas */
+  .calificacion-estrellas {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 2.5rem;
+    cursor: pointer;
+  }
+  
+  .estrella {
+    color: var(--color-borde);
+    transition: color 0.3s ease;
+  }
+  
+  .estrella.seleccionada {
+    color: var(--color-estrellas);
+  }
+  
+  .estrella:hover {
+    color: var(--color-estrellas);
+  }
+  
+  /* Campo de input para el producto */
+  .input-producto {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--color-borde);
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+  
+  .input-producto:focus {
+    border-color: var(--color-primario);
+    outline: none;
+  }
+  
+  /* Botón de envío */
+  .boton-enviar {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--color-primario);
+    color: var(--color-fondo);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .boton-enviar:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+  }

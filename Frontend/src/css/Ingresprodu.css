@@ -14,11 +14,13 @@
     margin-bottom: 30px;
     font-weight: 10;
     font-size: 54px;
+    font-family: Cursive;
   }
   
   .llegadProdu-de,
   .llegadProdu-cli {
     margin-bottom: 20px;
+    font-family: Cursive;
   }
   
   .llegadProdu-de h2,
@@ -58,7 +60,7 @@
     padding-right: 35px; /* Para que el texto no se superponga con la flecha */
   }
   
-  button {
+  .prod {
     width: 100%;
     padding: 15px;
     background-color: #007bff;
@@ -68,24 +70,26 @@
     transition: background-color 0.3s ease, transform 0.2s ease;
     margin-top: 20px;
     margin-left: 25%;
+    font-family: Cursive;
   }
   
-  button:hover {
+  .prod:hover {
     background-color: #0056b3;
     transform: translateY(-2px);
   }
   
-  button:active {
+  .prod:active {
     transform: translateY(0);
   }
   
-  button a {
+  .prod a {
     text-decoration: none;
     color: #fff;
   }
   
-  button a h2 {
+  .prod a h2 {
     margin: 0;
     font-size: 18px;
     font-weight: 600;
+    font-family: Cursive;
   }

@@ -61,6 +61,7 @@ const Catalogo = () => {
                 <h1>Producto: {producto.Nomproducto}</h1> {/* Usar producto.nombre si es el nombre de la columna */}
                 <h1>Precio: ${producto.precio ? producto.precio.toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</h1>
                 <h1>Categoria: {producto.categoria}</h1>
+                <h1>Codigo: {producto.Codi_produ}</h1>
                 <button onClick={() => navigate('/Edit')}>Editar</button>
               </div>
             </div>
