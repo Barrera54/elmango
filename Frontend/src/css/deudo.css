@@ -88,7 +88,21 @@
 .deudo-button:active {
     transform: translateY(1px);
 }
-
+.deudo-toggle-button {
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    color: white;
+    border: none;
+    padding: 16px 40px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+    height: 80px;
+}
 /* Responsive */
 @media (max-width: 600px) {
     .deudo-container {

@@ -27,6 +27,27 @@ export default function ClientsPanel() {
       .catch(err => console.error('Error al obtener deudores:', err));
   }, []);
 
+  // Función para saldar la deuda (DELETE request)
+  const handleSaldarDeuda = async (idDeudor, nomDeu) => {
+    try {
+      // Envía una solicitud DELETE a la API con el ID del deudor
+      const response = await axios.delete(`http://localhost:3001/deudor/${idDeudor}`);
+      
+      // Muestra una alerta de éxito
+      alert(`La deuda de ${nomDeu} ha sido saldada con éxito.`);
+
+      // Actualiza la lista de deudores para reflejar el cambio
+      setDeudores(deudores.filter(deudor => deudor.idDeudor !== idDeudor));
+      
+      console.log('Respuesta de la API:', response.data.message);
+    } catch (error) {
+      // Maneja errores y muestra una alerta
+      console.error('Error al saldar la deuda:', error);
+      alert('Error al saldar la deuda. Por favor, inténtelo de nuevo.');
+    }
+  };
+
+
   const togglePanel = (panelId) => {
     setActivePanel(activePanel === panelId ? null : panelId);
   };
@@ -121,13 +142,22 @@ export default function ClientsPanel() {
                   <tr>
                     <th>Cliente</th>
                     <th>Deuda</th>
+                    <th>Acciones</th> {/* Nueva columna para el botón */}
                   </tr>
                 </thead>
                 <tbody>
-                  {currentDeudores.map((deudor, index) => (
-                    <tr key={index}>
+                  {currentDeudores.map((deudor) => (
+                    <tr key={deudor.idDeudor}>
                       <td>{deudor.nomDeu}</td>
                       <td>{deudor.valoDeu}</td>
+                      <td>
+                        <button 
+                          className="saldar-btn" 
+                          onClick={() => handleSaldarDeuda(deudor.idDeudor, deudor.nomDeu)}
+                        >
+                          Saldar Deuda
+                        </button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -154,7 +184,6 @@ export default function ClientsPanel() {
               <button className="clients-btn" onClick={() => navigate('/Deudor')}>
                 Registrar
               </button>
-              <button className="clients-btn clients-btn-secondary">Cancelar</button>
             </div>
           </div>
         </section>

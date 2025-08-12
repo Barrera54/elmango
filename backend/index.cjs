@@ -40,10 +40,22 @@ app.get('/cuenta', (_, res) => {
 // Obtener todos los productos
 app.get('/productos', (_, res) => {
   db.query('SELECT * FROM productos', (err, results) => {
-    if (err) return res.status(500).json({ error: 'Error consulta productos' });
-    res.json(results);
+    if (err) {
+      return res.status(500).json({ error: 'Error consulta productos' });
+    }
+
+    // Convertir BLOB a Base64
+    const productosConImagen = results.map(prod => ({
+      ...prod,
+      imagen: prod.imagen
+        ? `data:image/jpeg;base64,${prod.imagen.toString('base64')}`
+        : null
+    }));
+
+    res.json(productosConImagen);
   });
 });
+
 
 // Obtener productos de la papelera
 app.get('/papelera-productos', (_, res) => {
@@ -110,6 +122,32 @@ app.delete('/papelera-productos/:ID_produ', (req, res) => {
   });
 });
 
+app.delete('/deudor/:idDeudor', (req, res) => {
+  // Extraemos el idDeudor de los parámetros de la URL
+  const deudorId = req.params.idDeudor;
+
+  // Verificamos si el ID es válido
+  if (!deudorId || isNaN(deudorId)) {
+    return res.status(400).json({ error: 'ID de deudor inválido' });
+  }
+
+  // Consulta SQL para eliminar el deudor con el ID proporcionado
+  db.query('DELETE FROM deudor WHERE idDeudor = ?', [deudorId], (err, result) => {
+    // Si hay un error en la consulta, lo registramos y enviamos una respuesta 500
+    if (err) {
+      console.error('Error al eliminar deudor:', err);
+      return res.status(500).json({ error: 'Error eliminando deudor' });
+    }
+
+    // Si no se eliminó ninguna fila, significa que el deudor no fue encontrado
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: 'Deudor no encontrado' });
+    }
+
+    // Si la eliminación fue exitosa, enviamos una respuesta JSON
+    res.json({ message: 'Deudor eliminado con éxito' });
+  });
+});
 
 // RUTAS PUT
 // Login con JWT
@@ -209,6 +247,30 @@ app.put('/cuenta/:nombre', (req, res) => {
   });
 });
 
+// Actualizar deuda sumando al valor existente (PUT por nombre)
+app.put('/deudor/:nombre', (req, res) => {
+  const { nombre } = req.params;
+  const { valoDeu } = req.body;
+
+  if (!valoDeu || isNaN(valoDeu)) {
+    return res.status(400).json({ error: 'Monto de deuda inválido' });
+  }
+
+  // Obtener deuda actual
+  db.query('SELECT valoDeu FROM deudor WHERE nomDeu = ?', [nombre], (err, results) => {
+    if (err) return res.status(500).json({ error: 'Error consultando deuda' });
+    if (results.length === 0) return res.status(404).json({ error: 'Deudor no encontrado' });
+
+    const deudaActual = results[0].valoDeu || 0;
+    const nuevaDeuda = deudaActual + parseFloat(valoDeu);
+
+    // Actualizar con el nuevo valor
+    db.query('UPDATE deudor SET valoDeu = ? WHERE nomDeu = ?', [nuevaDeuda, nombre], (err) => {
+      if (err) return res.status(500).json({ error: 'Error actualizando deuda' });
+      res.json({ message: 'Deuda actualizada correctamente', nuevaDeuda });
+    });
+  });
+});
 // Actualizar producto
 app.put('/productos/:NomproductoActual', (req, res) => {
   const { NomproductoActual } = req.params;
@@ -421,6 +483,32 @@ app.post('/devolucion', (req, res) => {
         id: results.insertId,
         results
       });
+    }
+  );
+});
+// app.post es para manejar la solicitud POST desde el cliente
+app.post('/ventas_empleado', (req, res) => {
+  // Se obtienen los datos del cuerpo de la solicitud (request body)
+  // 'req.body' debería contener los datos que el cliente quiere enviar
+  // a la base de datos, en este caso 'emplead_nom' y 'monto'.
+  const { emplead_nom, monto, metodo } = req.body;
+
+  // Se realiza una consulta SQL para insertar los datos en la tabla 'ventas_empleado'
+  // El 'fecha_hora' se establece automáticamente con el valor actual de la base de datos
+  // por lo que no es necesario enviarlo desde el cliente.
+  db.query(
+    'INSERT INTO ventas_empleado (emplead_nom, monto, metodo) VALUES (?, ?, ?)',
+    [emplead_nom, monto, metodo],
+    (err, results) => {
+      // Manejo de errores
+      if (err) {
+        // Si hay un error, se envía una respuesta con estado 500
+        // y un mensaje de error en formato JSON.
+        console.error('Error al insertar la venta:', err);
+        return res.status(500).json({ error: 'Error al registrar la venta del empleado' });
+      }
+      // Si la operación es exitosa, se envía la respuesta con los resultados.
+      res.json(results);
     }
   );
 });

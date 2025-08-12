@@ -1,16 +1,30 @@
 import React, { useState, useEffect } from "react";
 import "./css/cata.css";
-import Cabe from './menu'; // Asegúrate de que este componente 'menu' existe y funciona correctamente.
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
+import Cabe from './menu';
+import { useNavigate } from 'react-router-dom';
+
+// Componente de notificación flotante
+const Notification = ({ message }) => {
+  return (
+    <div className="notification-spam">
+      <div className="notification-content">
+        <span role="img" aria-label="alert">⚠️</span> {message}
+      </div>
+    </div>
+  );
+};
 
 const Catalogo = () => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const navigate = useNavigate(); // Llama a useNavigate dentro del componente
+  const [notificaciones, setNotificaciones] = useState([]); // Estado para notificaciones
+  const navigate = useNavigate();
+
+  // Define el umbral mínimo de stock
+  const UMBRAL_MINIMO_STOCK = 5;
 
   useEffect(() => {
-    // Function to fetch products from the API
     const fetchProductos = async () => {
       try {
         const response = await fetch('http://localhost:3001/productos');
@@ -18,17 +32,40 @@ const Catalogo = () => {
           throw new Error(`Error HTTP! Status: ${response.status}`);
         }
         const data = await response.json();
-        setProductos(data); // Update state with products from the API
+        setProductos(data);
+
+        // Verificar stock y generar notificaciones
+        const notificacionesGeneradas = data
+          .filter(p => p.stock <= UMBRAL_MINIMO_STOCK)
+          .map(p => ({
+            id: p.ID_produ, // Usamos el ID para identificar la notificación
+            message: `El producto "${p.Nomproducto}" está llegando a su cantidad menor a ${UMBRAL_MINIMO_STOCK}.`
+          }));
+        setNotificaciones(notificacionesGeneradas);
+
       } catch (err) {
-        setError('Error loading products: ' + err.message);
-        console.error('Error loading products:', err);
+        setError('Error cargando productos: ' + err.message);
+        console.error('Error cargando productos:', err);
       } finally {
-        setLoading(false); // End loading, whether successful or with error
+        setLoading(false);
       }
     };
 
-    fetchProductos(); // Call the fetch function when the component mounts
-  }, []); // The empty array ensures it runs only once on mount
+    fetchProductos();
+
+    // Función para manejar el clic en cualquier parte de la pantalla
+    const handleDocumentClick = () => {
+      setNotificaciones([]);
+    };
+
+    // Agregar el event listener al documento
+    document.addEventListener('click', handleDocumentClick);
+
+    // Limpiar el event listener cuando el componente se desmonte
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, []);
 
   return (
     <div>
@@ -38,8 +75,15 @@ const Catalogo = () => {
         <h1>Catálogo de Productos</h1>
       </div>
 
-      {/* The search section is maintained, although it does not have real-time search functionality here */}
-    
+      {/* Área para mostrar notificaciones flotantes */}
+      <div className="notification-container">
+        {notificaciones.map(notificacion => (
+          <Notification 
+            key={notificacion.id}
+            message={notificacion.message}
+          />
+        ))}
+      </div>
 
       {loading ? (
         <p className="message">Cargando productos...</p>
@@ -50,18 +94,18 @@ const Catalogo = () => {
       ) : (
         <div className="ld">
           {productos.map((producto) => (
-            <div key={producto.id} className="lu"> {/* Usar producto.id como key si existe, o un identificador único */}
+            <div key={producto.ID_produ} className="lu">
               {/* Imagen del producto */}
               <img
-                src={producto.imagen || "https://placehold.co/100x100/cccccc/ffffff?text=No+Img"} // Fallback image with smaller size
-                alt={producto.nombre}
-                className="product-image-small" // New class for small image
+                src={producto.imagen || "https://placehold.co/150x150/cccccc/ffffff?text=Sin+Imagen"}
+                alt={producto.Nomproducto}
+                className="product-image-small"
               />
               <div className="mu">
-                <h1>Producto: {producto.Nomproducto}</h1> {/* Usar producto.nombre si es el nombre de la columna */}
-                <h1>Precio: ${producto.precio ? producto.precio.toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : 'N/A'}</h1>
-                <h1>Categoria: {producto.categoria}</h1>
-                <h1>Codigo: {producto.Codi_produ}</h1>
+                <h1>Producto: {producto.Nomproducto}</h1>
+                <h1>Precio: ${producto.precio ? producto.precio.toLocaleString('es-CO', { minimumFractionDigits: 2 }) : 'N/A'}</h1>
+                <h1>Categoría: {producto.categoria}</h1>
+                <h1>Código: {producto.Codi_produ}</h1>
                 <button onClick={() => navigate('/Edit')}>Editar</button>
               </div>
             </div>

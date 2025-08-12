@@ -24,7 +24,7 @@ const EncuestaProducto = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3000/guardarValoracionProducto', {
+      const response = await fetch('http://localhost:3001/guardarValoracionProducto', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

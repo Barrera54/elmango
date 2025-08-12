@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cabe from './menu';
 import './css/pinci.css';
-import SelectPage from './select'; // Importa el componente de la página de pago
+import SelectPage from './select';
 import { jsPDF } from 'jspdf';
 
 function Menu({ onLogout }) {
@@ -13,7 +13,7 @@ function Menu({ onLogout }) {
     const [products, setProducts] = useState([]);
     const [error, setError] = useState(null);
     const [quantities, setQuantities] = useState({});
-    const [showPaymentModal, setShowPaymentModal] = useState(false); // Nuevo estado para el modal de pago
+    const [showPaymentModal, setShowPaymentModal] = useState(false);
 
     useEffect(() => {
         const isAuthenticated = localStorage.getItem('isAuthenticated');
@@ -189,7 +189,7 @@ function Menu({ onLogout }) {
                 <button onClick={generatePDF}>Factura</button>
                 <button onClick={clearProducts}>Anular</button>
                 <button onClick={() => navigate('/Deudor')}>Deudores</button>
-                <button onClick={() => setShowPaymentModal(true)}>Pago</button> {/* Cambiado para mostrar el modal */}
+                <button onClick={() => setShowPaymentModal(true)}>Pago</button>
                 <button onClick={onLogout}>Cerrar Sesión</button>
             </div>
 
@@ -205,12 +205,16 @@ function Menu({ onLogout }) {
                 </h1>
             </div>
 
-            {/* Renderizado condicional del modal de pago */}
             {showPaymentModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <button className="close-button" onClick={() => setShowPaymentModal(false)}>X</button>
-                        <SelectPage />
+                        <SelectPage 
+                            totalAmount={totalAmount} 
+                            products={products} 
+                            quantities={quantities} 
+                            onClose={() => setShowPaymentModal(false)}
+                        />
                     </div>
                 </div>
             )}

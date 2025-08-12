@@ -82,6 +82,8 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* More pronounced shadow */
     padding: 30px;
     text-align: center; /* Center content within the box */
+    margin-top: 15%;
+    font-family: Cursive;
 }
 
 .payment-heading h2 {
@@ -163,3 +165,46 @@
     color: #555;
     font-weight: 500;
 }
+.customer-input-container {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+   
+}
+
+.customer-input-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.customer-input-container input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.total-display {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.total-display h3 {
+    margin: 0 0 5px 0;
+    color: #333;
+}
+
+.total-display p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Mantén los otros estilos que ya tenías */
