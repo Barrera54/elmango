@@ -116,6 +116,35 @@ function Menu({ onLogout }) {
         setSearchId('');
     };
 
+    const enviarAlInventario = async () => {
+        try {
+            for (const product of products) {
+                const cantidadVendida = quantities[product.Codi_produ] || 1;
+
+                const response = await fetch('http://localhost:3001/restar-stock', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        Codi_produ: product.Codi_produ,
+                        cantidadVendida: cantidadVendida
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error al actualizar stock para ${product.Nomproducto}`);
+                }
+            }
+
+            alert('✅ Productos enviados al inventario y stock actualizado');
+            clearProducts();
+        } catch (error) {
+            console.error(error);
+            alert('❌ Hubo un problema al enviar los datos al inventario');
+        }
+    };
+
     const totalAmount = products.reduce((sum, product) => {
         const quantity = quantities[product.Codi_produ] || 1;
         return sum + (parseFloat(product.precio || 0) * quantity);
@@ -193,7 +222,8 @@ function Menu({ onLogout }) {
                 <button onClick={onLogout}>Cerrar Sesión</button>
             </div>
 
-            <div className="i">
+            <div className="i" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                <button onClick={enviarAlInventario}>Enviar al inventario</button>
                 <h1>
                     <b className="h">
                         Total: {totalAmount.toLocaleString('es-CO', {

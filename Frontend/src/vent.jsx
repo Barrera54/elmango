@@ -9,42 +9,50 @@ function Ventas() {
   const [showProductExceptions, setShowProductExceptions] = useState(false);
 
   const [employeeSales, setEmployeeSales] = useState([]);
+  const [totalDia, setTotalDia] = useState(0); 
+  // Nuevo estado para el total general de todas las ventas
+  const [totalGeneral, setTotalGeneral] = useState(0);
   const [searchTerm, setSearchTerm] = useState('');
-  const [currentPage, setCurrentPage] = useState(0); // New state for current page
-  const employeesPerPage = 2; // New constant for employees per page
+  const [currentPage, setCurrentPage] = useState(0);
+  const employeesPerPage = 2;
 
   const toggleAccounting = () => setShowAccounting(!showAccounting);
   const toggleEmployeeSales = () => setShowEmployeeSales(!showEmployeeSales);
   const toggleProductExceptions = () => setShowProductExceptions(!showProductExceptions);
 
-  const accounting = [
-    // Aquí pon tus datos de contabilidad si los tienes
-  ];
-
-  const productExceptions = [
-    // Aquí pon tus datos de productos excepcionales si los tienes
-  ];
-
   useEffect(() => {
     obtenerVentasEmpleados();
+    obtenerTotalDia(); 
+    obtenerTotalGeneral(); // Llamar a la nueva función de API
   }, []);
 
   const obtenerVentasEmpleados = () => {
-    axios.get('http://localhost:3001/ventas-empleado') // ✅ Usa tu ruta real
+    axios.get('http://localhost:3001/ventas-empleado')
       .then(res => setEmployeeSales(res.data))
       .catch(err => console.error('Error al obtener ventas por empleado:', err));
+  };
+
+  const obtenerTotalDia = () => {
+    axios.get('http://localhost:3001/ventas-empleado/hoy') 
+      .then(res => setTotalDia(res.data.total_dia || 0))
+      .catch(err => console.error('Error al obtener total del día:', err));
+  };
+
+  // Nueva función para obtener el total general de todas las ventas
+  const obtenerTotalGeneral = () => {
+    axios.get('http://localhost:3001/ventas-empleado/total-hoy') // Endpoint de la nueva API
+      .then(res => setTotalGeneral(res.data.total_dia || 0))
+      .catch(err => console.error('Error al obtener total general:', err));
   };
 
   const ventasFiltradas = employeeSales.filter(emp =>
     emp.emplead_nom.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  // Calculate the employees to display on the current page
   const startIndex = currentPage * employeesPerPage;
   const endIndex = startIndex + employeesPerPage;
   const displayedEmployees = ventasFiltradas.slice(startIndex, endIndex);
 
-  // Functions to navigate pages
   const goToNextPage = () => {
     if (endIndex < ventasFiltradas.length) {
       setCurrentPage(prevPage => prevPage + 1);
@@ -77,12 +85,10 @@ function Ventas() {
                   </tr>
                 </thead>
                 <tbody>
-                  {accounting.map((item, index) => (
-                    <tr key={index}>
-                      <td>{item.period}</td>
-                      <td>${item.amount.toLocaleString()}</td>
-                    </tr>
-                  ))}
+                  <tr> 
+                    <td>${totalDia.toLocaleString()}</td>
+                    <td>${totalGeneral.toLocaleString()}</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -98,7 +104,7 @@ function Ventas() {
           {showEmployeeSales && (
             <div className="employee-sales">
               <div className="search-container">
-                {/* Search input if needed */}
+                {/* Aquí podrías poner un input para buscar empleados */}
               </div>
 
               <table>
@@ -110,15 +116,18 @@ function Ventas() {
                 </thead>
                 <tbody>
                   {displayedEmployees.length > 0 ? (
-                    displayedEmployees.map((emp) => (
-                      <tr key={emp.id_Vent}>
-                        <td>{emp.emplead_nom}</td>
-                        <td>${emp.monto.toLocaleString()}</td>
-                      </tr>
-                    ))
+                    <>
+                      {displayedEmployees.map((emp) => (
+                        <tr key={emp.id_Vent}>
+                          <td>{emp.emplead_nom}</td>
+                          <td>${emp.monto.toLocaleString()}</td>
+                        </tr>
+                      ))}
+                      
+                    </>
                   ) : (
                     <tr>
-                      <td colSpan="2">No se encontraron resultados.</td> {/* Changed colspan to 2 */}
+                      <td colSpan="2">No se encontraron resultados.</td>
                     </tr>
                   )}
                 </tbody>
@@ -151,12 +160,7 @@ function Ventas() {
                   </tr>
                 </thead>
                 <tbody>
-                  {productExceptions.map((prod, index) => (
-                    <tr key={index}>
-                      <td>{prod.product}</td>
-                      <td>{prod.quantity}</td>
-                    </tr>
-                  ))}
+                  {/* Aquí podrías listar productos excepcionales */}
                 </tbody>
               </table>
             </div>

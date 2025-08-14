@@ -6,6 +6,7 @@ const SelectPage = ({ totalAmount, products, quantities, onClose }) => {
     const [cashAmount, setCashAmount] = useState('');
     const [change, setChange] = useState(0);
     const [customerName, setCustomerName] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleCashChange = (e) => {
         const value = e.target.value;
@@ -21,13 +22,39 @@ const SelectPage = ({ totalAmount, products, quantities, onClose }) => {
         setCustomerName(e.target.value);
     };
 
-    const handlePayment = (paymentMethod) => {
-        // Aquí podrías agregar lógica para procesar el pago si es necesario
-        console.log(`Pago realizado con ${paymentMethod}`);
-        console.log('Cliente:', customerName);
-        console.log('Productos:', products);
-        console.log('Total:', totalAmount);
-        onClose(); // Cerrar el modal después de procesar el pago
+    const handlePayment = async (paymentMethod) => {
+        try {
+            const response = await fetch('http://localhost:3001/ventas_empleado', { // Cambia la URL si es necesario
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    emplead_nom: customerName,
+                    monto: totalAmount,
+                    metodo: paymentMethod
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error('Error al registrar la venta');
+            }
+
+            const data = await response.json();
+            console.log('Venta registrada con éxito:', data);
+
+            // Mostrar mensaje de éxito
+            setSuccessMessage('✅ Venta registrada con éxito');
+
+            // Ocultar mensaje y cerrar modal después de 2 segundos
+            setTimeout(() => {
+                setSuccessMessage('');
+                onClose();
+            }, 2000);
+
+        } catch (error) {
+            console.error('Hubo un problema al registrar la venta:', error);
+        }
     };
 
     return (
@@ -36,6 +63,13 @@ const SelectPage = ({ totalAmount, products, quantities, onClose }) => {
                 <div className="payment-heading">
                     <h2>Forma de pago</h2>
                 </div>
+
+                {/* Mensaje de éxito */}
+                {successMessage && (
+                    <div className="success-message">
+                        {successMessage}
+                    </div>
+                )}
 
                 <div className="payment-details">
                     <div className="customer-input-container">
@@ -48,56 +82,35 @@ const SelectPage = ({ totalAmount, products, quantities, onClose }) => {
                         />
                     </div>
 
-                    
-
-                <div className="payment-option-group" onClick={() => {
-                    setIsMenuOpen(true);
-                    setCashAmount(totalAmount.toFixed(3));
-                }}>
-                    <div className="payment-icon cash-icon"></div>
-                    <div className="payment-method-text">Efectivo</div>
-                </div>
-
-                <div className="payment-option-group" onClick={() => handlePayment('Transferencia')}>
-                    <div className="payment-icon transfer-icon"></div>
-                    <div className="payment-method-text">Transferencia</div>
-                </div>
-
-                {isMenuOpen && (
-                    <div className="cash-input-container">
-                        <label>Efectivo recibido:</label>
-                        <input
-                            type="number"
-                            value={cashAmount}
-                            onChange={handleCashChange}
-                            min={totalAmount}
-                            step="100"
-                        />
-                        {change > 0 && (
-                            <div className="change-display">
-                                <p>Cambio:</p>
-                                <p>{change.toLocaleString('es-CO', {
-                                    style: 'currency',
-                                    currency: 'COP',
-                                    minimumFractionDigits: 3
-                                })}</p>
-                            </div>
-                        )}
-                        <button 
-                            className="confirm-button"
-                            onClick={() => handlePayment('Efectivo')}
-                            disabled={!cashAmount || parseFloat(cashAmount) < totalAmount}
-                        >
-                            Confirmar
-                        </button>
+                    <div
+                        className="payment-option-group"
+                        onClick={() => {
+                            setIsMenuOpen(true);
+                            setCashAmount(totalAmount.toFixed(3));
+                            handlePayment('Efectivo');
+                        }}
+                    >
+                        <div className="payment-icon cash-icon"></div>
+                        <div className="payment-method-text">Efectivo</div>
                     </div>
-                )}<div className="total-display">
+
+                    <div
+                        className="payment-option-group"
+                        onClick={() => handlePayment('Transferencia')}
+                    >
+                        <div className="payment-icon transfer-icon"></div>
+                        <div className="payment-method-text">Transferencia</div>
+                    </div>
+
+                    <div className="total-display">
                         <h3>Total:</h3>
-                        <p>{totalAmount.toLocaleString('es-CO', {
-                            style: 'currency',
-                            currency: 'COP',
-                            minimumFractionDigits: 3
-                        })}</p>
+                        <p>
+                            {totalAmount.toLocaleString('es-CO', {
+                                style: 'currency',
+                                currency: 'COP',
+                                minimumFractionDigits: 3
+                            })}
+                        </p>
                     </div>
                 </div>
             </main>

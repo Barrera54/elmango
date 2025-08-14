@@ -186,6 +186,7 @@ button:active {
     font-size: 1.5em;
     cursor: pointer;
 }
+
 /* Responsive Adjustments */
 @media (max-width: 768px) {
     .table-container {

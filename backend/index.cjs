@@ -105,6 +105,36 @@ app.get('/ventas-empleado', (_, res) => {
   });
 });
 
+app.get('/ventas-empleado/total-hoy', (_, res) => {
+  db.query(
+    'SELECT SUM(monto) AS total_dia FROM ventas_empleado',
+    (err, results) => {
+      if (err) {
+        console.error('Error al obtener total:', err);
+        return res.status(500).json({ error: 'Error al obtener total' });
+      }
+
+      res.json({ total_dia: results[0].total_dia || 0 });
+    }
+  );
+});
+
+app.get('/ventas-empleado/hoy', (_, res) => {
+  const sql = `
+    SELECT SUM(monto) AS total_dia
+    FROM ventas_empleado
+    WHERE DATE(fecha_hora) = CURDATE()
+  `;
+
+  db.query(sql, (err, results) => {
+    if (err) {
+      console.error('Error al obtener total del día:', err);
+      return res.status(500).json({ error: 'Error al obtener total del día' });
+    }
+
+    res.json({ total_dia: results[0].total_dia || 0 });
+  });
+});
 
 // RUTAS DELETE
 // Eliminar producto de la papelera
@@ -510,6 +540,56 @@ app.post('/ventas_empleado', (req, res) => {
       // Si la operación es exitosa, se envía la respuesta con los resultados.
       res.json(results);
     }
+  );
+});
+app.post('/restar-stock', (req, res) => {
+  const { Codi_produ, cantidadVendida } = req.body;
+
+  if (!Codi_produ || !cantidadVendida) {
+      return res.status(400).json({ error: 'Faltan datos: Codi_produ y cantidadVendida son requeridos' });
+  }
+
+  // 1. Obtener el stock actual
+  db.query(
+      'SELECT stock FROM productos WHERE Codi_produ = ?',
+      [Codi_produ],
+      (err, results) => {
+          if (err) {
+              console.error('Error al obtener stock:', err);
+              return res.status(500).json({ error: 'Error al obtener el stock' });
+          }
+
+          if (results.length === 0) {
+              return res.status(404).json({ error: 'Producto no encontrado' });
+          }
+
+          const stockActual = results[0].stock;
+          const nuevoStock = stockActual - cantidadVendida;
+
+          if (nuevoStock < 0) {
+              return res.status(400).json({ error: 'Stock insuficiente para la venta' });
+          }
+
+          // 2. Actualizar el stock en la base de datos
+          db.query(
+              'UPDATE productos SET stock = ? WHERE Codi_produ = ?',
+              [nuevoStock, Codi_produ],
+              (err, updateResults) => {
+                  if (err) {
+                      console.error('Error al actualizar stock:', err);
+                      return res.status(500).json({ error: 'Error al actualizar el stock' });
+                  }
+
+                  res.json({
+                      message: 'Stock actualizado correctamente',
+                      Codi_produ,
+                      stockAnterior: stockActual,
+                      cantidadVendida,
+                      nuevoStock
+                  });
+              }
+          );
+      }
   );
 });
 // --- Listen solo si NO es test ---
