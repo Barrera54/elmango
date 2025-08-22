@@ -24,7 +24,7 @@ function ProductoDevuelto() {
 
         try {
             // Realizamos la petición POST a la API
-            const response = await fetch('http://localhost:3001/devolucion', {
+            const response = await fetch('http://localhost:3001/devoluciones', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -40,8 +40,8 @@ function ProductoDevuelto() {
                 console.log('Devolución registrada exitosamente:', result);
                 // Si todo sale bien, esperamos 5 segundos antes de navegar
                 setTimeout(() => {
-                    navigate('/inic');
-                }, 5000); // 5000 milisegundos = 5 segundos
+                    navigate('/princi');
+                }, 2000); // 5000 milisegundos = 5 segundos
             } else {
                 console.error('Error al registrar la devolución:', result.error);
                 alert('Error al registrar la devolución: ' + result.details);

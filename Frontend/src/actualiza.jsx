@@ -16,6 +16,31 @@ function ActualizarEmpleado() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "nombre") {
+      const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]*$/; // Solo letras y espacios
+      if (!regex.test(value)) {
+        setMessage("❌ El nombre solo puede contener letras");
+        setIsError(true);
+        return;
+      } else {
+        setMessage(""); 
+        setIsError(false);
+      }
+    }
+
+    if (name === "telefono" || name === "cedula") {
+      const regex = /^[0-9]*$/; // Solo números
+      if (!regex.test(value)) {
+        setMessage(`❌ El c${name} solo puede contener números`);
+        setIsError(true);
+        return;
+      } else {
+        setMessage("");
+        setIsError(false);
+      }
+    }
+
     setFormData(prevState => ({
       ...prevState,
       [name]: value
@@ -33,7 +58,6 @@ function ActualizarEmpleado() {
     let isUpdatingByPhone = false;
 
     // Lógica para determinar el identificador principal
-    // Priorizamos el nombre si está presente y el teléfono está vacío o es inválido.
     if (nombre.trim() !== '') {
         url = `http://localhost:3001/cuenta/${nombre.trim()}`;
         isUpdatingByName = true;
@@ -57,7 +81,6 @@ function ActualizarEmpleado() {
         return;
     }
     
-    // Llenar `updateFields` con los datos que se van a actualizar
     if (correo.trim() !== '') {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(correo.trim())) {
@@ -72,13 +95,10 @@ function ActualizarEmpleado() {
         updateFields.cedula = cedula.trim();
     }
     
-    // Si estamos actualizando por nombre, el teléfono se considera un campo a actualizar.
-    // No validamos su formato aquí, simplemente se envía tal cual.
     if (isUpdatingByName && telefono.trim() !== '') {
         updateFields.telefono = telefono.trim();
     }
     
-    // Si estamos actualizando por teléfono, el nombre se considera un campo a actualizar.
     if (isUpdatingByPhone && nombre.trim() !== '') {
         updateFields.nombre = nombre.trim();
     }
@@ -157,7 +177,7 @@ function ActualizarEmpleado() {
             />
           </div>
           <div className="form-group">
-            <h2> Cédula</h2>
+            <h2>Cédula</h2>
             <input 
               type="text" 
               name="cedula" 

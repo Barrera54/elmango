@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './css/domi.css'; // Assuming you save the CSS as domi.css
+import './css/domi.css'; // Archivo CSS para estilos
 import Cabe from './menu';
 
 const Domicilios = () => {
@@ -13,12 +13,12 @@ const Domicilios = () => {
         <>
             <Cabe />
 
-            <div className="primary-content-wrapper"> {/* Changed from main-container */}
+            <div className="primary-content-wrapper"> {/* Contenedor principal */}
                 <div className="page-title-section">
                     <h1 className="page-title">Detalles de Domicilios</h1>
                 </div>
 
-                {/* GPS Section */}
+                {/* Sección de GPS */}
                 <div className={`collapsible-rectangle ${openPanel === 2 ? 'active' : ''}`} onClick={() => toggleInfo(2)}>
                     <h2 className="rectangle-title">
                         Información GPS
@@ -42,13 +42,13 @@ const Domicilios = () => {
                                     </tr>
                                 </tbody>
                             </table>
-                            {/* Image of GPS */}
+                            {/* Imagen ilustrativa del GPS */}
                             <img src="./css/img/gps.jpg" alt="GPS Illustration" className="panel-image" />
                         </div>
                     </div>
                 </div>
 
-                {/* Accounting Section */}
+                {/* Sección de Contabilidad */}
                 <div className={`collapsible-rectangle ${openPanel === 1 ? 'active' : ''}`} onClick={() => toggleInfo(1)}>
                     <h2 className="rectangle-title">
                         Contabilidad de Domicilios

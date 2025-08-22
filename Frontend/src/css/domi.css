@@ -1,3 +1,4 @@
+/* Botón para alternar el menú */
 #menu-toggle-button {
     font-size: 28px;
     color: #fff;
@@ -5,6 +6,7 @@
     margin-right: 20px;
 }
 
+/* Título de la aplicación */
 .app-title {
     flex-grow: 1;
     text-align: center;
@@ -16,14 +18,14 @@
     font-weight: 600;
 }
 
-/* Navigation Menu */
-.primary-navigation { /* Changed from main-navigation */
+/* Menú de navegación principal */
+.primary-navigation {
     position: fixed;
     top: 0;
-    left: -280px; /* Hidden by default */
+    left: -280px; /* Oculto por defecto */
     width: 280px;
     height: 100vh;
-    background: #3F51B5; /* Deep blue */
+    background: #3F51B5; /* Azul oscuro */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
     transition: left 0.3s ease-in-out;
     padding-top: 70px;
@@ -31,25 +33,25 @@
     overflow-y: auto;
 }
 
-.primary-navigation.open { /* Changed from main-navigation.open */
-    left: 0; /* Slide in */
+.primary-navigation.open {
+    left: 0; /* Mostrar */
 }
 
-.primary-menu { /* Changed from main-menu */
+.primary-menu {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.primary-menu li { /* Changed from main-menu li */
+.primary-menu li {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.primary-menu li:last-child { /* Changed from main-menu li:last-child */
+.primary-menu li:last-child {
     border-bottom: none;
 }
 
-.primary-menu li a { /* Changed from main-menu li a */
+.primary-menu li a {
     display: block;
     padding: 15px 25px;
     font-size: 18px;
@@ -59,21 +61,21 @@
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-.primary-menu li a:hover { /* Changed from main-menu li a:hover */
+.primary-menu li a:hover {
     background: #5C6BC0;
     color: #fff;
 }
 
-/* Primary Content Wrapper - Centered */
-.primary-content-wrapper { /* Changed from main-container */
+/* Contenedor principal de contenido - Centrado */
+.primary-content-wrapper {
     width: 100%;
     max-width: 700px;
     padding: 20px;
-    margin: 20px auto; /* Centers the container horizontally */
-    text-align: center; /* Centers inline/inline-block children */
+    margin: 20px auto; /* Centrar el contenedor horizontalmente */
+    text-align: center; /* Centrar hijos inline/inline-block */
 }
 
-/* Page Title */
+/* Título de página */
 .page-title-section {
     margin-bottom: 30px;
 }
@@ -86,7 +88,7 @@
     font-weight: bold;
 }
 
-/* Collapsible Rectangle (Accordion Item) */
+/* Rectángulo colapsable (ítem de acordeón) */
 .collapsible-rectangle {
     background-color: #FFFFFF;
     color: #333;
@@ -133,7 +135,7 @@
     transform: rotate(180deg);
 }
 
-/* Info Display Panel */
+/* Panel de visualización de información */
 .info-display-panel {
     background-color: white;
     border-radius: 10px;
@@ -152,7 +154,7 @@
 
 .info-display-panel.active {
     padding: 25px;
-    max-height: 1000px; /* Sufficiently large value */
+    max-height: 1000px; /* Valor suficientemente grande */
 }
 
 .panel-content {
@@ -165,7 +167,7 @@
     opacity: 1;
 }
 
-/* Table Styles */
+/* Estilos para tablas */
 .data-table {
     width: 100%;
     border-collapse: collapse;
@@ -198,7 +200,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Accounting Details */
+/* Detalles de contabilidad */
 .accounting-details {
     padding: 10px 0;
 }
@@ -212,51 +214,4 @@
 
 .accounting-item:last-child {
     margin-bottom: 0;
-}
-
-/* Media Queries */
-@media screen and (max-width: 768px) {
-    .app-header {
-        padding: 10px 15px;
-    }
-
-    #menu-toggle-button {
-        font-size: 24px;
-        margin-right: 15px;
-    }
-
-    .app-title h1 {
-        font-size: 24px;
-    }
-
-    .primary-navigation { /* Changed from main-navigation */
-        width: 250px;
-        left: -250px;
-    }
-
-    .primary-navigation.open { /* Changed from main-navigation.open */
-        left: 0;
-    }
-
-    .primary-content-wrapper { /* Changed from main-container */
-        padding: 15px;
-    }
-
-    .page-title {
-        font-size: 30px;
-    }
-
-    .collapsible-rectangle {
-        padding: 15px 20px;
-    }
-
-    .rectangle-title {
-        font-size: 18px;
-    }
-
-    .data-table th,
-    .data-table td {
-        padding: 8px;
-        font-size: 14px;
-    }
 }

@@ -1,48 +1,48 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import logo from './img/icons.png'; // Assuming this is "TIENDA EL MANGO" logo
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
+import logo from './img/icons.png'; // Asumiendo que es el logo de "TIENDA EL MANGO"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faLock, faEnvelope, faPhone, faIdCard, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './css/crea.css';
 
 function Crea() {
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const navigate = useNavigate(); // Inicializar hook useNavigate
 
-  // State for form fields
+  // Estado para los campos del formulario
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
   const [correo, setCorreo] = useState('');
   const [cedula, setCedula] = useState('');
-  const [cargo, setCargo] = useState(''); // Corresponds to 'tipoUsuario' in backend
+  const [cargo, setCargo] = useState(''); // Corresponde a 'tipoUsuario' en el backend
   const [usuario, setUsuario] = useState('');
   const [contrasena, setContrasena] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [message, setMessage] = useState(''); // State to display messages to the user
-  const [isError, setIsError] = useState(false); // State to indicate if the message is an error
+  const [message, setMessage] = useState(''); // Estado para mostrar mensajes al usuario
+  const [isError, setIsError] = useState(false); // Estado para indicar si el mensaje es un error
 
-  // Function to toggle password visibility
+  // Función para alternar visibilidad de contraseña
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  // Function to handle form submission
+  // Función para manejar el envío del formulario
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevent default form submission behavior
+    event.preventDefault(); // Prevenir comportamiento por defecto del formulario
 
-    // Basic client-side validation
+    // Validación básica del lado del cliente
     if (!nombre || !telefono || !correo || !cedula || !cargo || !usuario || !contrasena) {
       setMessage('Por favor, complete todos los campos obligatorios.');
       setIsError(true);
       return;
     }
 
-    // Data to be sent to the API
+    // Datos a enviar a la API
     const formData = {
       nombre,
       telefono,
       correo,
       cedula,
-      cargo, // This matches the backend's 'cargo' field
+      cargo, // Coincide con el campo 'cargo' del backend
       usuario,
       contrasena
     };
@@ -61,7 +61,7 @@ function Crea() {
       if (response.ok) {
         setMessage(data.mensaje || 'Cuenta creada exitosamente.');
         setIsError(false);
-        // Optionally clear form fields on success
+        // Opcionalmente limpiar campos del formulario al éxito
         setNombre('');
         setTelefono('');
         setCorreo('');
@@ -70,10 +70,10 @@ function Crea() {
         setUsuario('');
         setContrasena('');
 
-        // Navigate to login page after a short delay
+        // Navegar a página de login después de un breve retraso
         setTimeout(() => {
-          navigate('/login'); // Assuming your login route is '/login'
-        }, 2000); // 2-second delay
+          navigate('/login'); // Asumiendo que la ruta de login es '/login'
+        }, 2000); // Retraso de 2 segundos
       } else {
         setMessage(data.mensaje || 'Error al crear la cuenta. Inténtelo de nuevo.');
         setIsError(true);
@@ -90,7 +90,7 @@ function Crea() {
       <img src={logo} alt="Logo Tienda El Mango" className="logo-image" />
       <p className="form-title">CREAR CUENTA</p>
 
-      {/* Message display area */}
+      {/* Área de visualización de mensajes */}
       {message && (
         <div className={`message ${isError ? 'error-message' : 'success-message'}`}>
           {message}

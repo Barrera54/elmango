@@ -33,4 +33,3 @@ Cambio de color
 }
 
 export default Navbar;
-

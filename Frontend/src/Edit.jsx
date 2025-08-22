@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Cabe from './menu';
-import './css/edit.css'; // Tu archivo CSS base
+import './css/edit.css'; // Archivo base de CSS
 import { useNavigate } from 'react-router-dom'; // Importa el hook useNavigate
 
 function EditProductForm() { // Componente renombrado para mayor claridad

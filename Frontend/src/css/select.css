@@ -1,12 +1,13 @@
+/* Contenedor del título de la aplicación */
 .app-title-wrapper {
-    flex-grow: 1; /* Allows title to take available space */
-    text-align: center; /* Center the title */
+    flex-grow: 1; /* Permite que el título tome el espacio disponible */
+    text-align: center; /* Centrar el título */
 }
 
 .app-title-link {
     text-decoration: none;
     color: #ffffff;
-    font-family: 'Georgia', serif; /* More formal font for title */
+    font-family: 'Georgia', serif; /* Fuente más formal para el título */
 }
 
 .app-title-link h1 {
@@ -15,42 +16,42 @@
     font-weight: normal;
 }
 
-/* Navigation Menu */
+/* Menú de navegación */
 .main-navigation {
     position: absolute;
-    top: 100%; /* Position below header */
+    top: 100%; /* Posicionar debajo del encabezado */
     left: 0;
-    width: 0%; /* Hidden by default */
+    width: 0%; /* Oculto por defecto */
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    background-color: rgba(0, 0, 0, 0.5); /* Superposición semi-transparente */
     z-index: 100;
-    overflow: hidden; /* Hide overflow when closed */
+    overflow: hidden; /* Ocultar desbordamiento cuando está cerrado */
     transition: width 0.3s ease;
 }
 
 .main-navigation.open {
-    width: 100%; /* Full width when open */
+    width: 100%; /* Ancho completo cuando está abierto */
 }
 
 .navigation-menu {
-    width: 280px; /* Fixed width for the sidebar menu */
+    width: 280px; /* Ancho fijo para el menú lateral */
     height: 100%;
-    background-color: #34495e; /* Darker sidebar background */
+    background-color: #34495e; /* Fondo más oscuro para la barra lateral */
     list-style: none;
     position: absolute;
     top: 0;
-    left: -280px; /* Off-screen by default */
+    left: -280px; /* Fuera de pantalla por defecto */
     transition: left 0.3s ease;
     padding: 20px 0;
-    overflow-y: auto; /* Enable scrolling for long menus */
+    overflow-y: auto; /* Habilitar desplazamiento para menús largos */
 }
 
 .main-navigation.open .navigation-menu {
-    left: 0; /* Slide in when open */
+    left: 0; /* Mostrar cuando está abierto */
 }
 
 .navigation-menu li {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtle separator */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separador sutil */
 }
 
 .navigation-menu li:last-child {
@@ -63,25 +64,25 @@
     font-size: 18px;
     font-weight: 300;
     text-decoration: none;
-    color: #ecf0f1; /* Light text color */
+    color: #ecf0f1; /* Color de texto claro */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .menu-item-link:hover {
-    background-color: #2c3e50; /* Darker hover background */
+    background-color: #2c3e50; /* Fondo más oscuro al pasar el ratón */
     color: #ffffff;
 }
 
-/* Payment Options Section */
+/* Sección de opciones de pago */
 .payment-options-section {
-    width: 400px; /* Fixed width for the payment box */
-    margin: 120px auto 20px auto; /* Centered with top margin to clear header */
+    width: 400px; /* Ancho fijo para la caja de pago */
+    margin: 120px auto 20px auto; /* Centrado con margen superior para limpiar el encabezado */
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #ffffff;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* More pronounced shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra más pronunciada */
     padding: 30px;
-    text-align: center; /* Center content within the box */
+    text-align: center; /* Centrar contenido dentro de la caja */
     margin-top: 15%;
     font-family: Cursive;
 }
@@ -97,7 +98,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 25px;
-    justify-content: center; /* Center options horizontally */
+    justify-content: center; /* Centrar opciones horizontalmente */
 }
 
 .payment-option-group:last-child {
@@ -112,24 +113,24 @@
 }
 
 .payment-icon-link:hover {
-    transform: translateY(-3px); /* Slight lift on hover */
+    transform: translateY(-3px); /* Ligera elevación al pasar el ratón */
 }
 
 .payment-icon {
-    width: 60px; /* Slightly larger icons */
+    width: 60px; /* Iconos ligeramente más grandes */
     height: 60px;
-    border: 3px solid #3498db; /* Blue border for icons */
+    border: 3px solid #3498db; /* Borde azul para los iconos */
     border-radius: 50%;
-    background-color: #ecf0f1; /* Light background for icons */
+    background-color: #ecf0f1; /* Fondo claro para los iconos */
     margin-right: 20px;
-    display: flex; /* For centering internal content if any */
+    display: flex; /* Para centrar contenido interno si lo hay */
     justify-content: center;
     align-items: center;
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .payment-icon.cash-icon {
-    /* Placeholder for cash icon - could be an SVG or background image */
+    /* Marcador de posición para icono de efectivo - podría ser un SVG o imagen de fondo */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233498db"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8h16v10zm-12-6h8v2H8v-2z"/></svg>');
     background-size: 60%;
     background-repeat: no-repeat;
@@ -137,7 +138,7 @@
 }
 
 .payment-icon.transfer-icon {
-    /* Placeholder for transfer icon - could be an SVG or background image */
+    /* Marcador de posición para icono de transferencia - podría ser un SVG o imagen de fondo */
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%233498db"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-2h-2v2zm0-4h2V7h-2v6z"/></svg>');
     background-size: 60%;
     background-repeat: no-repeat;
@@ -145,32 +146,33 @@
 }
 
 .payment-icon:hover {
-    background-color: #3498db; /* Change background on hover */
+    background-color: #3498db; /* Cambiar fondo al pasar el ratón */
     border-color: #2980b9;
 }
 
 .payment-icon-link:hover .payment-icon {
     background-color: #3498db;
 }
+
 .payment-icon-link:hover .payment-icon.cash-icon {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4V8h16v10zm-12-6h8v2H8v-2z"/></svg>');
 }
+
 .payment-icon-link:hover .payment-icon.transfer-icon {
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23ffffff"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h2v-2h-2v2zm0-4h2V7h-2v6z"/></svg>');
 }
-
 
 .payment-method-text {
     font-size: 24px;
     color: #555;
     font-weight: 500;
 }
+
 .customer-input-container {
     margin-bottom: 20px;
     padding: 15px;
     background-color: #f8f9fa;
     border-radius: 8px;
-   
 }
 
 .customer-input-container label {
@@ -206,5 +208,3 @@
     font-weight: bold;
     color: #2c3e50;
 }
-
-/* Mantén los otros estilos que ya tenías */

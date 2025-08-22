@@ -5,37 +5,37 @@ import { useNavigate } from 'react-router-dom';
 import { Table } from "@radix-ui/themes";
 
 function EmployeeData() {
-  const [employees, setEmployees] = useState([]); // Employee list
-  const [currentPage, setCurrentPage] = useState(0); // Pagination state
-  const employeesPerPage = 4; // Number of rows per page
+  const [employees, setEmployees] = useState([]); // Lista de empleados
+  const [currentPage, setCurrentPage] = useState(0); // Estado de paginación
+  const employeesPerPage = 4; // Número de filas por página
   const navigate = useNavigate();
 
   useEffect(() => {
-    // The API call now points to the /cuenta route
+    // La llamada a la API apunta a la ruta /cuenta
     fetch('http://localhost:3001/cuenta')
       .then(res => res.json())
       .then(data => {
         console.log('Datos recibidos:', data);
-        setEmployees(data); // State is updated with API data
+        setEmployees(data); // Estado actualizado con datos de la API
       })
       .catch(err => console.error(err));
   }, []);
 
-  // Calculate total number of pages
+  // Calcular número total de páginas
   const totalPages = Math.ceil(employees.length / employeesPerPage);
 
-  // Get employees for the current page
+  // Obtener empleados para la página actual
   const employeesOnPage = employees.slice(
     currentPage * employeesPerPage,
     (currentPage + 1) * employeesPerPage
   );
 
-  // Function to go to the next page (right)
+  // Función para ir a la página siguiente (derecha)
   const nextPage = () => {
     setCurrentPage(prev => (prev + 1) % totalPages);
   };
 
-  // Function to go to the previous page (left)
+  // Función para ir a la página anterior (izquierda)
   const previousPage = () => {
     setCurrentPage(prev => (prev - 1 + totalPages) % totalPages);
   };

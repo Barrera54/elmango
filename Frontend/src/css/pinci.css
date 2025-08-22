@@ -1,11 +1,11 @@
-/* Main Container */
+/* Contenedor principal */
 .main-container {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
 }
 
-/* Table Container */
+/* Contenedor de tabla */
 .table-container {
     flex-grow: 1;
     background-color: #ffffff;
@@ -15,7 +15,7 @@
     margin-bottom: 120px;
 }
 
-/* Table Styles */
+/* Estilos para tablas */
 .prin {
     width: 100%;
     border-collapse: collapse;
@@ -45,7 +45,7 @@
     background-color: #f8f8f8;
 }
 
-/* Unified Input Styles */
+/* Estilos unificados para inputs */
 .styled-input {
     width: 100%;
     padding: 10px 12px;
@@ -65,13 +65,13 @@
     box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
 }
 
-/* Specific input adjustments */
+/* Ajustes específicos para inputs */
 .prin td .styled-input {
     width: auto;
     min-width: 60px;
 }
 
-/* Buttons Container (k) */
+/* Contenedor de botones (k) */
 .k {
     position: fixed;
     bottom: 60px;
@@ -88,7 +88,7 @@
     box-sizing: border-box;
 }
 
-/* Button Styles */
+/* Estilos para botones */
 button {
     flex: 1 1 auto;
     max-width: 180px;
@@ -96,7 +96,6 @@ button {
     font-size: 1.05em;
     border: none;
     border-radius: 6px;
- 
     color: white;
     margin: 8px;
     cursor: pointer;
@@ -113,7 +112,7 @@ button:active {
     transform: translateY(0);
 }
 
-/* Total Section (i) */
+/* Sección de total (i) */
 .i {
     position: fixed;
     bottom: 0;
@@ -143,7 +142,7 @@ button:active {
     margin-left: 10px;
 }
 
-/* Overlay for Menu */
+/* Superposición para menú */
 .overlay {
     position: fixed;
     top: 0;
@@ -154,6 +153,7 @@ button:active {
     z-index: 998;
     backdrop-filter: blur(3px);
 }
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -185,65 +185,4 @@ button:active {
     border: none;
     font-size: 1.5em;
     cursor: pointer;
-}
-
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-    .table-container {
-        padding: 10px;
-    }
-
-    .prin th,
-    .prin td {
-        padding: 8px 10px;
-        font-size: 0.9em;
-    }
-
-    .styled-input {
-        padding: 8px 10px;
-        font-size: 0.9em;
-    }
-
-    button {
-        width: 100%;
-        max-width: none;
-        margin: 5px 0;
-        font-size: 0.95em;
-        height: 50px;
-    }
-
-    .k {
-        padding: 10px;
-        flex-direction: column;
-    }
-
-    .i {
-        height: 50px;
-        padding: 0 20px;
-        justify-content: center;
-    }
-
-    .i h1 {
-        font-size: 1.5em;
-    }
-}
-
-@media (max-width: 480px) {
-    .main-container {
-        padding: 10px;
-    }
-
-    .i h1 {
-        font-size: 1.3em;
-    }
-
-    button {
-        font-size: 0.9em;
-        height: 45px;
-    }
-
-    .styled-input {
-        font-size: 0.9em;
-        padding: 6px 8px;
-    }
 }

@@ -140,7 +140,7 @@ app.get('/ventas-empleado/hoy', (_, res) => {
 // Eliminar producto de la papelera
 app.delete('/papelera-productos/:ID_produ', (req, res) => {
   const productoId = req.params.ID_produ;
-  db.query('DELETE FROM papelera_producto WHERE id = ?', [productoId], (err, result) => {
+  db.query('DELETE FROM papelera_producto WHERE 	idPALE = ?', [productoId], (err, result) => {
     if (err) {
       console.error('Error al eliminar producto de la papelera:', err);
       return res.status(500).json({ error: 'Error eliminando producto de la papelera' });
@@ -176,6 +176,34 @@ app.delete('/deudor/:idDeudor', (req, res) => {
 
     // Si la eliminación fue exitosa, enviamos una respuesta JSON
     res.json({ message: 'Deudor eliminado con éxito' });
+  });
+});
+// Ruta para mover un producto a la papelera
+app.delete('/productos/:id', (req, res) => {
+  const { id } = req.params;
+
+  // 1. Buscar el producto en productos
+  db.query('SELECT * FROM productos WHERE ID_produ = ?', [id], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (results.length === 0) return res.status(404).json({ error: 'Producto no encontrado' });
+
+    const producto = results[0];
+
+    // 2. Insertar en papelera_producto
+    db.query(
+      'INSERT INTO papelera_producto (Nomproducto, precio, descripcion) VALUES (?, ?, ?)',
+      [producto.Nomproducto, producto.precio, producto.descripcion || ''],
+      (errInsert) => {
+        if (errInsert) return res.status(500).json({ error: 'Error enviando a papelera', details: errInsert.message });
+
+        // 3. Eliminar de productos
+        db.query('DELETE FROM productos WHERE ID_produ = ?', [id], (errDelete) => {
+          if (errDelete) return res.status(500).json({ error: 'Error eliminando producto del inventario', details: errDelete.message });
+
+          res.json({ message: '✅ Producto enviado con éxito a la papelera' });
+        });
+      }
+    );
   });
 });
 
@@ -433,21 +461,33 @@ app.post('/productos', (req, res) => {
   );
 });
 
-// Agregar producto a la papelera
 app.post('/papelera_producto', (req, res) => {
   const { Nomproducto, precio, descripcion } = req.body;
+
+  if (!Nomproducto || !precio) {
+    return res.status(400).json({ error: 'Faltan datos requeridos: Nomproducto y precio son obligatorios' });
+  }
+
   db.query(
     'INSERT INTO papelera_producto (Nomproducto, precio, descripcion) VALUES (?, ?, ?)',
-    [Nomproducto, precio, descripcion],
+    [Nomproducto, precio, descripcion || ''],
     (err, results) => {
       if (err) {
-        console.error('Error insertando producto en papelera:', err);
-        return res.status(500).json({ error: 'Error insertando producto en la tabla papelera_producto', details: err.message });
+        console.error('❌ Error insertando producto en papelera:', err);
+        return res.status(500).json({
+          error: 'Error insertando producto en la tabla papelera_producto',
+          details: err.message
+        });
       }
-      res.status(201).json({ message: 'Producto insertado exitosamente en papelera_producto', id: results.insertId, results });
+
+      res.status(201).json({
+        message: '✅ Producto agregado correctamente a papelera_producto',
+        id: results.insertId
+      });
     }
   );
 });
+
 
 // Agregar cliente frecuente
 app.post('/cliente_frecuent', (req, res) => {
@@ -485,35 +525,39 @@ app.post('/deudor', (req, res) => {
   );
 });
 
-app.post('/devolucion', (req, res) => {
-  // Extrae los datos del cuerpo de la petición.
-  // Es importante que los nombres de las propiedades coincidan con los nombres de las columnas en tu base de datos
+app.post('/devoluciones', (req, res) => {
+  // Extraer los datos del cuerpo de la solicitud
   const { producto_Nom, cantidad, Monto, fecha_devolucion } = req.body;
 
+  // Validar que los campos no estén vacíos
+  if (!producto_Nom || !cantidad || !Monto || !fecha_devolucion) {
+      return res.status(400).json({ error: 'Todos los campos son obligatorios.' });
+  }
+
   // Consulta SQL para insertar los datos en la tabla 'devoluciones'
-  const sql = 'INSERT INTO devoluciones (producto_Nom, cantidad, Monto, fecha_devolucion) VALUES (?, ?, ?, ?)';
-  
-  // Ejecuta la consulta
+  const sql = 'INSERT INTO devoluciones (productonom, cantidad, Monto, fecha_devolucion) VALUES (?, ?, ?, ?)';
+
+  // Ejecutar la consulta
   db.query(
-    sql,
-    [producto_Nom, cantidad, Monto, fecha_devolucion],
-    (err, results) => {
-      // Manejo de errores
-      if (err) {
-        console.error('Error insertando devolución:', err);
-        return res.status(500).json({
-          error: 'Error insertando en la tabla devoluciones',
-          details: err.message
-        });
+      sql,
+      [producto_Nom, cantidad, Monto, fecha_devolucion],
+      (err, results) => {
+          // Manejo de errores
+          if (err) {
+              console.error('Error insertando devolución:', err);
+              return res.status(500).json({
+                  error: 'Error insertando en la tabla devoluciones',
+                  details: err.message
+              });
+          }
+
+          // Si la inserción es exitosa, enviar una respuesta
+          res.status(201).json({
+              message: 'Devolución insertada exitosamente',
+              id: results.insertId,
+              results
+          });
       }
-      
-      // Si la inserción es exitosa, envía una respuesta
-      res.status(201).json({
-        message: 'Devolución insertada exitosamente',
-        id: results.insertId,
-        results
-      });
-    }
   );
 });
 // app.post es para manejar la solicitud POST desde el cliente

@@ -1,3 +1,4 @@
+/* Contenedor de recuperación */
 .recovery-container {
     display: flex;
     justify-content: center;
@@ -8,6 +9,7 @@
     box-sizing: border-box;
 }
 
+/* Tarjeta de recuperación */
 .recovery-card {
     background-color: #ffffff;
     padding: 40px;
@@ -48,7 +50,7 @@
     border-radius: 8px;
     background-color: #f7f7f7; /* Color uniforme */
     padding: 0 15px;
-    height: 48px; /* altura uniforme */
+    height: 48px; /* Altura uniforme */
     width: 100%;
 }
 
@@ -66,8 +68,8 @@
     outline: none;
     font-size: 16px;
     color: #333333;
-    background-color: #f7f7f7; /* igual que el wrapper */
-    height: 100%; /* ocupa toda la altura */
+    background-color: #f7f7f7; /* Igual que el wrapper */
+    height: 100%; /* Ocupa toda la altura */
     padding: 0 5px;
     box-sizing: border-box;
 }
