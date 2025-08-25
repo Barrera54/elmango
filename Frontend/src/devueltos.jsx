@@ -10,6 +10,32 @@ function ProductoDevuelto() {
     const [total, setTotal] = useState('');
     const navigate = useNavigate();
 
+    // Función para manejar el cambio en el campo de cantidad con validación
+    const handleCantidadChange = (e) => {
+        const value = e.target.value;
+        // Permite solo números y un punto decimal
+        const regex = /^[0-9]*\.?[0-9]*$/;
+        
+        if (regex.test(value) || value === '') {
+            setCantidad(value);
+        } else {
+            alert('Por favor, ingresa solo números para la cantidad.');
+        }
+    };
+
+    // Función para manejar el cambio en el campo de total con validación
+    const handleTotalChange = (e) => {
+        const value = e.target.value;
+        // Permite solo números y un punto decimal
+        const regex = /^[0-9]*\.?[0-9]*$/;
+        
+        if (regex.test(value) || value === '') {
+            setTotal(value);
+        } else {
+            alert('Por favor, ingresa solo números para el total.');
+        }
+    };
+
     // Función para manejar el envío del formulario
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -38,10 +64,10 @@ function ProductoDevuelto() {
             // Verificamos si la respuesta fue exitosa
             if (response.ok) {
                 console.log('Devolución registrada exitosamente:', result);
-                // Si todo sale bien, esperamos 5 segundos antes de navegar
+                // Si todo sale bien, esperamos 2 segundos antes de navegar
                 setTimeout(() => {
                     navigate('/princi');
-                }, 2000); // 5000 milisegundos = 5 segundos
+                }, 2000); // 2000 milisegundos = 2 segundos
             } else {
                 console.error('Error al registrar la devolución:', result.error);
                 alert('Error al registrar la devolución: ' + result.details);
@@ -74,10 +100,10 @@ function ProductoDevuelto() {
                     <div className="producto-devuelto-field">
                         <label className="producto-devuelto-label">Cantidad</label>
                         <input
-                            type="number"
+                            type="text" // Cambiamos a 'text' para controlar la entrada de caracteres
                             className="producto-devuelto-input"
                             value={cantidad}
-                            onChange={(e) => setCantidad(e.target.value)}
+                            onChange={handleCantidadChange} // Usamos la nueva función de manejo
                             placeholder="Cantidad devuelta"
                             required
                         />
@@ -86,10 +112,10 @@ function ProductoDevuelto() {
                     <div className="producto-devuelto-field">
                         <label className="producto-devuelto-label">Total a Reembolsar</label>
                         <input
-                            type="number"
+                            type="text" // Cambiamos a 'text' para controlar la entrada de caracteres
                             className="producto-devuelto-input"
                             value={total}
-                            onChange={(e) => setTotal(e.target.value)}
+                            onChange={handleTotalChange} // Usamos la nueva función de manejo
                             placeholder="Monto total"
                             required
                         />

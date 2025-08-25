@@ -24,6 +24,26 @@ function EditProductForm() { // Componente renombrado para mayor claridad
   // Maneja los cambios en los campos del formulario
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
+    // Validación para el campo 'precio'
+    if (name === 'precio') {
+      const regex = /^[0-9.]*$/;
+      if (!regex.test(value)) {
+        alert('Solo se permiten números y un punto (.) para el precio.');
+        return;
+      }
+    }
+
+    // Validación para el campo 'stock'
+    if (name === 'stock') {
+      const regex = /^\d*$/;
+      if (!regex.test(value)) {
+        alert('Solo se permiten números para la cantidad.');
+        return;
+      }
+    }
+
+    // Actualiza el estado solo si la validación pasa
     setNuevoProducto(prev => ({
       ...prev,
       [name]: value
@@ -115,12 +135,12 @@ function EditProductForm() { // Componente renombrado para mayor claridad
             name="originalNomproducto"
             value={originalNomproducto}
             onChange={handleOriginalNomproductoChange}
-            placeholder="Nombre del Producto a Actualizar" // Texto ajustado
+            placeholder="Nombre del Producto a Actualizar"
             required
           />
           <input
             type="text"
-            name="Codi_produ" // Nuevo input para Codi_produ
+            name="Codi_produ"
             value={nuevoProducto.Codi_produ}
             onChange={handleInputChange}
             placeholder="Código del producto"
@@ -135,29 +155,31 @@ function EditProductForm() { // Componente renombrado para mayor claridad
             required
           />
           <input
-            type="number"
+            type="text"
             name="precio"
             value={nuevoProducto.precio}
             onChange={handleInputChange}
-            placeholder="Precio "
+            placeholder="Precio"
             required
           />
           <input
-            type="number"
+            type="text"
             name="stock"
             value={nuevoProducto.stock}
             onChange={handleInputChange}
             placeholder="Cantidad"
             required
           />
-          <input
-            type="text"
+          <select
             name="categoria"
             value={nuevoProducto.categoria}
             onChange={handleInputChange}
-            placeholder="Categoría"
             required
-          />
+          >
+            <option value="">Selecciona una categoría</option>
+            <option value="Comun">Común</option>
+            <option value="Especial">Especial</option>
+          </select>
           
           <button type="submit" className="btn">Actualizar Producto</button>
         </form>

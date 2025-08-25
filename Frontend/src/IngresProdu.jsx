@@ -23,6 +23,26 @@ const LlegadaProductoForm = () => {
   // Manejador de cambios para actualizar el estado
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    // Validación para el campo 'precio'
+    if (name === 'precio') {
+      const regex = /^[0-9.]*$/;
+      if (!regex.test(value)) {
+        alert('Solo se permiten números y un punto (.) para el precio.');
+        return;
+      }
+    }
+
+    // Validación para el campo 'stock'
+    if (name === 'stock') {
+      const regex = /^\d*$/;
+      if (!regex.test(value)) {
+        alert('Solo se permiten números para la cantidad.');
+        return;
+      }
+    }
+
+    // Actualiza el estado solo si la validación pasa
     setFormData(prevState => ({
       ...prevState,
       [name]: value
@@ -147,7 +167,7 @@ const LlegadaProductoForm = () => {
           >
             <option value=""></option>
             <option value="Comun">Comun</option>
-            <option value="Temporada">Temporada</option>
+            <option value="Especial">Especial</option>
           </select>
         </div>
         <button className='prod' onClick={handleSubmit}>
